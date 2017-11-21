@@ -5,7 +5,7 @@ module Reapal
     module Trust
       module OnekeyContract
 
-        # 个人一键签约（API）
+        # 1.2 个人一键签约（API）
         #
         # @param flow_id [ String ] 订单号
         # @param true_name [ String ] 真实姓名

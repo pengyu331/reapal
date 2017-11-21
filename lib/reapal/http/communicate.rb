@@ -47,8 +47,7 @@ module Reapal
       result
     end
 
-    private
-
+    # 表单的 body
     def self.get_body(service, params, config)
       data = {
         version: VERSION,
@@ -66,6 +65,8 @@ module Reapal
         data: Encrypt::AES.encrypt(data.to_json, random_key),
       }
     end
+
+    private
 
     def self.unpack_body(body_string, config)
       # 返回是 json 字符串格式

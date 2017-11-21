@@ -5,7 +5,7 @@ module Reapal
     module Trust
       module ContractQuery
 
-        # 签约查询，支持个人和企业（API）
+        # 1.5 签约查询，支持个人和企业（API）
         #
         # @param ori_flow_id [ String ] 原订单号
         #
@@ -14,7 +14,7 @@ module Reapal
         #   * :error_msg [String] 错误提示
         #   * :data [Hash] 成功数据，解析和【个人签约API】/【企业签约API】一致
         #
-        def agree_query(ori_flow_id)
+        def contract_query(ori_flow_id)
           # TODO(tony): 目前我们只用个人签约，个人签约都是同步返回，所以先不做实现
           raise "Not Implement"
 
