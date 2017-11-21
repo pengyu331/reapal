@@ -35,6 +35,22 @@ Reapal.logger # => #<Logger:0x007fa1f28b83f0>
 
 ## 开发
 
+### 怎么加入
+
+```
+# 先 fork 此项目
+# checkout 自己的项目后操作：
+$ git remote -v # 查看主机源，如果只有自己的 origin 那还没有设置 upstream
+$ git remote add upstream https://github.com/omniaccountcorp/reapal
+$ git fetch upstream
+$ git checkout master
+$ git merge --no-ff upstream/master
+# 如果有冲突解决...
+$ git add 修改的文件
+$ git commit -m 'merge from origin-git'
+$ git push origin [自己开发的分支]
+```
+
 ### 开发新 api 指南
 1. 根据 service 名字，确定好 module ，新 api 文件名，方法名，比如：
     ``` ruby
