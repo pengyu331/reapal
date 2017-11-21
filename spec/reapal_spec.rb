@@ -1,9 +1,6 @@
+# coding: utf-8
 RSpec.describe Reapal do
-  it "has a version number" do
+  it "设置版本号" do
     expect(Reapal::VERSION).not_to be nil
-  end
-
-  it "does something useful" do
-    expect(false).to eq(true)
   end
 end
