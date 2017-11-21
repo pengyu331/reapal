@@ -27,13 +27,13 @@ TODO: Write usage instructions here
 ### logger
 
 ``` ruby
-SuckerPunch.logger = Logger.new('sucker_punch.log')
-SuckerPunch.logger # => #<Logger:0x007fa1f28b83f0>
+Reapal.logger = Logger.new('reapal.log')
+Reapal.logger # => #<Logger:0x007fa1f28b83f0>
 ```
 
 * Note: If Reapal is being used within a Rails application, Reapal's logger is set to Rails.logger by default. *
 
-## Development
+## 开发
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 

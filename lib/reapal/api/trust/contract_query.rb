@@ -2,16 +2,12 @@
 
 module Reapal
   module Api
-    module Agreement
-      module AgreeQuery
+    module Trust
+      module ContractQuery
 
-        # 个人一键签约（API）
+        # 签约查询，支持个人和企业（API）
         #
-        # @param flow_id [ String ] 订单号
-        # @param true_name [ String ] 真实姓名
-        # @param identity_id [ String ] 身份证号
-        # @param phone [ String ] 手机号
-        # @param bus_way [ String ] 00：PC端；01：手机端；02：Pad端；03：其它
+        # @param ori_flow_id [ String ] 原订单号
         #
         # @return [ Hash ] 结果集
         #   * :result [String] "S"/"F"/"P"

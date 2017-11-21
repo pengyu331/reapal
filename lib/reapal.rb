@@ -7,19 +7,19 @@ require "base64"
 require 'macaddr'
 require 'byebug'
 require 'logger'
+require 'bigdecimal'
+require 'bigdecimal/util'
 
 require "reapal/version"
 require "reapal/utils"
+require "reapal/extensions"
 require "reapal/sign/md5"
 require "reapal/encrypt/rsa"
 require "reapal/encrypt/aes"
 require "reapal/http/communicate"
 require "reapal/http/response"
-
 # 自动加载所有 api
-Dir["#{File.dirname(__FILE__)}/reapal/api/**/*.rb"].each { |file|
-  require file
-}
+Dir["#{File.dirname(__FILE__)}/reapal/api/**/*.rb"].each { |file| require file }
 
 require "reapal/client"
 

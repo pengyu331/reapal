@@ -2,8 +2,8 @@
 
 module Reapal
   module Api
-    module Agreement
-      module Agree
+    module Trust
+      module OnekeyContract
 
         # 个人一键签约（API）
         #
@@ -23,7 +23,7 @@ module Reapal
         #       * :userIdentity [String] 身份证
         #       * :userMobile [String] 手机号
         #
-        def agree(flow_id, true_name, identity_id, phone, bus_way='01')
+        def onekey_contract(flow_id, true_name, identity_id, phone, bus_way='01')
           service = 'reapal.trust.onekeyContract'
           post_path = '/reagw/agreement/agree.htm'
 

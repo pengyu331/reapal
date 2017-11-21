@@ -55,4 +55,20 @@ nCSRXVFpm8/JY8zVxRF7jqwuoaON7A==
       private_key_pwd: '171115',
     )
   end
+
+  def test_contracts
+    return if @constracts
+
+    sleep(3) # 否则会报“签约过于频繁”的错误
+
+    name='王五'
+    id='421181198608283272'
+    other_phone = Faker::PhoneNumber.cell_phone
+    result = client.onekey_contract(Reapal::Utils.gen_flow_id,
+                          name, id, other_phone)
+
+    @constracts = result[:data][:contracts]
+
+    @constracts
+  end
 end
