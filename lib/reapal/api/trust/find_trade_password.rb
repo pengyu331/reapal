@@ -18,7 +18,7 @@ module Reapal
         #
         def find_trade_password(contracts, busway='01')
           service = 'reapal.trust.findTradePassword'
-          post_path = '/reagw/findTradePassword/findTradePassword.htm'
+          post_path = '/reagw/tender/rest.htm'
 
           params = {
             contracts: contracts,
