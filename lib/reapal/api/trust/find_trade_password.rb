@@ -16,13 +16,15 @@ module Reapal
         #   * :url
         #   * :method
         #
-        def find_trade_password(contracts, busway='01')
+        def find_trade_password(contracts, returnUrl, notifyUrl, busway='01')
           service = 'reapal.trust.findTradePassword'
           post_path = '/reagw/findTradePassword/findTradePassword.htm'
 
           params = {
             contracts: contracts,
             busway: busway,
+            returnUrl: returnUrl,
+            notifyUrl: notifyUrl,
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
