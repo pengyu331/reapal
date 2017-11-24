@@ -22,6 +22,9 @@ module Reapal
         #   *amount [String] 金额
         #   *remark [String] 备注
         # @param busway [String] '00'：PC端；'01'：手机端(默认)；'02'：Pad端；'03'：其它
+        # @param return_url [String] 回调 url
+        # @param notify_url [String] 通知 url
+
 
         # @return [ Hash ] 结果集
         #   * form_method
@@ -33,7 +36,7 @@ module Reapal
         #     * :data
         #
         def tender_refund_form(flow_id, tender_no, debit_contrats, debit_detail,
-                               invest_details, busway='01')
+                               invest_details, busway='01', return_url, notify_url )
 
           service = 'reapal.trust.tenderRefund'
           post_path = '/reagw/tender/rest.htm'
@@ -57,8 +60,8 @@ module Reapal
             debitDetails: debit_details,
             investDetails: invest_details,
             busway: busway,
-            returnUrl: '',
-            notifyUrl: '',
+            returnUrl: return_url,
+            notifyUrl: notify_url,
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S')
           }
 
@@ -69,11 +72,7 @@ module Reapal
               :url => config[:server_url] + post_path,
               :method => :post,
             },
-             form_data: {
-               :merchant_id => request[:merchant_id],
-               :encryptkey => request[:encryptkey],
-               :data => request[:data]
-            }
+             form_data: request
 
           }
 

@@ -1,7 +1,6 @@
 # coding: utf-8
 
 module Reapal
-  module Api
     module Form
       module BusinessAuth
 
@@ -13,6 +12,8 @@ module Reapal
         # @param busway [String] 00：PC端；01：手机端；02：Pad端；03：其它
         # @param auth_limit [String] 授权期限日期 YYYYMMDD
         # @param tender_no [String] 标的号,授权为一键还款时必填
+        # @param return_url [String] 回调 url
+        # @param notify_url [String] 通知 url
         #
 
         # @return [ Hash ] 结果集
@@ -25,7 +26,7 @@ module Reapal
         #     * :data
         #
         def business_auth_form(flow_id, contracts, services, busway='01', auth_limit,
-                               tender_no)
+                               tender_no, return_url, notify_url)
 
           service = 'reapal.trust.businessAuth'
           post_path = '/reagw/tender/rest.htm'
@@ -37,8 +38,8 @@ module Reapal
             busway: busway,
             authLimit: auth_limit,
             tenderNo: tender_no,
-            returnUrl: '',
-            notifyUrl: '',
+            returnUrl: return_url,
+            notifyUrl: notify_url,
             remark: '',
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S')
           }
@@ -50,17 +51,11 @@ module Reapal
               :url => config[:server_url] + post_path,
               :method => :post,
             },
-             form_data: {
-              :merchant_id => request[:merchant_id],
-              :encryptkey => request[:encryptkey],
-              :data => request[:data]
-            }
-
+             form_data: request
           }
 
         end
 
       end #BusinessAuth
     end
-  end
 end
