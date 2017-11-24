@@ -42,7 +42,7 @@ module Reapal
           response = Http.post(service, params, @config, post_path)
 
           error_result = {
-            data: nil,
+            data: response.data,
             result: "F",
             error_msg: "未知错误",
           }
