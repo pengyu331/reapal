@@ -3,21 +3,24 @@
 module Reapal
   module Api
     module Asset
-      module TenderApply
+      module TenderFinish
 
-        # 3.1 发标
+        # 3.8  满标 API
         #
-        # @param flow_id [String] 发标订单号
+        # @param flow_id [String] 完成订单号
         # @param tender_no [String] 商户系统标的号
-        # @param tender_name [String] 商户系统标的名称
-        # @param money [BigDecimal] 金额
-        # @param rate [BigDecimal] 利率  10.3表示10.3%
-        # @param debit_term [BigDecimal] 标的期限
-        # @param debit_type [String] 期数类型,年：0，月：1，日：2
-        # @param repay_date [String] 还款日期，格式YYYYMMDD
-        # @param expiry_date [String] 投标截止日期，格式YYYYMMDD
         # @param debit_contracts [String] 借款方协议号
-        # @param guarant_contract [String] 担保方协议号
+        # @param debit_details [JSON] 借款方分账
+        #   *seria_no [String] 商户流水号
+        #   *payee_contracts [String] 收款方协议号
+        #   *amount [BigDecimal] 金额
+        #   *remark [String] 备注
+        # @param invest_details [JSON] 投资方分账
+        #   *seria_no [String] 商户流水号
+        #   *invest_contracts [String] 投资方协议号
+        #   *payee_contracts [String] 收款方协议号
+        #   *amount [BigDecimal] 金额
+        #   *remark [String] 备注
         # @param busway [String] 设备通道， '00'：PC端；'01'：手机端(默认)；'02'：Pad端；'03'：其它
         # @param remark [String] 备注
         #
@@ -28,26 +31,20 @@ module Reapal
         #   * :error_code [String] 错误代号
         #   * :error_msg [String] 错误信息
         #   * :data: 具体业务返回信息
-        #      * :orderNo [String] 发标订单号
+        #      * :orderNo [String] 完成订单号
         #      * :resultCode [String] 结果代码
         #
-        def tender_apply(flow_id, tender_no, tender_name, money, rate,
-                                  debit_term, debit_type, rapay_date, expiry_date,
-                                  debit_contracts, guarant_contract, busway='01', remark='')
-          service = 'reapal.trust.tenderApply'
+        def tender_finish(flow_id, tender_no, debit_contracts, debit_details,
+                          invest_details, busway='01', remark='')
+          service = 'reapal.trust.tenderFinish'
           post_path = '/reagw/tender/rest.htm'
 
           params = {
             orderNo: flow_id,
             tenderNo: tender_no,
-            tenderName: tender_name,
-            amount: money,
-            rate: rate,
-            debitTerm: debit_term,
-            debitType: debit_type,
-            expiryDate: expiry_date,
             debitContracts: debit_contracts,
-            guarantContract: guarant_contract,
+            debitDetails: debit_details,
+            investDetails: invest_details,
             busway: busway,
             remark: remark,
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
@@ -66,7 +63,7 @@ module Reapal
           end
 
           #确定的错误
-          if Reapal::Api::ErrorCode.tender_apply.include?(response.data[:resultCode])
+          if Reapal::Api::ErrorCode.tender_finish.include?(response.data[:resultCode])
             res[:result] = "F"
             return res
           end
@@ -75,7 +72,7 @@ module Reapal
           res
         end
 
-      end # module TenderApply
+      end # module TenderFinish
     end
   end
 end
