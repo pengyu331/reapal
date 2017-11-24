@@ -7,7 +7,7 @@ RSpec.describe '修改签约手机号' do
     new_phone = Faker::PhoneNumber.cell_phone
     result = client.mobile_modify(test_contracts, new_phone)
 
-    puts result
+    puts result.to_json
   end
 
 end
