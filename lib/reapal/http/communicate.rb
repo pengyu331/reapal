@@ -5,8 +5,8 @@ module Reapal
     SIGN_TYPE = '0' # 0 表示 md5
     VERSION = '1.0' # 版本号
 
-    def self.post(service, params, config, post_path)
-      post_body = get_body(service, params, config)
+    def self.post(service, params, config, post_path, version=VERSION)
+      post_body = get_body(service, params, config, version)
       uri = URI(config[:server_url] + post_path)
 
       Reapal.logger.info "[#{service}] 请求内容为：\n#{params}\n"
@@ -48,9 +48,9 @@ module Reapal
     end
 
     # 表单的 body
-    def self.get_body(service, params, config)
+    def self.get_body(service, params, config, version)
       data = {
-        version: VERSION,
+        version: version,
         service: service,
         partner: config[:partner_id],
         sign: Sign::MD5.sign(params.to_json, config[:md5_key]),
