@@ -7,7 +7,7 @@ module Reapal
 
         # 3.20 标的授权 (Form)
         #
-        # @param order_no [String] 业务订单号
+        # @param flow_id [String] 业务订单号
         # @param contracts [String] 用户协议号
         # @param services [String] 授权服务 02一键投标 ，03 为一键还款 04 一键债转
         # @param busway [String] 00：PC端；01：手机端；02：Pad端；03：其它
@@ -20,24 +20,26 @@ module Reapal
         #     * url
         #     * method
         #   * form_data
+        #     * :merchant_id
+        #     * :encryptkey
         #     * :data
         #
-        def business_auth_form(order_no, contracts, services, busway='01', auth_limit,
+        def business_auth_form(flow_id, contracts, services, busway='01', auth_limit,
                                tender_no)
 
           service = 'reapal.trust.businessAuth'
           post_path = '/reagw/tender/rest.htm'
 
           params = {
-            orderNo: order_no,
+            orderNo: flow_id,
             contracts: contracts,
             services: services,
             busway: busway,
             authLimit: auth_limit,
             tenderNo: tender_no,
-            returnUrl: ''
-            notifyUrl: ''
-            remark: ''
+            returnUrl: '',
+            notifyUrl: '',
+            remark: '',
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S')
           }
 
@@ -49,7 +51,9 @@ module Reapal
               :method => :post,
             },
              form_data: {
-              :data => request
+              :merchant_id => request[:merchant_id],
+              :encryptkey => request[:encryptkey],
+              :data => request[:data]
             }
 
           }

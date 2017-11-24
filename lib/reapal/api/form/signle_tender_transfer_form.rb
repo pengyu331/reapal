@@ -7,10 +7,10 @@ module Reapal
 
         # 3.16 债权转让(Form)
         #
-        # @param order_no [String] 业务订单号
+        # @param flow_id [String] 业务订单号
         # @param tender_no [String] 转让方原投资标的号
         # @param trans_capital [BigDecimal] 转让人出让的本金
-        # @param amount [BigDecimal] 债权转让承接人应支付金额
+        # @param money [BigDecimal] 债权转让承接人应支付金额
         # @param trans_contracts [String] 债权转让方在存管系统签约的协议号
         # @param into_contracts [String] 债权承接方在存管系统签约的协议号
         # @param transfer_type [String] 债转类型
@@ -23,19 +23,21 @@ module Reapal
         #     * url
         #     * method
         #   * form_data
+        #     * :merchant_id
+        #     * :encryptkey
         #     * :data
         #
-        def signle_tender_transfer_form(order_no, tender_no, trans_capital, amount, into_contracts,
-                                   transfer_type, invest_order, org_transfer_order, busway='01')
+        def signle_tender_transfer_form(flow_id, tender_no, trans_capital, money, into_contracts,
+                                        transfer_type, invest_order, org_transfer_order, busway='01')
 
           service = 'reapal.trust.signleTenderTransfer'
           post_path = '/reagw/tender/rest.htm'
 
           params = {
-            orderNo: order_no,
+            orderNo: flow_id,
             tenderNo: tender_no,
             transCapital: trans_capital,
-            amount: amount,
+            amount: money,
             transContracts: trans_contracts,
             intoContracts: into_contracts,
             fee: '',
@@ -58,7 +60,9 @@ module Reapal
               :method => :post,
             },
              form_data: {
-              :data => request
+               :merchant_id => request[:merchant_id],
+               :encryptkey => request[:encryptkey],
+               :data => request[:data]
             }
 
           }
