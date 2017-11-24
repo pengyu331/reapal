@@ -3,14 +3,12 @@
 module Reapal
   module Api
     module Trust
-      module WithdrawApply
+      module MobileModifyForm
 
-        # 2.7 提现申请
+        # 1.7 签约手机号修改
         #
         # @param contract [String] 用户协议
-        # @param flow_id [String] 订单号
-        # @param money [Number] 提现金额，2位小数
-        # @param charge [Number] 手续费，2位小数
+        # @param new_phone [String] 新手机号
         # @param return_url [String] 回调 url
         # @param notify_url [String] 通知 url
         # @param buyway [String] 设备通道，默认手机端。00：PC端；01：手机端；02：Pad端；03：其它
@@ -24,15 +22,13 @@ module Reapal
         #     * :encryptkey
         #     * :data
         #
-        def withdraw_apply(contract, flow_id, money, charge, return_url, notify_url, busway='01')
-          service = 'reapal.trust.withdrawApply'
-          post_path = '/reagw/service/withdraw.htm'
+        def mobile_modify_form(contract, new_phone, return_url, notify_url, busway='01')
+          service = 'reapal.trust.mobileModify'
+          post_path = '/reagw/user/rest.htm'
 
           params = {
-            orderNo: flow_id,
             contracts: contract,
-            amount: money,
-            charge: charge,
+            mobile: new_phone,
             busway: busway,
             returnUrl: return_url,
             notifyUrl: notify_url,

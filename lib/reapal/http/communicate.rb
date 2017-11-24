@@ -48,7 +48,7 @@ module Reapal
     end
 
     # 表单的 body
-    def self.get_body(service, params, config, version)
+    def self.get_body(service, params, config, version=VERSION)
       data = {
         version: version,
         service: service,

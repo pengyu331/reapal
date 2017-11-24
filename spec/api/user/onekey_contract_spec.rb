@@ -42,5 +42,4 @@ RSpec.describe '个人签约' do
     expect(result[:result]).to eq('F')
     expect(result[:error_code]).to eq('0130')
   end
-
 end

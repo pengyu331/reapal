@@ -3,12 +3,11 @@
 module Reapal
   module Api
     module Trust
-      module MobileModify
+      module FindTradePassowrdForm
 
-        # 1.7 签约手机号修改
+        # 1.9 设置/修改交易密码
         #
         # @param contract [String] 用户协议
-        # @param new_phone [String] 新手机号
         # @param return_url [String] 回调 url
         # @param notify_url [String] 通知 url
         # @param buyway [String] 设备通道，默认手机端。00：PC端；01：手机端；02：Pad端；03：其它
@@ -22,13 +21,12 @@ module Reapal
         #     * :encryptkey
         #     * :data
         #
-        def mobile_modify(contract, new_phone, return_url, notify_url, busway='01')
-          service = 'reapal.trust.mobileModify'
-          post_path = '/reagw/user/rest.htm'
+        def find_trade_password_form(contract, return_url, notify_url, busway='01')
+          service = 'reapal.trust.findTradePassword'
+          post_path = '/reagw/findTradePassword/findTradePassword.htm'
 
           params = {
             contracts: contract,
-            mobile: new_phone,
             busway: busway,
             returnUrl: return_url,
             notifyUrl: notify_url,

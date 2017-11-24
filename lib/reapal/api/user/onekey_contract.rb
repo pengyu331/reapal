@@ -2,12 +2,16 @@
 
 module Reapal
   module Api
-    module Trust
-      module OnekeyBatchContract
+    module User
+      module OnekeyContract
 
-        # 1.1 个人一键签约（API）新版本，迁移老数据
+        # 1.2 个人一键签约（API）
         #
         # @param flow_id [ String ] 订单号
+        # @param true_name [ String ] 真实姓名
+        # @param identity_id [ String ] 身份证号
+        # @param phone [ String ] 手机号
+        # @param bus_way [ String ] 00：PC端；01：手机端；02：Pad端；03：其它
         #
         # @return [ Hash ] 结果集
         #   * :result [String] "S"/"F"/"P"
@@ -19,10 +23,8 @@ module Reapal
         #       * :userIdentity [String] 身份证
         #       * :userMobile [String] 手机号
         #
-        def onekey_batch_contract(flow_id, true_name, identity_id, phone, is_to_sms,
-                                  bank_code, card_id, card_province, card_city, card_branch, card_sub_branch,
-                                  bus_way='01')
-          service = 'reapal.trust.onekeyBatchContract'
+        def onekey_contract(flow_id, true_name, identity_id, phone, bus_way='01')
+          service = 'reapal.trust.onekeyContract'
           post_path = '/reagw/agreement/agree.htm'
 
           params = {
@@ -32,13 +34,6 @@ module Reapal
             userMobile: phone,
             busway: bus_way,
             remark: '',
-            isToSms: is_to_sms,
-            bankCode: bank_code,
-            bankAccountNo: card_id,
-            accountProvince: card_province,
-            accountCity: card_city,
-            branch: card_branch,
-            subbranch: card_sub_branch,
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
@@ -70,7 +65,6 @@ module Reapal
               error_msg: nil,
             }
           else
-            # 普通错误
             error_result[:error_code] = response.data[:errorCode]
             error_result[:error_msg] = response.data[:errorMsg]
             return error_result

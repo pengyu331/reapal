@@ -2,7 +2,7 @@
 
 module Reapal
   module Api
-    module Agreement
+    module User
       module BalanceQuery
 
         # 1.6 查询余额（API）
