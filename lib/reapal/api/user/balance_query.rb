@@ -47,9 +47,9 @@ module Reapal
 
           res[:result] = 'S'
           res[:data] = {
-            total_amount: response.data[:totalAmount].to_d,
-            usable_amount: response.data[:usableAmount].to_d,
-            tender_amount: response.data[:tenderAmount].to_d,
+            totalAmount: response.data[:totalAmount].to_d,
+            usableAmount: response.data[:usableAmount].to_d,
+            tenderAmount: response.data[:tenderAmount].to_d,
           }
 
           res

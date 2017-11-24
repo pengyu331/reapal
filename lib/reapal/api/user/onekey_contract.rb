@@ -48,7 +48,6 @@ module Reapal
           # 个人签约只有返回码是 '0000', '0007' 才成功
           if ['0000', '0007'].include?(response.data[:resultCode])
             res[:result] = 'S'
-            res[:data] = response.data
           else
             res[:result] = 'F'
           end

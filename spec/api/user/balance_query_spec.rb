@@ -6,7 +6,7 @@ RSpec.describe '查询个人余额' do
     result = client.balance_query(test_contracts)
 
     expect(result[:result]).to eq('S')
-    expect(result[:data][:total_amount]).not_to eq(nil)
+    expect(result[:data][:totalAmount]).not_to eq(nil)
   end
 
   it '在没有签约的情况下，失败' do

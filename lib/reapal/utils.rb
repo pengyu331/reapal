@@ -55,7 +55,7 @@ module Reapal
         flow_id: response.nil? ? nil : response.flow_id,
         error_code: response.nil? ? nil : response.data[:errorCode],
         error_msg: response.nil? ? nil : response.data[:errorMsg],
-        data: {}
+        data: response.nil? ? nil : response.data,
       }
     end
 
