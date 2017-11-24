@@ -20,6 +20,8 @@ require "reapal/http/communicate"
 require "reapal/http/response"
 # 自动加载所有 api
 Dir["#{File.dirname(__FILE__)}/reapal/api/**/*.rb"].each { |file| require file }
+# 自动加载所有 form
+Dir["#{File.dirname(__FILE__)}/reapal/form/**/*.rb"].each { |file| require file }
 
 require "reapal/client"
 

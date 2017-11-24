@@ -2,7 +2,7 @@
 
 module Reapal
   module Api
-    module Trust
+    module User
       module OnekeyBatchContract
 
         # 1.1 个人一键签约（API）新版本，迁移老数据
@@ -44,37 +44,19 @@ module Reapal
 
           response = Http.post(service, params, @config, post_path)
 
-          error_result = {
-            data: nil,
-            result: "F",
-            error_msg: "未知错误",
-          }
+          res = Reapal::Utils.api_result(params, response)
 
-          # 如果数据不合法
-          unless response.data_valid
-            error_result[:error_msg] = "返回数据不合法"
-            return error_result
-          end
-
-          # 如果网络出错，包括超时或者非200类数据
-          unless response.http_response.kind_of?(Net::HTTPSuccess)
-            error_result[:error_msg] = "网络出错"
-            return error_result
-          end
+          return res if response.http_pending?
 
           # 个人签约只有返回码是 '0000', '0007' 才成功
           if ['0000', '0007'].include?(response.data[:resultCode])
-            return {
-              data: response.data,
-              result: "S",
-              error_msg: nil,
-            }
+            res[:result] = 'S'
+            res[:data] = response.data
           else
-            # 普通错误
-            error_result[:error_code] = response.data[:errorCode]
-            error_result[:error_msg] = response.data[:errorMsg]
-            return error_result
+            res[:result] = 'F'
           end
+
+          res
         end
 
       end # module Agree

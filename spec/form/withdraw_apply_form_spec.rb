@@ -1,11 +1,13 @@
 # coding: utf-8
 require 'reapal_helper'
 
-RSpec.describe '设置/修改交易密码' do
+RSpec.describe '提现申请' do
   it '成功' do
     sleep(3) # 否则会报“签约过于频繁”的错误
     new_phone = Faker::PhoneNumber.cell_phone
-    result = client.find_trade_password(test_contracts)
+    result = client.withdraw_apply_form(test_contracts, Reapal::Utils.gen_flow_id, 100, 1, '', '')
+
+    result = result[:form_data]
 
     html = <<-EOF
 <form action="#{result[:url]}" method="#{result[:method]}">
@@ -16,7 +18,7 @@ RSpec.describe '设置/修改交易密码' do
 </form>
     EOF
 
-    path = "tmp/spec_find_trade_password.html"
+    path = "tmp/spec_withdraw_apply.html"
     fp = File.open(path, "w+")
     fp.write html
     fp.close
