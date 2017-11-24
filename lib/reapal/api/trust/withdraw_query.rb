@@ -3,38 +3,28 @@
 module Reapal
   module Api
     module Trust
-      module DepositConfirmApi
+      module DepositQuery
 
-        # 2.3 快捷充值确认（API）
+        # 2.6 充值查询（API）
         #
-        # @param order_no [ String ] 商户订单号（非自动生成，与充值签约订单号一致）
-        # @param contracts [ String ] 用户协议号
-        # @param check_code [ String ] 短信验证码
-        # @param busway [ String ] 设备通道 00：PC端；01：手机端；02：Pad端；03：其它
-        # @param terminal_info [ String ] 终端信息（手机IMEI地址、MAC地址、UUID）
-        # @param member_ip [ String ] 用户IP
-        # @param remark [ String ] 业务备注信息
-
+        # @param deposit_order_no [ String ] 充值订单号
+        #
         # @return [ Hash ] 结果集
         #   * :result [String] "S"/"F"/"P"
         #   * :error_msg [String] 错误提示
         #   * :data [Hash] 成功数据
-        #       * :orderNo [String]  订单号
-        #       * :resultCode [String] 结果代码 0000：充值成功
-        #       * :resultMsg [String] 结果描述
+        #       * :orderNo [String]  充值订单号
+        #       * :amount [BigDecimal] 交易金额
+        #       * :charge [BigDecimal] 手续费
+        #       * :resultCode [String] 结果代码
         #
-        def deposit_confirm_api(order_no, contracts, check_code, busway='01', terminal_info, member_ip, remark)
-          service = 'service= reapal.trust.depositConfirmAPI'
+        def deposit_query(deposit_order_no)
+          service = 'reapal.trust.depositQuery'
           post_path = '/reagw/service/depwit.htm'
 
           params = {
-            orderNo: order_no,
-            contracts: contracts,
-            checkCode: check_code,
-            busway: busway,
-            terminalInfo: terminal_info,
-            memberIp: member_ip,
-            applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
+            orderNo: deposit_order_no,
+            queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
           response = Http.post(service, params, @config, post_path)
@@ -57,7 +47,7 @@ module Reapal
             return error_result
           end
 
-          # 快捷充值确认只有返回码是 '0000' 才成功
+          # 充值查询只有返回码是 '0000', '0007' 才成功
           if ['0000'].include?(response.data[:resultCode])
             return {
               data: response.data,
@@ -65,14 +55,14 @@ module Reapal
               error_msg: nil,
             }
           else
+            # 普通错误
             error_result[:error_code] = response.data[:errorCode]
             error_result[:error_msg] = response.data[:errorMsg]
             return error_result
           end
-
         end
 
-      end
+      end # module
     end
   end
 end

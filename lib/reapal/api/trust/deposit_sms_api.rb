@@ -22,7 +22,7 @@ module Reapal
         #       * :resultCode [String] 结果代码 0000：发送成功
         #       * :resultMsg [String] 结果描述
         #
-        def deposit_sms_api(order_no, contracts, busway = '01', terminal_info, member_ip, remark = "")
+        def deposit_sms_api(order_no, contracts, busway='01', terminal_info, member_ip, remark )
           service = 'reapal.trust.depositSmsAPI'
           post_path = '/reagw/service/depwit.htm'
 
