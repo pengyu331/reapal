@@ -7,6 +7,8 @@ RSpec.describe '修改签约手机号' do
     new_phone = Faker::PhoneNumber.cell_phone
     result = client.mobile_modify_form(test_contracts, new_phone, '', '')
 
+    result = result[:form_data]
+
     html = <<-EOF
 <form action="#{result[:url]}" method="#{result[:method]}">
   <p>First name: <input type="text" name="merchant_id" value="#{result[:merchant_id]}"/></p>

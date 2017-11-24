@@ -2,7 +2,7 @@
 
 module Reapal
   module Api
-    module Trust
+    module Form
       module FindTradePassowrdForm
 
         # 1.9 设置/修改交易密码

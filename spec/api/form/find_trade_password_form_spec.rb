@@ -7,6 +7,8 @@ RSpec.describe '设置/修改交易密码' do
     new_phone = Faker::PhoneNumber.cell_phone
     result = client.find_trade_password_form(test_contracts, '', '')
 
+    result = result[:form_data]
+
     html = <<-EOF
 <form action="#{result[:url]}" method="#{result[:method]}">
   <p>First name: <input type="text" name="merchant_id" value="#{result[:merchant_id]}"/></p>

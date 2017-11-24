@@ -2,7 +2,7 @@
 
 module Reapal
   module Api
-    module Trust
+    module Form
       module MobileModifyForm
 
         # 1.7 签约手机号修改

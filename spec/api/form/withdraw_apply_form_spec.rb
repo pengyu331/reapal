@@ -7,6 +7,8 @@ RSpec.describe '提现申请' do
     new_phone = Faker::PhoneNumber.cell_phone
     result = client.withdraw_apply_form(test_contracts, Reapal::Utils.gen_flow_id, 100, 1, '', '')
 
+    result = result[:form_data]
+
     html = <<-EOF
 <form action="#{result[:url]}" method="#{result[:method]}">
   <p>First name: <input type="text" name="merchant_id" value="#{result[:merchant_id]}"/></p>

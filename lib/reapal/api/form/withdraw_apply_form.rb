@@ -2,7 +2,7 @@
 
 module Reapal
   module Api
-    module Trust
+    module Form
       module WithdrawApplyForm
 
         # 2.7 提现申请

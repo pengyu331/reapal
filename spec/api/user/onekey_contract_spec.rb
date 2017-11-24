@@ -11,6 +11,8 @@ RSpec.describe '个人签约' do
     result = client.onekey_contract(Reapal::Utils.gen_flow_id,
                                     name, id, phone)
 
+    expect(result[:result]).not_to eq('P')
+
     if result[:result] == 'S'
       expect(result[:data][:contracts]).not_to eq(nil)
       expect(result[:data][:userName]).to eq(name)

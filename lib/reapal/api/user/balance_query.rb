@@ -10,11 +10,15 @@ module Reapal
         # @param contracts [ String ] 用户协议号
         #
         # @return [ Hash ] 结果集
-        #   * :success [bool] 查询结果是否有效
-        #   * :data [Hash] 成功数据
-        #       * :total_amount [BigDecimal] 账户总额
-        #       * :usable_amount [BigDecimal] 可用金额
-        #       * :tender_amount [BigDecimal] 投标金额
+        #   * :result [String] 业务结果：'S/F/P'
+        #   * :request_params [Hash] 请求参数
+        #   * :response [Object] 请求返回对象
+        #   * :error_code [String] 错误代号
+        #   * :error_msg [String] 错误信息
+        #   * :data: 具体业务返回信息
+        #     * :total_amount [BigDecimal] 账户总额
+        #     * :usable_amount [BigDecimal] 可用金额
+        #     * :tender_amount [BigDecimal] 投标金额
         #
         def balance_query(contracts)
           service = 'reapal.trust.balanceQuery'
@@ -27,29 +31,28 @@ module Reapal
 
           response = Http.post(service, params, @config, post_path)
 
-          # 如果数据不合法
-          unless response.data_valid
-            return {success: false}
+          res = Reapal::Utils.api_result(params, response)
+
+          # 查询类 api，http 没成功都返回 pending
+          return res unless response.http_success?
+
+          # 如果查不到这个人
+          if response.data[:errorCode] == '0113'
+            res[:result] = 'F'
+            return res
           end
 
-          # 如果网络出错，包括超时或者非200类数据
-          unless response.http_response.kind_of?(Net::HTTPSuccess)
-            return {success: false}
-          end
+          # 其余 api 错误不知道
+          return res unless response.data[:errorCode].nil?
 
-          # 如果 api 出异常
-          if response.data[:errorCode]
-            return {success: false}
-          end
-
-          {
-            success: true,
-            data: {
-              total_amount: response.data[:totalAmount].to_d,
-              usable_amount: response.data[:usableAmount].to_d,
-              tender_amount: response.data[:tenderAmount].to_d,
-            }
+          res[:result] = 'S'
+          res[:data] = {
+            total_amount: response.data[:totalAmount].to_d,
+            usable_amount: response.data[:usableAmount].to_d,
+            tender_amount: response.data[:tenderAmount].to_d,
           }
+
+          res
         end
 
       end # module Agree
