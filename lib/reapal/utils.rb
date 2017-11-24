@@ -43,5 +43,21 @@ module Reapal
       ((0..9).to_a + ('a'..'z').to_a + ('A'..'Z').to_a).sample(size).join()
     end
 
+    # api 通用返回数据结构
+    # @param request_params [Object] 请求参数
+    # @param response [Object] 响应对象
+    # @return [Object]
+    def self.api_result(request_params, response)
+      {
+        result: 'P', # 默认
+        request_params: request_params,
+        response: response,
+        flow_id: response.nil? ? nil : response.flow_id,
+        error_code: response.nil? ? nil : response.data[:errorCode],
+        error_msg: response.nil? ? nil : response.data[:errorMsg],
+        data: response.nil? ? nil : response.data,
+      }
+    end
+
   end
 end

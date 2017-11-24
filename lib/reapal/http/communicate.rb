@@ -5,20 +5,20 @@ module Reapal
     SIGN_TYPE = '0' # 0 表示 md5
     VERSION = '1.0' # 版本号
 
-    def self.post(service, params, config, post_path)
-      post_body = get_body(service, params, config)
+    def self.post(service, params, config, post_path, version=VERSION)
+      post_body = get_body(service, params, config, version)
       uri = URI(config[:server_url] + post_path)
 
       Reapal.logger.info "[#{service}] 请求内容为：\n#{params}\n"
       Reapal.logger.info "[#{service}(#{uri})] 最终发送内容为：\n#{post_body}\n"
 
-      result = {}
+      result = nil
 
       begin
         response = Net::HTTP.post_form(uri, post_body)
         Reapal.logger.info "[#{service}] 返回的报文为：\n#{response.body}"
 
-        if response.is_a?(Net::HTTPSuccess) # 返回 200 才处理
+        if response.is_a?(Net::HTTPSuccess)
           response_raw_body = unpack_body(response.body, config)
           result = Reapal::Http::Response.new(service: service,
                                               flow_id: params[:orderNo],
@@ -27,18 +27,17 @@ module Reapal
                                               data: response_raw_body[:resData],
                                               data_valid: response_raw_body[:data_valid])
         else
-          # 非 200 请求，结果为 Fail
+          # 不成功的不解密, 500, 300, 400
           result = Reapal::Http::Response.new(service: service,
                                               flow_id: params[:orderNo],
                                               http_response: response,
                                               raw_body: response.body,
                                               data_valid: true)
         end
-      rescue
-        # 请求超时等网络原因，结果为 pending，等待下次查询
+      rescue Net::ReadTimeout
         result = Reapal::Http::Response.new(service: service,
                                             flow_id: params[:orderNo],
-                                            http_response: response,
+                                            http_response: nil,
                                             data_valid: true)
       end
 
@@ -48,9 +47,9 @@ module Reapal
     end
 
     # 表单的 body
-    def self.get_body(service, params, config)
+    def self.get_body(service, params, config, version=VERSION)
       data = {
-        version: VERSION,
+        version: version,
         service: service,
         partner: config[:partner_id],
         sign: Sign::MD5.sign(params.to_json, config[:md5_key]),
@@ -69,9 +68,23 @@ module Reapal
     private
 
     def self.unpack_body(body_string, config)
-      # 返回是 json 字符串格式
-      body = Utils.symbolize_keys(JSON.parse(body_string))
+      begin
+        # 返回是 json 字符串格式
+        body = Utils.symbolize_keys(JSON.parse(body_string))
+      rescue
+        body = {}
+      end
 
+      if body[:encryptkey].nil? || body[:data].nil?
+        return {
+          resData: {
+            errorCode: 'error_decode_params',
+            errorMsg: '解密参数不正确'
+          },
+          data_valid: true,
+        }
+      end
+      
       # 1. 拿到用来加密的16位随机字符串
       random_key = Encrypt::RSA.decrypt(body[:encryptkey],
                                         config[:private_key])
@@ -82,8 +95,7 @@ module Reapal
       data[:resData] = Utils.symbolize_keys(JSON.parse(data[:resData]))
 
       # 3. 验签，错误时候 sign 是没有值的
-      if (data[:sign].nil? && data[:resData][:errorCode]) \
-         || (data[:sign] && Sign::MD5.verify?(data[:resData].to_json, config[:md5_key], data[:sign]))
+      if data[:resData][:errorCode] || (data[:sign] && Sign::MD5.verify?(data[:resData].to_json, config[:md5_key], data[:sign]))
         data[:data_valid] = true
       else
         data[:data_valid] = false

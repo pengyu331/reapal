@@ -19,6 +19,8 @@ module Reapal
 
       # 自动 include api 下的模块
       recursive_include_api('Reapal::Api')
+      # 自动 include form 下的模块
+      recursive_include_api('Reapal::Form')
     end
 
     private
