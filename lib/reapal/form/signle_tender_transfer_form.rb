@@ -1,7 +1,6 @@
 # coding: utf-8
 
 module Reapal
-  module Api
     module Form
       module SignleTenderTransfer
 
@@ -17,6 +16,9 @@ module Reapal
         # @param invest_order [String] 若transferType为1时,即首次债转时必传
         # @param org_transfer_order [String] 若transferType 为2时,即N次债转时必传
         # @param busway [String] 00：PC端；01：手机端；02：Pad端；03：其它
+        # @param return_url [String] 回调 url
+        # @param notify_url [String] 通知 url
+
 
         # @return [ Hash ] 结果集
         #   * form_method
@@ -28,7 +30,8 @@ module Reapal
         #     * :data
         #
         def signle_tender_transfer_form(flow_id, tender_no, trans_capital, money, into_contracts,
-                                        transfer_type, invest_order, org_transfer_order, busway='01')
+                                        transfer_type, invest_order, org_transfer_order, busway='01',
+                                        return_url, notify_url)
 
           service = 'reapal.trust.signleTenderTransfer'
           post_path = '/reagw/tender/rest.htm'
@@ -46,30 +49,24 @@ module Reapal
             investOrder: invest_order,
             orgTransferOrder: org_transfer_order,
             busway: busway,
-            returnUrl: '',
-            notifyUrl: '',
+            returnUrl: return_url,
+            notifyUrl: notify_url,
             remark: '',
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S')
           }
 
-          request = Http.get_body(service, params, @config)
+          form_data = Http.get_body(service, params, @config)
 
           {
              form_method: {
               :url => config[:server_url] + post_path,
               :method => :post,
             },
-             form_data: {
-               :merchant_id => request[:merchant_id],
-               :encryptkey => request[:encryptkey],
-               :data => request[:data]
-            }
-
+             form_data: form_data
           }
 
         end
 
       end #SignleTenderTransfer
     end
-  end
 end

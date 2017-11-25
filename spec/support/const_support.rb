@@ -56,6 +56,7 @@ nCSRXVFpm8/JY8zVxRF7jqwuoaON7A==
     )
   end
 
+  # 签约并绑卡用户
   def test_contracts
     return if @constracts
 
@@ -71,4 +72,49 @@ nCSRXVFpm8/JY8zVxRF7jqwuoaON7A==
 
     @constracts
   end
+
+  #  签约未绑卡用户
+  def test_contracts_2
+    return if @constracts
+
+    sleep(3) # 否则会报“签约过于频繁”的错误
+
+    name='赵四'
+    id='421181198608283273'
+    other_phone = Faker::PhoneNumber.cell_phone
+    result = client.onekey_contract(Reapal::Utils.gen_flow_id,
+                          name, id, other_phone)
+
+    @constracts = result[:data][:contracts]
+
+    @constracts
+  end
+
+  #  绑卡
+  def bind_card_order_no
+    return if @order_no
+
+    bank_code = 'icbc'
+    bank_account_no = '6217230200001702234'
+    account_province = '北京'
+    account_city = '北京'
+    branch = '北京分行'
+    subbranch = '北通苑支行'
+    mobile_phone = '15112344321'
+
+    result = client.bank_card_add_sms(Reapal::Utils.gen_flow_id,
+                                      test_contracts,
+                                      bank_code,
+                                      bank_account_no,
+                                      account_province,
+                                      account_city,
+                                      branch,
+                                      subbranch,
+                                      mobile_phone)
+
+    @order_no = result[:data][:orderNo]
+
+    @order_no
+  end
+  
 end
