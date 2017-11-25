@@ -10,8 +10,8 @@ module Reapal
         # @param flow_id [String] 订单号
         # @param contracts [ String ] 用户协议号
         # @param services [String] 授权业务。 02一键投标 ，03 为一键还款 04 一键债转
-        # @param busway [String] 设备通道， '00'：PC端；'01'：手机端(默认)；'02'：Pad端；'03'：其它
         # @param tender_no [String] 标的号
+        # @param busway [String] 设备通道， '00'：PC端；'01'：手机端(默认)；'02'：Pad端；'03'：其它
         # @param remark [String] 备注
         #
         # @return [ Hash ] 结果集
@@ -24,7 +24,7 @@ module Reapal
         #     * :services [String] 授权业务。 02一键投标 ，03 为一键还款 04 一键债转
         #     * :resultCode [String] 结果代码
         #
-        def tender_auth_cancel(flow_id, contracts, services, busway="01", tender_no, remark='')
+        def tender_auth_cancel(flow_id, contracts, services, tender_no, busway="01", remark='')
           service = 'reapal.trust.authCancel'
           post_path = '/reagw/user/restApi.htm'
 
