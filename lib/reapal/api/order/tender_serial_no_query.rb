@@ -1,11 +1,9 @@
-# coding: utf-8
-
 module Reapal
   module Api
     module Order
       module TenderSerialNoQuery
 
-        # 4.1 流水号余额（API）
+        # 4.1 流水号查询（API）
         #
         # @param serial_no [ String ] 业务流水号（对应满标、还款、债权转让分账明细的流水号）
         # @param service_type [ String ] 调用接口 01：满标查询；02：还款查询；03：债权转让查询
@@ -33,7 +31,7 @@ module Reapal
 
           params = {
             serialNo: serial_no,
-            queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
+            queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S')
           }
 
           response = Http.post(service, params, @config, post_path)
@@ -60,7 +58,7 @@ module Reapal
 
           res
         end
-
+        
       end # module Agree
     end
   end
