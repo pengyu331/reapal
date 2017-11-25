@@ -70,7 +70,7 @@ nCSRXVFpm8/JY8zVxRF7jqwuoaON7A==
 
     @constracts = result[:data][:contracts]
 
-    @constracts
+    @constracts   #:contracts=>"RB1711218SFR8G4P"
   end
 
   #  签约未绑卡用户
@@ -116,5 +116,5 @@ nCSRXVFpm8/JY8zVxRF7jqwuoaON7A==
 
     @order_no
   end
-  
+
 end

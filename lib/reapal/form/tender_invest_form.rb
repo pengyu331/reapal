@@ -25,12 +25,12 @@ module Reapal
         #     * :encryptkey
         #     * :data
         #
-        def find_trade_password(order_no, tender_no, amount, coupon_amt, busway='01', return_url, notify_url, remark)
+        def find_trade_password(order_no, tender_no, amount, coupon_amt, return_url, notify_url, remark, busway='01')
           service = 'reapal.trust.tenderInvest'
           post_path = '/reagw/tender/rest.htm'
 
           params = {
-            order_no: contracts,
+            order_no: order_no,
             tender_no: tender_no,
             amount: amount,
             coupon_amt: coupon_amt,

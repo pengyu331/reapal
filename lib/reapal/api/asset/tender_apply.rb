@@ -12,7 +12,7 @@ module Reapal
         # @param tender_name [String] 商户系统标的名称
         # @param money [BigDecimal] 金额
         # @param rate [BigDecimal] 利率  10.3表示10.3%
-        # @param debit_term [BigDecimal] 标的期限
+        # @param debit_term [integer] 标的期限
         # @param debit_type [String] 期数类型,年：0，月：1，日：2
         # @param repay_date [String] 还款日期，格式YYYYMMDD
         # @param expiry_date [String] 投标截止日期，格式YYYYMMDD
@@ -45,6 +45,7 @@ module Reapal
             rate: rate,
             debitTerm: debit_term,
             debitType: debit_type,
+            repayDate: rapay_date,
             expiryDate: expiry_date,
             debitContracts: debit_contracts,
             guarantContract: guarant_contract,
@@ -52,7 +53,9 @@ module Reapal
             remark: remark,
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
-
+          # p "* " * 20
+          # p params
+          # p "* " * 20
           response = Http.post(service, params, @config, post_path)
 
           res = Reapal::Utils.api_result(params, response)
@@ -66,7 +69,7 @@ module Reapal
           end
 
           #确定的错误
-          if Reapal::Api::ErrorCode.tender_apply.include?(response.data[:resultCode])
+          if Reapal::Api::ErrorCode.tender_apply.include?(response.data[:errorCode])
             res[:result] = "F"
             return res
           end

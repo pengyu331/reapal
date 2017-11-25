@@ -25,8 +25,8 @@ module Reapal
         #     * :encryptkey
         #     * :data
         #
-        def business_auth_form(flow_id, contracts, services, busway='01', auth_limit,
-                               tender_no, return_url, notify_url)
+        def business_auth_form(flow_id, contracts, services, auth_limit,
+                               tender_no, return_url, notify_url,  busway='01')
 
           service = 'reapal.trust.businessAuth'
           post_path = '/reagw/tender/rest.htm'
