@@ -41,6 +41,10 @@ module Reapal
         @_tender_finish ||= [].merge(@_tender_common)
       end
 
+      def self.query_by_single_order_no
+        @_query_by_single_order_no ||= ['0001'].merge(@_tender_common)
+      end
+
     end
   end
 end
