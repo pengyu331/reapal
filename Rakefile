@@ -5,12 +5,8 @@ RSpec::Core::RakeTask.new(:spec)
 
 task :default => :spec
 
-task :build do
-  puts `gem build reapal.gemspec`
-end
-
 task :push do
-  puts `gem push reapal-#{Reapal::VERSION}.gem`
+  puts `gem push pkg/reapal-#{Reapal::VERSION}.gem`
 end
 
 task :publish => [:build, :push]
