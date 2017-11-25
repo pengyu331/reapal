@@ -1,3 +1,4 @@
+# coding: utf-8
 module Reapal
   module Api
     module User
@@ -14,7 +15,7 @@ module Reapal
         # @param branch [ String] 银行分行
         # @param subbranch [ String ] 银行支行
         # @param mobile_phone [ String ] 银行预留手机
-
+        #
         # @return [ Hash ] 结果集
         #   * :result [String] "S"/"F"/"P"
         #   * :request_params [Hash] 请求参数

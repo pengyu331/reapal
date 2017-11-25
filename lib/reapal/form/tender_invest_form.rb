@@ -25,7 +25,7 @@ module Reapal
         #     * :encryptkey
         #     * :data
         #
-        def find_trade_password(order_no, tender_no, amount, coupon_amt, busway='01', return_url, notify_url, remark)
+        def tender_invest_form(order_no, tender_no, amount, coupon_amt, busway='01', return_url, notify_url, remark)
           service = 'reapal.trust.tenderInvest'
           post_path = '/reagw/tender/rest.htm'
 

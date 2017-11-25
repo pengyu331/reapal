@@ -17,7 +17,9 @@ require "reapal/sign/md5"
 require "reapal/encrypt/rsa"
 require "reapal/encrypt/aes"
 require "reapal/http/communicate"
+require "reapal/http/decode"
 require "reapal/http/response"
+
 # 自动加载所有 api
 Dir["#{File.dirname(__FILE__)}/reapal/api/**/*.rb"].each { |file| require file }
 # 自动加载所有 form
