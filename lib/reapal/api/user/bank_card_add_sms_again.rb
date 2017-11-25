@@ -2,7 +2,7 @@
 
 module Reapal
   module Api
-    module Trust
+    module User
       module BankCardAddSmsAgain
 
         # 1.11 一键绑卡重发短信（API）
@@ -13,8 +13,14 @@ module Reapal
         # @param remark [ String ] 业务备注信息
         #
         # @return [ Hash ] 结果集
-        #   * :order_no [ String ] 交易订单号
-        #   * :result_code [ String ] 结果代码 0000：绑卡成功
+        #   * :result [String] 业务结果：'S/F/P'
+        #   * :request_params [Hash] 请求参数
+        #   * :response [Object] 请求返回对象
+        #   * :error_code [String] 错误代号
+        #   * :error_msg [String] 错误信息
+        #   * :data: 具体业务返回信息
+        #      * :order_no [ String ] 交易订单号
+        #      * :result_code [ String ] 结果代码 0000：绑卡成功
         #
         def bank_card_add_sms_again(order_no, contracts, busway = '01', remark = "")
           service = 'reapal.trust.bankCardAddSMSAgain'
@@ -30,39 +36,27 @@ module Reapal
 
           response = Http.post(service, params, @config, post_path)
 
-          error_result = {
-            data: nil,
-            result: "F",
-            error_msg: "未知错误",
-          }
+          res = Reapal::Utils.api_result(params, response)
 
-          unless response.data_valid
-            error_result[:error_msg] = "返回数据不合法"
-            return error_result
+          return res if response.http_pending? # 比如超时等操作
+
+          # 1，明确失败的
+          if Api::ErrorCode.deposit.include?(response.data[:errorCode])
+            res[:result] = 'F'
+            return res
           end
 
-          # 如果网络出错，包括超时或者非200类数据
-          unless response.http_response.kind_of?(Net::HTTPSuccess)
-            error_result[:error_msg] = "网络出错"
-            return error_result
-          end
-
-          # 一键绑卡重发短信只有返回码是 '0000' 才成功
+          # 2. 明确正确的
           if ['0000'].include?(response.data[:resultCode])
-            return {
-              data: response.data,
-              result: "S",
-              error_msg: nil,
-            }
-          else
-            error_result[:error_code] = response.data[:errorCode]
-            error_result[:error_msg] = response.data[:errorMsg]
-            return error_result
+            res[:result] = 'S'
+            return res
           end
 
+          # 3. pending
+          res
         end
 
-      end
+      end # module
     end
   end
 end

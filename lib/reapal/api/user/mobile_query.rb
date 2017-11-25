@@ -3,9 +3,9 @@
 module Reapal
   module Api
     module User
-      module BalanceQuery
+      module MobileQuery
 
-        # 1.6 查询余额（API）
+        # 1.8 手机号查询
         #
         # @param contracts [ String ] 用户协议号
         #
@@ -16,13 +16,14 @@ module Reapal
         #   * :error_code [String] 错误代号
         #   * :error_msg [String] 错误信息
         #   * :data: 具体业务返回信息
-        #     * :total_amount [BigDecimal] 账户总额
-        #     * :usable_amount [BigDecimal] 可用金额
-        #     * :tender_amount [BigDecimal] 投标金额
+        #     * :contracts [String] 用户协议号
+        #     * :mobile [String] 用户手机号
         #
-        def balance_query(contracts)
-          service = 'reapal.trust.balanceQuery'
-          post_path = '/reagw/agreement/agreeApi.htm'
+
+
+        def mobile_query(contracts)
+          service = 'reapal.trust.mobileQuery'
+          post_path = '/reagw/user/restApi.htm'
 
           params = {
             contracts: contracts,
@@ -33,29 +34,23 @@ module Reapal
 
           res = Reapal::Utils.api_result(params, response)
 
-          # 查询类 api，http 没成功都返回 pending
-          return res unless response.http_success?
-
-          # 如果查不到这个人
-          if response.data[:errorCode] == '0113'
+          if Api::ErrorCode.mobile.include?(response.data[:errorcode])
             res[:result] = 'F'
             return res
           end
 
+          # 查询类 api，http 没成功都返回 pending
+          return res unless response.http_success?
+
           # 其余 api 错误不知道
           return res unless response.data[:errorCode].nil?
 
-          res[:result] = 'S'
-          res[:data] = {
-            totalAmount: response.data[:totalAmount].to_d,
-            usableAmount: response.data[:usableAmount].to_d,
-            tenderAmount: response.data[:tenderAmount].to_d,
-          }
+          res[:result] = "S"
 
           res
         end
 
-      end # module Agree
+      end
     end
   end
 end
