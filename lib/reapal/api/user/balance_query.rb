@@ -26,7 +26,7 @@ module Reapal
 
           params = {
             contracts: contracts,
-            applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
+            queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
           response = Http.post(service, params, @config, post_path)
