@@ -41,11 +41,6 @@ module Reapal
           # 查询类 api，http 没成功都返回 pending
           return res unless response.http_success?
 
-          # 如果查不到这个人
-          if response.data[:errorCode] == '0113'
-            res[:result] = 'F'
-            return res
-          end
           if Api::ErrorCode.tender_auth_query.include?(response.data[:errorCode])
             res[:result] = 'F'
             return res
@@ -58,7 +53,7 @@ module Reapal
 
           res
         end
-        
+
       end # module Agree
     end
   end
