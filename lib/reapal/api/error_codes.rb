@@ -2,7 +2,7 @@ module Reapal
   module  Api
     module ErrorCode
 
-      def tender_common
+      def self.tender_common
         @_tender_common = %w(0400 0401 0402 0405 0406 0407 0408 0409 0410)
       end
 
@@ -33,11 +33,11 @@ module Reapal
         @_tender_auth_query ||= [].merge(@_tender_common)
       end
 
-      def tender_auth_cancel
+      def self.tender_auth_cancel
         @_tender_auth_cancel ||= [].merge(@_tender_common)
       end
 
-      def tender_finish
+      def self.tender_finish
         @_tender_finish ||= [].merge(@_tender_common)
       end
 
