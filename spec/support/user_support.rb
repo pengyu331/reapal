@@ -20,6 +20,22 @@ module UserSupport
     @_investor_contract
   end
 
+  def investor_contract_01
+    return @_investor_contract if @_investor_contract
+
+    sleep(3) # 否则会报“签约过于频繁”的错误
+
+    name='张投资'
+    id='421181197608283284'
+    other_phone = Faker::PhoneNumber.cell_phone
+    result = client.onekey_contract(Reapal::Utils.gen_flow_id,
+                                    name, id, other_phone)
+
+    @_investor_contract = result[:data][:contracts]
+
+    @_investor_contract
+  end
+
   def investor_bind_card
     result = client.bank_card_add_sms(Reapal::Utils.gen_flow_id,
                                       investor_contract,
@@ -84,7 +100,6 @@ module UserSupport
 
     @_borrower_contract
   end
-
 
 
 end

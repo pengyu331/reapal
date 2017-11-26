@@ -43,10 +43,54 @@ module TenderSupport
                         nil,
                         investor_contract)
 
-                        p "*" * 20
-                        p result
+                        # p "*" * 20
+                        # p result
 
     @_investor_tender_order_no = result[:data][:orderNo]
     @_investor_tender_order_no
+  end
+
+  def borrower_tender_apply_01
+    tender_no = 'DZH000011'
+    client.tender_apply(Reapal::Utils.gen_flow_id,
+                        tender_no,
+                        'tender_name',
+                        100, 12,
+                        6, 1,
+                        (Time.now + 180 * 24 * 3600).strftime('%Y%m%d'),
+                        (Time.now + 180 * 24 * 3600).strftime('%Y%m%d'),
+                        borrower_contract)
+
+
+  end
+
+  def investor_tender_order_no_01
+
+    return @_investor_tender_order_no_01 if @_investor_tender_order_no_01
+    tender_no = 'DZH000011'
+    result = client.tender_onekey_invest(Reapal::Utils.gen_flow_id,
+                        tender_no,
+                        30,
+                        nil,
+                        investor_contract)
+
+
+    @_investor_tender_order_no_01 = result[:data][:orderNo]
+    @_investor_tender_order_no_01
+  end
+
+  def investor_tender_order_no_02
+
+    return @_investor_tender_order_no_02 if @_investor_tender_order_no_02
+    tender_no = 'DZH000011'
+    result = client.tender_onekey_invest(Reapal::Utils.gen_flow_id,
+                        tender_no,
+                        70,
+                        nil,
+                        investor_contract_01)
+
+
+    @_investor_tender_order_no_02 = result[:data][:orderNo]
+    @_investor_tender_order_no_02
   end
 end
