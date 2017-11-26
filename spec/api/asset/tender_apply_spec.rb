@@ -7,7 +7,9 @@ RSpec.describe '发标' do
   let(:debit_contracts) {"RB150303PRQZPCYI"}
   let(:guarant_contract) {''}
 
-  it '成功'
+  it '成功' do
+    borrower_tender_apply
+  end
 
   it "金额 <= 0 , 失败"
 

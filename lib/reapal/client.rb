@@ -23,6 +23,10 @@ module Reapal
       recursive_include_api('Reapal::Form')
     end
 
+    def decode_notify_data(encryptkey, data)
+      ::Reapal::Http::Decode.decode_notify_data(encryptkey, data, @config)
+    end
+
     private
     def recursive_include_api(module_chain)
       modules = eval("#{module_chain}.constants").each{ |constant| eval("#{module_chain}::#{constant}").class.kind_of?(Module) }

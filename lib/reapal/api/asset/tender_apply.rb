@@ -32,8 +32,8 @@ module Reapal
         #      * :resultCode [String] 结果代码
         #
         def tender_apply(flow_id, tender_no, tender_name, money, rate,
-                                  debit_term, debit_type, rapay_date, expiry_date,
-                                  debit_contracts, guarant_contract, busway='01', remark='')
+                         debit_term, debit_type, repay_date, expiry_date,
+                         debit_contracts, guarant_contract=nil, busway='01', remark='')
           service = 'reapal.trust.tenderApply'
           post_path = '/reagw/tender/rest.htm'
 
@@ -43,6 +43,7 @@ module Reapal
             tenderName: tender_name,
             amount: money,
             rate: rate,
+            repayDate: repay_date,
             debitTerm: debit_term,
             debitType: debit_type,
             expiryDate: expiry_date,

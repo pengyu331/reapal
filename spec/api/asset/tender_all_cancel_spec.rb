@@ -8,18 +8,10 @@ RSpec.describe '撤标' do
   let(:guarant_contract) {''}
 
 
-  it "成功撤单，撤销满标前处理中订单" do
+  it "成功撤单，撤销满标前处理中订单"
 
-  end
+  it "成功撤单，撤销满标前成功的订单"
 
-  it "成功撤单，撤销满标前成功的订单" do
-
-  end
-
-  it "投标撤销后，再次撤标，失败" do
-
-  end
-
-  
+  it "投标撤销后，再次撤标，失败"  
 
 end

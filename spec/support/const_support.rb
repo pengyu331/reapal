@@ -58,7 +58,7 @@ nCSRXVFpm8/JY8zVxRF7jqwuoaON7A==
 
   # 签约并绑卡用户
   def test_contracts
-    return if @constracts
+    return @constracts if @constracts
 
     sleep(3) # 否则会报“签约过于频繁”的错误
 
@@ -75,7 +75,7 @@ nCSRXVFpm8/JY8zVxRF7jqwuoaON7A==
 
   #  签约未绑卡用户
   def test_contracts_2
-    return if @constracts
+    return @constracts if @constracts
 
     sleep(3) # 否则会报“签约过于频繁”的错误
 
@@ -92,7 +92,7 @@ nCSRXVFpm8/JY8zVxRF7jqwuoaON7A==
 
   #  绑卡
   def bind_card_order_no
-    return if @order_no
+    return @order_no if @order_no
 
     bank_code = 'icbc'
     bank_account_no = '6217230200001702234'
