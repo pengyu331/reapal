@@ -19,13 +19,8 @@ RSpec.describe '快捷充值签约' do
                                       id, phone, amount, charge, terminal_info, member_ip,
                                       notify_url)
 
-    expect(result[:result]).not_to eq('P')
-
-    if result[:result] == 'S'
-      expect(result[:data][:resultCode]).to eq('0000')
-    elsif result[:result] == 'F'
-      expect(result[:error_code]).not_to eq(nil)
-    end
+    expect(result[:result]).to eq('S')
+    expect(result[:data][:resultCode]).to eq('0000')
   end
 
 end
