@@ -26,7 +26,16 @@ module Reapal
         #       * :order_no [ String ]  订单号
         #       * :result_code [ String ] 结果代码 0000：申请成功
         #
-        def bank_card_add_sms(order_no, contracts, bank_code, bank_account_no, account_province, account_city, branch, subbranch, mobile_phone)
+        def bank_card_add_sms(order_no,
+                              contracts,
+                              bank_code,
+                              bank_account_no,
+                              account_province,
+                              account_city,
+                              branch,
+                              subbranch,
+                              mobile_phone)
+
           service = 'reapal.trust.bankCardAddSMS'
           post_path = '/reagw/bankcard/bankCardSMS.htm'
 
@@ -50,10 +59,10 @@ module Reapal
           return res if response.http_pending? # 比如超时等操作
 
           # 1，明确失败的
-          if Api::ErrorCode.bind_card.include?(response.data[:errorCode])
-            res[:result] = 'F'
-            return res
-          end
+          # if Api::ErrorCode.bind_card.include?(response.data[:errorCode])
+          #   res[:result] = 'F'
+          #   return res
+          # end
 
           # 2. 明确正确的
           if ['0000'].include?(response.data[:resultCode])

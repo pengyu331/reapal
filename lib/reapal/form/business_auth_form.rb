@@ -9,13 +9,12 @@ module Reapal
         # @param flow_id [String] 业务订单号
         # @param contracts [String] 用户协议号
         # @param services [String] 授权服务 02一键投标 ，03 为一键还款 04 一键债转
-        # @param busway [String] 00：PC端；01：手机端；02：Pad端；03：其它
         # @param auth_limit [String] 授权期限日期 YYYYMMDD
-        # @param tender_no [String] 标的号,授权为一键还款时必填
         # @param return_url [String] 回调 url
         # @param notify_url [String] 通知 url
+        # @param tender_no [String] 标的号,授权为一键还款时必填
+        # @param busway [String] 00：PC端；01：手机端；02：Pad端；03：其它
         #
-
         # @return [ Hash ] 结果集
         #   * form_method
         #     * url
@@ -25,11 +24,11 @@ module Reapal
         #     * :encryptkey
         #     * :data
         #
-        def business_auth_form(flow_id, contracts, services, busway='01', auth_limit,
-                               tender_no, return_url, notify_url)
+        def business_auth_form(flow_id, contracts, services, auth_limit,
+                               return_url, notify_url, tender_no=nil, busway='01')
 
           service = 'reapal.trust.businessAuth'
-          post_path = '/reagw/tender/rest.htm'
+          post_path = '/reagw/user/rest.htm'
 
           params = {
             orderNo: flow_id,

@@ -40,10 +40,10 @@ module Reapal
           return res if response.http_pending? # 比如超时等操作
 
           # 1，明确失败的
-          if Api::ErrorCode.bind_card.include?(response.data[:errorCode])
-            res[:result] = 'F'
-            return res
-          end
+          # if Api::ErrorCode.bind_card.include?(response.data[:errorCode])
+          #   res[:result] = 'F'
+          #   return res
+          # end
 
           # 2. 明确正确的
           if ['0000'].include?(response.data[:resultCode])
