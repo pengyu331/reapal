@@ -56,7 +56,7 @@ module Reapal
           end
 
           #确定的错误
-          if Reapal::Api::ErrorCode.tender_onekey_invest.include?(response.data[:error_code])
+          if Reapal::Api::ErrorCode.tender_onekey_invest.include?(response.data[:errorCode])
             res[:result] = "F"
             return res
           end

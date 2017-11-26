@@ -2,6 +2,19 @@ module Reapal
   module  Api
     module ErrorCode
 
+      def self.deposit_common
+        @_deposit_common ||= %w(0001 0004)
+      end
+
+      def self.deposit_apply_api
+        @_deposit_apply_api ||= %w(1701 1702 1703 1704 1705 1706 1707 1708 1709 1710 1711
+                         1712 1713 1714) | deposit_common
+      end
+
+      def self.deposit_confirm_api
+        @_deposit_confirm_api ||= %w(1901) | deposit_common
+      end
+
       def self.tender_common
         @_tender_common = %w(0400 0401 0402 0405 0406 0407 0408 0409 0410)
       end
@@ -22,27 +35,27 @@ module Reapal
       end
 
       def self.tender_repayment_project
-        @_tender_repayment_project ||= [].merge(@_tender_common)
+        @_tender_repayment_project ||= [] | tender_common
       end
 
       def self.tender_repayment_complete
-        @_tender_repayment_complete ||= [].merge(@_tender_common)
+        @_tender_repayment_complete ||= [] | tender_common
       end
 
       def self.tender_auth_query
-        @_tender_auth_query ||= [].merge(@_tender_common)
+        @_tender_auth_query ||= [] | tender_common
       end
 
       def self.tender_auth_cancel
-        @_tender_auth_cancel ||= [].merge(@_tender_common)
+        @_tender_auth_cancel ||= [] | tender_common
       end
 
       def self.tender_finish
-        @_tender_finish ||= [].merge(@_tender_common)
+        @_tender_finish ||= [] | tender_common
       end
 
       def self.tender_onekey_invest
-        @_tender_onekey_invest ||= %w(0600 0601 0602 0603 0604 0605 0606 0607 0608 0609).push(@_tender_common)
+        @_tender_onekey_invest ||= %w(0600 0601 0602 0603 0604 0605 0606 0607 0608 0609) | tender_common
       end
 
     end

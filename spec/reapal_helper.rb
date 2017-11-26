@@ -10,4 +10,5 @@ RSpec.configure do |config|
   config.include ConstSupport
   config.include UserSupport
   config.include TenderSupport
+  config.include MoneySupport
 end
