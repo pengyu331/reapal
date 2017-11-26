@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'faker'
-require 'support/const_support'
+Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |file| require file }
 
 Faker::Config.locale = 'zh-CN'
 
@@ -8,4 +8,6 @@ Faker::Config.locale = 'zh-CN'
 
 RSpec.configure do |config|
   config.include ConstSupport
+  config.include UserSupport
+  config.include TenderSupport
 end
