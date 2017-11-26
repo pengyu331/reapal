@@ -10,7 +10,7 @@ module Reapal
         # @param order_no [ String ] 投标订单号
         # @param tender_no [ String ] 投标的标号
         # @param amount [ BigDecimal ] 自费金额
-        # @param coupon_amt [ BigDecimal ] 红包/抵用券
+        # @param coupon_amt [ BigDecimal ] 红包/抵用券 ，该参数可不传，或 > 0
         # @param invest_contracts [ String ] 投资方协议号
         # @param busway [ String ] 设备通道 00：PC端；01：手机端；02：Pad端；03：其它
         # @param remark [ String ] 备注

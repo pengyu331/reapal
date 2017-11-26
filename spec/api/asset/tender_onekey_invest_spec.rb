@@ -15,8 +15,14 @@ RSpec.describe '一键投标' do
                         investor_contract,
                         )
 
-    expect(result[:result]).to eq('S')
-    expect(result[:data][:resultCode]).to eq('0000')
+    expect(result[:result]).not_to eq('F')
+
+    if result[:result] == 'S'
+      expect(result[:data][:resultCode]).to eq('0000')
+    elsif result[:result] == 'P'
+      expect(result[:error_code]).to eq('0537')
+    end
+
   end
 
   it "金额 <= 0 , 失败" do

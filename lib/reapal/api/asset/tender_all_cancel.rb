@@ -42,7 +42,7 @@ module Reapal
 
           return res if response.http_pending? # 比如超时等操作
 
-          if Reapal::Api::ErrorCode.tender_cancel.include?(response.data[:resultCode])
+          if Reapal::Api::ErrorCode.tender_cancel.include?(response.data[:errorCode])
             res[:result] = "F"
             return res
           end
