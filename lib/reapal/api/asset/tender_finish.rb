@@ -11,14 +11,14 @@ module Reapal
         # @param tender_no [String] 商户系统标的号
         # @param debit_contracts [String] 借款方协议号
         # @param debit_details [JSON] 借款方分账
-        #   *seria_no [String] 商户流水号
-        #   *payee_contracts [String] 收款方协议号
+        #   *seriaNo [String] 商户流水号
+        #   *payeeContracts [String] 收款方协议号
         #   *amount [BigDecimal] 金额
         #   *remark [String] 备注
         # @param invest_details [JSON] 投资方分账
-        #   *seria_no [String] 商户流水号
-        #   *invest_contracts [String] 投资方协议号
-        #   *payee_contracts [String] 收款方协议号
+        #   *seriaNo [String] 商户流水号
+        #   *investContracts [String] 投资方协议号
+        #   *payeeContracts [String] 收款方协议号
         #   *amount [BigDecimal] 金额
         #   *remark [String] 备注
         # @param busway [String] 设备通道， '00'：PC端；'01'：手机端(默认)；'02'：Pad端；'03'：其它
