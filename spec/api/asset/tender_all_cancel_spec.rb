@@ -2,7 +2,7 @@
 require 'reapal_helper'
 
 RSpec.describe '撤标' do
-
+  let(:tender_no) {Reapal::Utils.gen_flow_id}
 
   it "成功撤单，撤销满标前处理中订单" do
     tender_no = 'DZH000001'
@@ -15,7 +15,6 @@ RSpec.describe '撤标' do
     expect(result[:result]).to eq("S")
     expect(result[:data][:resultCode]).to eq('0000')
   end
-
 
   it "成功撤单，撤销满标前成功的订单"
 
@@ -33,4 +32,10 @@ RSpec.describe '撤标' do
     # expect(result[:data][:resultCode]).to eq('0000')
   end
 
+  it "撤标订单号不存在，失败" do
+    flow_id = Reapal::Utils.gen_flow_id
+    result = client.tender_all_cancel(flow_id, tender_no, tender_no)
+
+    expect(result[:result]).to eq('F')
+  end
 end
