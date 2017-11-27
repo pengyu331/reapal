@@ -18,7 +18,7 @@ module Reapal
         #   * :error_msg [String] 错误信息
         #   * :data: 具体业务返回信息
         #     * :contracts [String] 用户协议号
-        #     * :bank_cards [Array] 银行卡信息数组 
+        #     * :bank_cards [Array] 银行卡信息数组
         #       * :bank_name  银行名称
         #       * :bank_code  银行代码
         #       * :bank_card  银行卡后四位
@@ -40,23 +40,12 @@ module Reapal
             queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S')
           }
 
-          response = Http.post(service, params, @config, post_path)
+          res = operate_post(:query, service, params, post_path, Http::ErrorCode.bind_card, ['0000'])
 
-          res = Reapal::Utils.api_result(params, response)
-
-          # 查询类 api，http 没成功都返回 pending
-          return res unless response.http_success?
-
-          if Api::ErrorCode.bind_card.include?(response.data[:errorCode])
-            res[:result] = 'F'
-            return res
+          if 'S' == res[:result]
+            # TODO: (tony) 返回的银行字符串解析成数据，便于使用方
+            # res[:data][:bank_cards] = parse_cards_info(res[:data][:bank_cards])
           end
-
-          # 其余 api 错误不知道
-          return res unless response.data[:errorCode].nil?
-
-          res[:result] = 'S'
-          res[:data][:bank_cards] = parse_cards_info(res[:data][:bank_cards])
 
           res
         end

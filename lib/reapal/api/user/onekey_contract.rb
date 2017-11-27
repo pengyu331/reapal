@@ -39,20 +39,7 @@ module Reapal
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          response = Http.post(service, params, @config, post_path)
-
-          res = Reapal::Utils.api_result(params, response)
-
-          return res if response.http_pending? # 比如超时等操作
-
-          # 个人签约只有返回码是 '0000', '0007' 才成功
-          if ['0000', '0007'].include?(response.data[:resultCode])
-            res[:result] = 'S'
-          else
-            res[:result] = 'F'
-          end
-
-          res
+          operate_post(:operate, service, params, post_path, Http::ErrorCode.contract_create, ['0000', '0007'])
         end
 
       end # module

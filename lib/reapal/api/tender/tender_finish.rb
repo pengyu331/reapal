@@ -2,7 +2,7 @@
 
 module Reapal
   module Api
-    module Asset
+    module Tender
       module TenderFinish
 
         # 3.8  满标 API
@@ -11,14 +11,14 @@ module Reapal
         # @param tender_no [String] 商户系统标的号
         # @param debit_contracts [String] 借款方协议号
         # @param debit_details [JSON] 借款方分账
-        #   *seria_no [String] 商户流水号
-        #   *payee_contracts [String] 收款方协议号
+        #   *seriaNo [String] 商户流水号
+        #   *payeeContracts [String] 收款方协议号
         #   *amount [BigDecimal] 金额
         #   *remark [String] 备注
         # @param invest_details [JSON] 投资方分账
-        #   *seria_no [String] 商户流水号
-        #   *invest_contracts [String] 投资方协议号
-        #   *payee_contracts [String] 收款方协议号
+        #   *seriaNo [String] 商户流水号
+        #   *investContracts [String] 投资方协议号
+        #   *payeeContracts [String] 收款方协议号
         #   *amount [BigDecimal] 金额
         #   *remark [String] 备注
         # @param busway [String] 设备通道， '00'：PC端；'01'：手机端(默认)；'02'：Pad端；'03'：其它
@@ -50,26 +50,7 @@ module Reapal
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          response = Http.post(service, params, @config, post_path)
-
-          res = Reapal::Utils.api_result(params, response)
-
-          #非返回类错误
-          return res if response.http_pending? # 比如超时等操作
-
-          # 只有返回码是 '0000'发标才成功
-          if ['0000'].include?(response.data[:resultCode])
-            res[:result] = "S"
-          end
-
-          #确定的错误
-          if Reapal::Api::ErrorCode.tender_finish.include?(response.data[:resultCode])
-            res[:result] = "F"
-            return res
-          end
-
-          # 不能确定的错误 ，pending
-          res
+          operate_post(:operate, service, params, post_path, Http::ErrorCode.tender_finish, ['0000'])
         end
 
       end # module TenderFinish

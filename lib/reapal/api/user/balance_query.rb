@@ -16,9 +16,9 @@ module Reapal
         #   * :error_code [String] 错误代号
         #   * :error_msg [String] 错误信息
         #   * :data: 具体业务返回信息
-        #     * :total_amount [BigDecimal] 账户总额
-        #     * :usable_amount [BigDecimal] 可用金额
-        #     * :tender_amount [BigDecimal] 投标金额
+        #     * :totalAmount [BigDecimal] 账户总额
+        #     * :usableAmount [BigDecimal] 可用金额
+        #     * :tenderAmount [BigDecimal] 投标金额
         #
         def balance_query(contracts)
           service = 'reapal.trust.balanceQuery'
@@ -29,28 +29,17 @@ module Reapal
             queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          response = Http.post(service, params, @config, post_path)
+          res = operate_post(:query, service, params, post_path, ['0113'], ['0000'])
 
-          res = Reapal::Utils.api_result(params, response)
+          if 'S' == res[:result] || ('P' == res[:result] && res[:data][:resultCode].nil?)
+            res[:result] = 'S'
 
-          # 查询类 api，http 没成功都返回 pending
-          return res unless response.http_success?
-
-          # 如果查不到这个人
-          if response.data[:errorCode] == '0113'
-            res[:result] = 'F'
-            return res
+            res[:data] = {
+              totalAmount: res[:data][:totalAmount].to_d,
+              usableAmount: res[:data][:usableAmount].to_d,
+              tenderAmount: res[:data][:tenderAmount].to_d,
+            }
           end
-
-          # 其余 api 错误不知道
-          return res unless response.data[:errorCode].nil?
-
-          res[:result] = 'S'
-          res[:data] = {
-            totalAmount: response.data[:totalAmount].to_d,
-            usableAmount: response.data[:usableAmount].to_d,
-            tenderAmount: response.data[:tenderAmount].to_d,
-          }
 
           res
         end
