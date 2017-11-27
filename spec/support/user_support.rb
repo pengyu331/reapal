@@ -21,7 +21,7 @@ module UserSupport
   end
 
   def investor_contract_01
-    return @_investor_contract if @_investor_contract
+    return @_investor_contract_01 if @_investor_contract_01
 
     sleep(3) # 否则会报“签约过于频繁”的错误
 
@@ -31,9 +31,9 @@ module UserSupport
     result = client.onekey_contract(Reapal::Utils.gen_flow_id,
                                     name, id, other_phone)
 
-    @_investor_contract = result[:data][:contracts]
+    @_investor_contract_01 = result[:data][:contracts]
 
-    @_investor_contract
+    @_investor_contract_01
   end
 
   def investor_bind_card
@@ -86,7 +86,7 @@ module UserSupport
 
 
   def borrower_contract_1
-    return @_borrower_contract if @_borrower_contract
+    return @_borrower_contract_1 if @_borrower_contract_1
 
     sleep(3) # 否则会报“签约过于频繁”的错误
 
@@ -96,9 +96,9 @@ module UserSupport
     result = client.onekey_contract(Reapal::Utils.gen_flow_id,
                                     name, id, other_phone)
 
-    @_borrower_contract = result[:data][:contracts]
+    @_borrower_contract_1 = result[:data][:contracts]
 
-    @_borrower_contract
+    @_borrower_contract_1
   end
 
 
