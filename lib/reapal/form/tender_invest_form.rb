@@ -11,10 +11,10 @@ module Reapal
         # @param tender_no [ String ] 投标的标号
         # @param amount [ BigDecimal ] 金额
         # @param coupon_amt [ BigDecimal ] 红包/抵用券
-        # @param busway [ String ] 设备通道 00：PC端；01：手机端；02：Pad端；03：其它
         # @param return_url [ String ] 回调 URL
         # @param notify_url [ String ] 通知 URL
         # @param remark [ String ] 备注
+        # @param busway [ String ] 设备通道 00：PC端；01：手机端；02：Pad端；03：其它
         #
         # @return [ Hash ] 结果集
         #   * form_method [ Hash ]
@@ -25,12 +25,12 @@ module Reapal
         #     * :encryptkey
         #     * :data
         #
-        def tender_invest_form(order_no, tender_no, amount, coupon_amt, busway='01', return_url, notify_url, remark)
+        def find_trade_password(order_no, tender_no, amount, coupon_amt, return_url, notify_url, remark, busway='01')
           service = 'reapal.trust.tenderInvest'
           post_path = '/reagw/tender/rest.htm'
 
           params = {
-            order_no: contracts,
+            order_no: order_no,
             tender_no: tender_no,
             amount: amount,
             coupon_amt: coupon_amt,
