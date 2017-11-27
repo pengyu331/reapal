@@ -63,7 +63,7 @@ module Reapal
           end
 
           #确定的错误
-          if Reapal::Api::ErrorCode.tender_finish.include?(response.data[:resultCode])
+          if Reapal::Api::ErrorCode.tender_finish.include?(response.data[:error_code])
             res[:result] = "F"
             return res
           end
