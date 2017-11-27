@@ -33,7 +33,7 @@ module Reapal
           params = {
             orderNo: sub_account_flow_id,
             serialNo: serial_no,
-            queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
+            applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
           operate_post(:query, service, params, post_path, Http::ErrorCode.sub_account_query, ['0000'])
