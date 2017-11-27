@@ -16,7 +16,7 @@ module Reapal
 
       begin
         response = Net::HTTP.post_form(uri, post_body)
-        Reapal.logger.info "[#{service}] 返回的报文为：\n#{response.body}"
+        Reapal.logger.info "[#{service}] 返回的报文为：\n#{response.body.force_encoding('utf-8')}"
 
         if response.is_a?(Net::HTTPSuccess)
           response_raw_body = unpack_body(response.body, config)
@@ -119,7 +119,7 @@ module Reapal
 
     # 正确的返回字符串例子：
     #    'version=1.0&service=reapal.trust.onekeyContract&signType=0&sign=cdab41a05d595d6a5f5a818af2b39398&resData={"contracts":"RB1711167FYG9U29","userName":"王五","userIdentity":"330602198711160034","userMobile":"18357101332","orderNo":"5a0d488fe0c016049a000001","resultCode":"0007","processTime":"2017-11-16 16:13:04"}'
-    # 
+    #
     # 异常的返回字符串例子：
     #    '{"orderNo":"FFSS1","errorCode":"0107","service":"reapal.trust.onekeyContract","errorMsg":"姓名不能为空"}'
     def self.parse_data_string(data_string)
@@ -134,7 +134,7 @@ module Reapal
           result[sub_arr[0].to_sym] = sub_arr[1]
         }
       end
-      
+
       result
     end
 

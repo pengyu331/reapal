@@ -10,12 +10,12 @@ module Reapal
         # @param flow_id [String] 完成订单号
         # @param tender_no [String] 商户系统标的号
         # @param debit_contracts [String] 借款方协议号
-        # @param debit_details [JSON] 借款方分账
+        # @param debit_details [hash] 借款方分账
         #   *seria_no [String] 商户流水号
         #   *payee_contracts [String] 收款方协议号
         #   *amount [BigDecimal] 金额
         #   *remark [String] 备注
-        # @param invest_details [JSON] 投资方分账
+        # @param invest_details [hash] 投资方分账
         #   *seria_no [String] 商户流水号
         #   *invest_contracts [String] 投资方协议号
         #   *payee_contracts [String] 收款方协议号
@@ -39,12 +39,26 @@ module Reapal
           service = 'reapal.trust.tenderFinish'
           post_path = '/reagw/tender/rest.htm'
 
+          debit_detail = {}
+          debit_detail[:serialNo] = debit_details[:seria_no]
+          debit_detail[:payeeContracts] = debit_details[:payee_contracts]
+          debit_detail[:amount] = debit_details[:amount]
+          debit_detail[:remark] = debit_details[:remark]
+
+          invest_detail = {}
+          invest_detail[:seriaNo] = invest_details[:seria_no]
+          invest_detail[:investContracts] = invest_details[:invest_contracts]
+          invest_detail[:payeeContracts] = invest_details[:payee_contracts]
+          invest_detail[:amount] = invest_details[:amount]
+          invest_detail[:remark] = invest_details[:remark]
+
+
           params = {
             orderNo: flow_id,
             tenderNo: tender_no,
             debitContracts: debit_contracts,
-            debitDetails: debit_details,
-            investDetails: invest_details,
+            debitDetails: debit_detail.to_json,
+            investDetails: invest_detail.to_json,
             busway: busway,
             remark: remark,
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
