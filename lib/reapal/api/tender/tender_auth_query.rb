@@ -2,15 +2,14 @@
 
 module Reapal
   module Api
-    module Asset
+    module Tender
       module TenderAuthQuery
 
         # 3.21  标的授权查询
         #
         # @param flow_id [String] 操作订单号
         # @param contracts [String] 用户协议号
-
-
+        #
         # @return [ Hash ] 结果集
         #   * :result [String] 业务结果：'S/F/P'
         #   * :request_params [Hash] 请求参数
@@ -35,27 +34,7 @@ module Reapal
             queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          response = Http.post(service, params, @config, post_path)
-
-          res = Reapal::Utils.api_result(params, response)
-
-          #查询类 api，http 没成功都返回 pending
-          return res if response.http_success?
-
-          #确定的错误
-          if Reapal::Api::ErrorCode.tender_auth_query.include?(response.data[:resultCode])
-            res[:result] = "F"
-            return res
-          end
-
-
-          # 其余 api 错误不知道
-          return res unless response.data[:errorCode].nil?
-
-          #查询成功
-          res[:result] = "S"
-
-          res
+          operate_post(:query, service, params, post_path, Http::ErrorCode.tender_auth_query, ['0000'])
         end
 
       end # module TenderAuthQuery

@@ -1,7 +1,7 @@
 # coding: utf-8
 # API 公共错误相关
 module Reapal
-  module Api
+  module Http
     module ErrorCode
 
       def self.common

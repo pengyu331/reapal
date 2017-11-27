@@ -6,6 +6,7 @@ module Reapal
     VERSION = '1.0' # 版本号
 
     def self.post(service, params, config, post_path, version=VERSION)
+      version = VERSION if version.nil?
       post_body = get_body(service, params, config, version)
       uri = URI(config[:server_url] + post_path)
 
@@ -95,7 +96,7 @@ module Reapal
     end
 
     private
-    
+
     def self.unpack_body(body_string, config)
       begin
         # 返回是 json 字符串格式

@@ -8,14 +8,14 @@ RSpec.describe '一键还款' do
 #     #1.一键还款授权
 #       #借款人必须一键还款授权,跑spec，borrower_contract已经授权成功
 #     #1.1 发标 200元，返回标的号
-#     tender_no = borrower_tender_apply_order_no_01
+#     tender_no = borrower_tender_apply_flow_id_01
 #
 #     #2.投标
 #     # A充值2000
 #     investor_deposit
 #
 #     # A投标100，B投标100
-#     investor_tender_order_no_03
+#     investor_tender_flow_id_03
 #
 #     #满标
 #

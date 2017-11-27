@@ -2,7 +2,7 @@
 
 module Reapal
   module Api
-    module Asset
+    module Tender
       module TenderApply
 
         # 3.1 发标
@@ -43,7 +43,6 @@ module Reapal
             tenderName: tender_name,
             amount: money,
             rate: rate,
-            repayDate: repay_date,
             debitTerm: debit_term,
             debitType: debit_type,
             repayDate: repay_date,
@@ -54,29 +53,8 @@ module Reapal
             remark: remark,
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
-          # p "* " * 20
-          # p params
-          # p "* " * 20
-          response = Http.post(service, params, @config, post_path)
 
-          res = Reapal::Utils.api_result(params, response)
-
-          #非返回类错误
-          return res if response.http_pending? # 比如超时等操作
-
-          # 只有返回码是 '0000'发标才成功
-          if ['0000'].include?(response.data[:resultCode])
-            res[:result] = "S"
-          end
-
-          #确定的错误
-          if Reapal::Api::ErrorCode.tender_apply.include?(response.data[:errorCode])
-            res[:result] = "F"
-            return res
-          end
-
-          # 不能确定的错误 ，pending
-          res
+          operate_post(:operate, service, params, post_path, Http::ErrorCode.tender_apply, ['0000'])
         end
 
       end # module TenderApply

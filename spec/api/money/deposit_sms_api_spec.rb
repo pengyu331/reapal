@@ -7,7 +7,7 @@ RSpec.describe '快捷充值重发短信' do
 
   it '成功' do
     sleep(3) # 否则会报“签约过于频繁”的错误
-    result = client.deposit_sms_api(deposit_apply_order_no, test_contracts, terminal_info, member_ip)
+    result = client.deposit_sms_api(deposit_apply_flow_id, test_contracts, terminal_info, member_ip)
 
     expect(result[:result]).to eq('S')
     expect(result[:data][:resultCode]).to eq('0000')

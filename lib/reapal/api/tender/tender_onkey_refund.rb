@@ -2,12 +2,12 @@
 
 module Reapal
   module Api
-    module Asset
+    module Tender
       module TenderOneKeyRefund
 
         # 3.13 一键还款
         #
-        # @param order_no [ String ] 还款订单号
+        # @param flow_id [ String ] 还款订单号
         # @param tender_no [ String ] 商户系统标的的标号
         # @param debit_contracts [String] 借款方协议号
         # @param debit_details [JSON] 借款方还款
@@ -39,7 +39,7 @@ module Reapal
         #      * :orderNo [String] 还款订单号
         #      * :resultCode [String] 结果代码
         #
-        def tender_onekey_refund(order_no,
+        def tender_onekey_refund(flow_id,
                                  tender_no,
                                  debit_contracts,
                                  debit_details,
@@ -51,7 +51,7 @@ module Reapal
           post_path = '/reagw/tender/rest.htm'
 
           params = {
-            orderNo: order_no,
+            orderNo: flow_id,
             tenderNo: tender_no,
             debitContracts: debit_contracts,
             debitDetails: debit_details,
@@ -62,26 +62,7 @@ module Reapal
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S')
           }
 
-          response = Http.post(service, params, @config, post_path)
-
-          res = Reapal::Utils.api_result(params, response)
-
-          #非返回类错误
-          return res if response.http_pending? # 比如超时等操作
-
-          # 只有返回码是 '0000'发标才成功
-          if ['0000'].include?(response.data[:resultCode])
-            res[:result] = "S"
-          end
-
-          #确定的错误
-          if Reapal::Api::ErrorCode.tender_onekey_refund.include?(response.data[:errorCode])
-            res[:result] = "F"
-            return res
-          end
-
-          # 不能确定的错误 ，pending
-          res
+          operate_post(:operate, service, params, post_path, Http::ErrorCode.tender_onekey_refund, ['0000'])
         end
 
       end # module TenderOneKeyRefund

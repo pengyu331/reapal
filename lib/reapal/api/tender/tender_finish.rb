@@ -2,7 +2,7 @@
 
 module Reapal
   module Api
-    module Asset
+    module Tender
       module TenderFinish
 
         # 3.8  满标 API
@@ -50,26 +50,7 @@ module Reapal
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          response = Http.post(service, params, @config, post_path)
-
-          res = Reapal::Utils.api_result(params, response)
-
-          #非返回类错误
-          return res if response.http_pending? # 比如超时等操作
-
-          # 只有返回码是 '0000'发标才成功
-          if ['0000'].include?(response.data[:resultCode])
-            res[:result] = "S"
-          end
-
-          #确定的错误
-          if Reapal::Api::ErrorCode.tender_finish.include?(response.data[:error_code])
-            res[:result] = "F"
-            return res
-          end
-
-          # 不能确定的错误 ，pending
-          res
+          operate_post(:operate, service, params, post_path, Http::ErrorCode.tender_finish, ['0000'])
         end
 
       end # module TenderFinish

@@ -19,8 +19,6 @@ module Reapal
         #     * :contracts [String] 用户协议号
         #     * :mobile [String] 用户手机号
         #
-
-
         def mobile_query(contracts)
           service = 'reapal.trust.mobileQuery'
           post_path = '/reagw/user/restApi.htm'
@@ -30,24 +28,7 @@ module Reapal
             queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          response = Http.post(service, params, @config, post_path)
-
-          res = Reapal::Utils.api_result(params, response)
-
-          if Api::ErrorCode.mobile.include?(response.data[:errorcode])
-            res[:result] = 'F'
-            return res
-          end
-
-          # 查询类 api，http 没成功都返回 pending
-          return res unless response.http_success?
-
-          # 其余 api 错误不知道
-          return res unless response.data[:errorCode].nil?
-
-          res[:result] = "S"
-
-          res
+          operate_post(:query, service, params, post_path, Http::ErrorCode.mobile, ['0000'])
         end
 
       end

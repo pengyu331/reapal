@@ -23,8 +23,8 @@ module Reapal
     # @example
     #   JytPay::Utils.gen_flow_id
     #
-    # @param [ Integer ] 时间（默认是 now）
-    # @return [ String ] flow id
+    # @param time [ Integer ] 时间（默认是 now）
+    # @return [ String ]
     def self.gen_flow_id(time=Time.now.to_i)
       machine_id = Digest::MD5.digest(::Mac.addr).unpack("N")[0]
       process_id = Process.pid % 0xFFFF
