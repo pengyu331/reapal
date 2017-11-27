@@ -43,8 +43,8 @@ module Reapal
                                  tender_no,
                                  debit_contracts,
                                  debit_details,
-                                 invest_details='',
-                                 defray_details='',
+                                 invest_details=[],
+                                 defray_details=[],
                                  busway='01',
                                  remark='')
           service = 'reapal.trust.onekeyRefund'
