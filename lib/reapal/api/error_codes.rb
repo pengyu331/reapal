@@ -48,6 +48,14 @@ module Reapal
         @_deposit_query ||= %w(0208) | deposit_common
       end
 
+      def self.sub_account
+        @_sub_account ||= %w(0001 1601 1602 1603 1604 1605 1606 1607)
+      end
+
+      def self.sub_account_query
+        @_sub_account_query ||= %w(1608 1609 1610 1611)
+      end
+
       def tender_common
         @_tender_common = %w(0400 0401 0402 0405 0406 0407 0408 0409 0410)
       end

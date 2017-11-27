@@ -2,7 +2,7 @@
 
 module Reapal
   module Api
-    module Trust
+    module Money
       module DepositQuery
 
         # 2.6 充值查询（API）

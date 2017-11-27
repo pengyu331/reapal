@@ -2,7 +2,7 @@
 
 module Reapal
  module Api
-   module Trust
+   module Money
      module DepositConfirmApi
 
        # 2.3 快捷充值确认（API）
