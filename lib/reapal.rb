@@ -19,6 +19,11 @@ require "reapal/encrypt/aes"
 require "reapal/http/communicate"
 require "reapal/http/decode"
 require "reapal/http/response"
+require "reapal/http/error_code/common"
+require "reapal/http/error_code/user"
+require "reapal/http/error_code/money"
+require "reapal/http/error_code/tender"
+require "reapal/http/error_code/order"
 
 # 自动加载所有 api
 Dir["#{File.dirname(__FILE__)}/reapal/api/**/*.rb"].each { |file| require file }

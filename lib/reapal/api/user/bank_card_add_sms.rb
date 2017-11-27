@@ -6,7 +6,7 @@ module Reapal
 
         # 1.10 一键绑卡申请（API）
         #
-        # @param order_no [ String ] 订单号
+        # @param flow_id [ String ] 订单号
         # @param contracts [ String ] 用户协议号
         # @param bank_code [ String ] 银行代码
         # @param bank_account_no [ String ] 银行卡账号
@@ -23,10 +23,10 @@ module Reapal
         #   * :error_code [String] 错误代号
         #   * :error_msg [String] 错误信息
         #   * :data: 具体业务返回信息
-        #       * :order_no [ String ]  订单号
+        #       * :flow_id [ String ]  订单号
         #       * :result_code [ String ] 结果代码 0000：申请成功
         #
-        def bank_card_add_sms(order_no,
+        def bank_card_add_sms(flow_id,
                               contracts,
                               bank_code,
                               bank_account_no,
@@ -40,7 +40,7 @@ module Reapal
           post_path = '/reagw/bankcard/bankCardSMS.htm'
 
           params = {
-            orderNo: order_no,
+            orderNo: flow_id,
             contracts: contracts,
             bankCode: bank_code,
             bankAccountNo: bank_account_no,
@@ -52,27 +52,7 @@ module Reapal
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          response = Http.post(service, params, @config, post_path)
-
-          res = Reapal::Utils.api_result(params, response)
-
-          return res if response.http_pending? # 比如超时等操作
-
-          # 1，明确失败的
-          # if Api::ErrorCode.bind_card.include?(response.data[:errorCode])
-          #   res[:result] = 'F'
-          #   return res
-          # end
-
-          # 2. 明确正确的
-          if ['0000'].include?(response.data[:resultCode])
-            res[:result] = 'S'
-            return res
-          end
-
-          # 3. 其他错误 pending
-          res
-
+          operate_post(:operate, service, params, post_path, Http::ErrorCode.bind_card, ['0000'])
         end
 
       end # module

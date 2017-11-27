@@ -2,7 +2,7 @@
 
 module Reapal
   module Api
-    module Asset
+    module Tender
       module TenderRepaymentComplete
 
         # 3.15 还款计划更新（API）
@@ -17,7 +17,7 @@ module Reapal
         # @param comp_time [String] 执行还款日期
         # @param busway [String] 设备通道， '00'：PC端；'01'：手机端(默认)；'02'：Pad端；'03'：其它
         # @param remark [String] 备注
-
+        #
         # @return [ Hash ] 结果集
         #   * :result [String] 业务结果：'S/F/P'
         #   * :request_params [Hash] 请求参数
@@ -47,26 +47,7 @@ module Reapal
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          response = Http.post(service, params, @config, post_path)
-
-          res = Reapal::Utils.api_result(params, response)
-
-          #非返回类错误
-          return res if response.http_pending? # 比如超时等操作
-
-          # 只有返回码是 '0000'还款信息同步成功
-          if ['0000'].include?(response.data[:resultCode])
-            res[:result] = "S"
-          end
-
-          #确定的错误
-          if Reapal::Api::ErrorCode.tender_repayment_complete.include?(response.data[:resultCode])
-            res[:result] = "F"
-            return res
-          end
-
-          # 不能确定的错误 ，pending
-          res
+          operate_post(:operate, service, params, post_path, Http::ErrorCode.tender_repayment_complete, ['0000'])
         end
 
       end # module TenderRepaymentComplete
