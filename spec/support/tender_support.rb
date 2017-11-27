@@ -47,6 +47,21 @@ module TenderSupport
 
   end
 
+  def borrower_tender_apply_flow_id_02
+    tender_no = Reapal::Utils.gen_flow_id
+    flow_id = Reapal::Utils.gen_flow_id
+    client.tender_apply(flow_id,
+                        tender_no,
+                        'tender_name',
+                        200, 12,
+                        6, 1,
+                        (Time.now + 180 * 24 * 3600).strftime('%Y%m%d'),
+                        (Time.now + 180 * 24 * 3600).strftime('%Y%m%d'),
+                        borrower_contract)
+    return tender_no   #返回标的号和订单号
+
+  end
+
 
   #投标，供撤标测试用
   def investor_tender_flow_id
