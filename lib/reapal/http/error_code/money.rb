@@ -39,6 +39,15 @@ module Reapal
           0333 0324 0326 0327 0328 0329 0330 0331 0332 0333 0334 0335 0336
           0337 0338 0339 0340)
       end
+
+      def self.sub_account
+        @_sub_account ||= %w(0001 1601 1602 1603 1604 1605 1606 1607)
+      end
+
+      def self.sub_account_query
+        @_sub_account_query ||= %w(1608 1609 1610 1611)
+      end
+      
     end # module ErrorCode
   end
 end

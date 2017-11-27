@@ -32,14 +32,6 @@ module Reapal
                            0360 0362 0363)
       end
 
-      def self.sub_account
-        @_sub_account ||= %w(0001 1601 1602 1603 1604 1605 1606 1607)
-      end
-
-      def self.sub_account_query
-        @_sub_account_query ||= %w(1608 1609 1610 1611)
-      end
-
     end # module ErrorCode
   end
 end
