@@ -18,6 +18,13 @@ module Reapal
         @_deposit_confirm_api ||= %w(1901) | deposit_common
       end
 
+      def self.deposit_sms_api
+        @_deposit_sms_api ||= [] | deposit_common
+      end
+
+      def self.deposit_query
+        @_deposit_query ||= %w(0208) | deposit_common
+      end
     end # module ErrorCode
   end
 end
