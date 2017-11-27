@@ -5,7 +5,7 @@ module Reapal
     module User
       module OnekeyComContract
 
-        # 1. 企业一键签约（API）
+        # 1.4 企业一键签约（API）
         #
         # @param flow_id [ String ] 订单号
         # @param corp_name [ String ] 法人代表姓名
@@ -42,7 +42,7 @@ module Reapal
         #
         def onekey_com_contract(flow_id, corp_name, identity_id, com_name, com_license,
                                 lic_start_date, lic_end_date, phone, return_url, notify_url,
-                                email='', busway='01', remark='')
+                                email, busway='01', remark='')
           service = 'reapal.trust.comContractAPI'
           post_path = '/reagw/agreement/agree.htm'
 
