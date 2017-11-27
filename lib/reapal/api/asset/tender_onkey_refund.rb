@@ -50,22 +50,6 @@ module Reapal
           service = 'reapal.trust.onekeyRefund'
           post_path = '/reagw/tender/rest.htm'
 
-          debit_details[:serialNo] = debit_detail[:seria_no]
-          debit_details[:payeeContracts] = debit_detail[:payee_contracts]
-          debit_details[:amount] = debit_detail[:amount]
-          debit_details[:remark] = debit_detail[:remark]
-
-          invest_details[:seriaNo] = invest_detail[:seria_no]
-          invest_details[:investContracts] = invest_detail[:invest_contracts]
-          invest_details[:payeeContracts] = invest_detail[:payee_contracts]
-          invest_details[:amount] = invest_detail[:amount]
-          invest_details[:mark] = invest_detail[:mark]
-
-          defray_details[:serialNo] = defray_details[:seria_no]
-          defray_details[:payeeContracts] = defray_details[:payee_contracts]
-          defray_details[:amount] = defray_details[:amount]
-          defray_details[:remark] = defray_details[:remark]
-
           params = {
             orderNo: order_no,
             tenderNo: tender_no,
