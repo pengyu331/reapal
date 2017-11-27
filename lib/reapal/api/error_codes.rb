@@ -63,6 +63,11 @@ module Reapal
                                       0911 0912 0913 0914 0915 0916 0917 0918 0919 0920 0921
                                       0922 0923 0001) | tender_common
       end
+
+      def self.tender_onekey_single_transfer
+        @_tender_onekey_single_transfer ||= %w(1000 1001 1002 1003 1004 1005 1006 1007 1008
+                                               1009 1010 1011 1012 1013 0001) | tender_common
+      end
     end
   end
 end
