@@ -40,6 +40,10 @@ module Reapal
         @_deposit_confirm_api ||= %w(1901) | deposit_common
       end
 
+      def self.deposit_sms_api
+        @_deposit_sms_api ||= [] | deposit_common
+      end
+
       def tender_common
         @_tender_common = %w(0400 0401 0402 0405 0406 0407 0408 0409 0410)
       end
