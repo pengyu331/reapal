@@ -64,26 +64,7 @@ module Reapal
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          response = Http.post(service, params, @config, post_path, '2.0')
-
-          res = Reapal::Utils.api_result(params, response)
-
-          return res if response.http_pending? # 比如超时等操作
-
-          # 1，明确失败的
-          if Api::ErrorCode.deposit_apply_api.include?(response.data[:errorCode])
-            res[:result] = 'F'
-            return res
-          end
-
-          # 2. 明确正确的
-          if ['0000'].include?(response.data[:resultCode])
-            res[:result] = 'S'
-            return res
-          end
-
-          # 3. pending
-          res
+          operate_post(:operate, service, params, post_path, Http::ErrorCode.deposit_apply_api, ['0000'], '2.0')
         end
 
       end # module

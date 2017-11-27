@@ -11,9 +11,9 @@ RSpec.describe '满标' do
   #     borrower_tender_apply_01
   #   #2.投标
   #     #B投标 30元
-  #     investor_tender_order_no_01
+  #     investor_tender_flow_id_01
   #     #C投标 70元
-  #     investor_tender_order_no_02
+  #     investor_tender_flow_id_02
   #
   #   #3.满标
   #

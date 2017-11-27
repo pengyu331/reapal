@@ -91,8 +91,8 @@ nCSRXVFpm8/JY8zVxRF7jqwuoaON7A==
   end
 
   #  绑卡
-  def bind_card_order_no
-    return @order_no if @order_no
+  def bind_card_flow_id
+    return @flow_id if @flow_id
 
     bank_code = 'icbc'
     bank_account_no = '6217230200001702234'
@@ -112,9 +112,9 @@ nCSRXVFpm8/JY8zVxRF7jqwuoaON7A==
                                       subbranch,
                                       mobile_phone)
 
-    @order_no = result[:data][:orderNo]
+    @flow_id = result[:data][:orderNo]
 
-    @order_no
+    @flow_id
   end
 
 end

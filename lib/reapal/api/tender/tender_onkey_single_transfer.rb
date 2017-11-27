@@ -2,7 +2,7 @@
 
 module Reapal
   module Api
-    module Asset
+    module Tender
       module TenderOneKeySingleTransfer
 
         # 3.19 一键债权转让
@@ -31,7 +31,7 @@ module Reapal
         #      * :orderNo [String] 业务订单号
         #      * :resultCode [String] 结果代码
         #
-        def tender_onekey_single_transfer(order_no,
+        def tender_onekey_single_transfer(flow_id,
                                           tender_no,
                                           trans_capital,
                                           money,
@@ -64,26 +64,7 @@ module Reapal
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S')
           }
 
-          response = Http.post(service, params, @config, post_path)
-
-          res = Reapal::Utils.api_result(params, response)
-
-          #非返回类错误
-          return res if response.http_pending? # 比如超时等操作
-
-          # 只有返回码是 '0000'转债才成功
-          if ['0000'].include?(response.data[:resultCode])
-            res[:result] = "S"
-          end
-
-          #确定的错误
-          if Reapal::Api::ErrorCode.tender_onekey_single_transfer.include?(response.data[:errorCode])
-            res[:result] = "F"
-            return res
-          end
-
-          # 不能确定的错误 ，pending
-          res
+          operate_post(:operate, service, params, post_path, Http::ErrorCode.tender_onekey_single_transfer, ['0000'])
         end
 
       end # module TenderOneKeySingleTransfer

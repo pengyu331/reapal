@@ -7,7 +7,7 @@ module Reapal
 
         # 2.4 快捷充值重发短信（API）
         #
-        # @param order_no [ String ] 订单号（非自动生成，与充值签约订单号保持一致）
+        # @param flow_id [ String ] 订单号（非自动生成，与充值签约订单号保持一致）
         # @param contracts [ String ] 用户协议号
         # @param busway [ String ] 设备通道 00：PC端；01：手机端；02：Pad端；03：其它
         # @param terminal_info [ String ] 终端信息（手机IMEI地址、MAC地址、UUID）
@@ -25,12 +25,12 @@ module Reapal
         #       * :resultCode [String] 结果代码 0000：发送成功
         #       * :resultMsg [String] 结果描述
         #
-        def deposit_sms_api(order_no, contracts, terminal_info, member_ip, busway = '01', remark = "")
+        def deposit_sms_api(flow_id, contracts, terminal_info, member_ip, busway = '01', remark = "")
           service = 'reapal.trust.depositSmsAPI'
           post_path = '/reagw/service/depwit.htm'
 
           params = {
-            orderNo: order_no,
+            orderNo: flow_id,
             contracts: contracts,
             busway: busway,
             terminalInfo: terminal_info,
@@ -39,29 +39,10 @@ module Reapal
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          response = Http.post(service, params, @config, post_path)
+          operate_post(:operate, service, params, post_path, Http::ErrorCode.deposit_sms_api, ['0000'])
+        end
 
-          res = Reapal::Utils.api_result(params, response)
-
-          return res if response.http_pending? # 比如超时等操作
-
-          # 1，明确失败的
-          if Api::ErrorCode.deposit_sms_api.include?(response.data[:errorCode])
-            res[:result] = 'F'
-            return res
-          end
-
-          # 2. 明确正确的
-          if ['0000'].include?(response.data[:resultCode])
-            res[:result] = 'S'
-            return res
-          end
-
-          # 3. pending
-          res
-       end
-
-     end # modele
+      end # module
     end
   end
 end

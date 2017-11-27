@@ -7,10 +7,10 @@ RSpec.describe '撤标' do
   it "成功撤单，撤销满标前处理中订单" do
     tender_no = 'DZH000001'
 
-    borrower_tender_apply_order_no
+    borrower_tender_apply_flow_id
     result = client.tender_all_cancel(Reapal::Utils.gen_flow_id,
                                       tender_no,
-                                      investor_tender_order_no)
+                                      investor_tender_flow_id)
 
     expect(result[:result]).to eq("S")
     expect(result[:data][:resultCode]).to eq('0000')
@@ -20,7 +20,7 @@ RSpec.describe '撤标' do
 
   it "投标撤销后，再次撤标，失败" do
     tender_no = 'DZH000001'
-    t  = investor_tender_order_no
+    t  = investor_tender_flow_id
     result = client.tender_all_cancel(Reapal::Utils.gen_flow_id,
                                       tender_no,
                                       t)

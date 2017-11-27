@@ -1,7 +1,7 @@
 # coding: utf-8
 # 投标 API 错误相关
 module Reapal
-  module Api
+  module Http
     module ErrorCode
 
       def self.tender_common

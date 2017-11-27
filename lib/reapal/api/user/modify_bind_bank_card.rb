@@ -2,19 +2,17 @@
 module Reapal
   module Api
     module User
-      module BankCardAddSms
+      module ModifyBankCardAddSms
 
-        # 1.10 一键绑卡申请（API）
+        # 1.14 修改绑卡（API）
         #
         # @param flow_id [ String ] 订单号
         # @param contracts [ String ] 用户协议号
-        # @param bank_code [ String ] 银行代码
-        # @param bank_account_no [ String ] 银行卡账号
+        # @param bank_account_no [ String ] 银行卡账号后四位
         # @param account_province [ String ] 银行所在省
         # @param account_city [ String ] 银行所在市
         # @param branch [ String] 银行分行
         # @param subbranch [ String ] 银行支行
-        # @param mobile_phone [ String ] 银行预留手机
         #
         # @return [ Hash ] 结果集
         #   * :result [String] "S"/"F"/"P"
@@ -26,29 +24,25 @@ module Reapal
         #       * :flow_id [ String ]  订单号
         #       * :result_code [ String ] 结果代码 0000：申请成功
         #
-        def bank_card_add_sms(flow_id,
-                              contracts,
-                              bank_code,
-                              bank_account_no,
-                              account_province,
-                              account_city,
-                              branch,
-                              subbranch,
-                              mobile_phone)
+        def modify_bank_card_add_sms(flow_id,
+                                     contracts,
+                                     bank_account_no,
+                                     account_province,
+                                     account_city,
+                                     branch,
+                                     subbranch)
 
-          service = 'reapal.trust.bankCardAddSMS'
-          post_path = '/reagw/bankcard/bankCardSMS.htm'
+          service = 'reapal.trust.modifyBindBankCard'
+          post_path = '/reagw/bankcard/modifyBindBankApi.htm'
 
           params = {
             orderNo: flow_id,
             contracts: contracts,
-            bankCode: bank_code,
             bankAccountNo: bank_account_no,
             accountProvince: account_province,
             accountCity: account_city,
             branch: branch,
             subbranch: subbranch,
-            mobilePhone: mobile_phone,
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 

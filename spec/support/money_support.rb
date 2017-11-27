@@ -24,8 +24,8 @@ module MoneySupport
     end
   end
 
-  def deposit_apply_order_no
-    return @order_no if @order_no
+  def deposit_apply_flow_id
+    return @flow_id if @flow_id
 
     id = '421181198608283272'
     phone = '15112344321'
@@ -41,9 +41,9 @@ module MoneySupport
                                       id, phone, amount, charge, terminal_info, member_ip,
                                       notify_url)
 
-    @order_no = result[:data][:orderNo]
+    @flow_id = result[:data][:orderNo]
 
-    @order_no
+    @flow_id
   end
 
 end
