@@ -29,7 +29,6 @@ RSpec.describe '一键债权转让' do
 
   end
 
-
   it '二次债转,成功' do
     # 1. 发标
     tender_no = borrower_tender_apply_flow_id_02
