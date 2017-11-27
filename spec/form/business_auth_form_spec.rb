@@ -26,9 +26,9 @@ RSpec.describe '标的授权' do
     puts "测试 html 导入到：#{path}"
   end
 
-  it '投资人投标授权成功' do
+  it '借款人一键还款授权成功' do
     sleep(3) # 否则会报“签约过于频繁”的错误
-    result = client.business_auth_form(Reapal::Utils.gen_flow_id, investor_contract, '02', '20201125', '', '')
+    result = client.business_auth_form(Reapal::Utils.gen_flow_id, borrower_contract, '03', '20201125', '', '', 'DZH0000000230')
 
     method = result[:form_method]
     result = result[:form_data]
@@ -42,7 +42,7 @@ RSpec.describe '标的授权' do
 </form>
     EOF
 
-    path = "tmp/spec_business_auth_form_investor_apply.html"
+    path = "tmp/spec_business_auth_form_borrower_apply.html"
     fp = File.open(path, "w+")
     fp.write html
     fp.close
