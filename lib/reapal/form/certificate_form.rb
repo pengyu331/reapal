@@ -22,7 +22,7 @@ module Reapal
       #     * :encryptkey
       #     * :data
       #
-      def withdraw_apply_form(flow_id, bind_id, contract, return_url, notify_url, terminal_type='mobile')
+      def certificate_form(flow_id, bind_id, contract, return_url, notify_url, terminal_type='mobile')
         service = 'reapal.trust.certificate'
         post_path = '/reagw/service/depwit.htm'
 
