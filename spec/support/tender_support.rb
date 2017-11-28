@@ -34,7 +34,7 @@ module TenderSupport
   end
 
   def borrower_tender_apply_flow_id_01
-    tender_no = Reapal::Utils.gen_flow_id
+    tender_no = 'DZH111122'
     client.tender_apply(Reapal::Utils.gen_flow_id,
                         tender_no,
                         'tender_name',
