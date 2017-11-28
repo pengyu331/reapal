@@ -36,6 +36,19 @@ module UserSupport
     @_investor_contract_01
   end
 
+  def investor_contract_02
+    return @_investor_contract_02 if @_investor_contract_02
+    name='达赖喇嘛十五世'
+    id='425381198608283284'
+    other_phone = Faker::PhoneNumber.cell_phone
+    result = client.onekey_contract(Reapal::Utils.gen_flow_id,
+                                    name, id, other_phone)
+
+    @_investor_contract_02 = result[:data][:contracts]
+
+    @_investor_contract_02
+  end
+
   def investor_bind_card
     result = client.bank_card_add_sms(Reapal::Utils.gen_flow_id,
                                       investor_contract,

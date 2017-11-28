@@ -24,12 +24,12 @@ module Reapal
         #     * :services [String] 授权业务。 02一键投标 ，03 为一键还款 04 一键债转
         #     * :resultCode [String] 结果代码
         #
-        def tender_auth_cancel(flow_id, contracts, services, tender_no, busway="01", remark='')
+        def tender_auth_cancel(flow_id, contracts, services, tender_no='', busway="01", remark='')
           service = 'reapal.trust.authCancel'
           post_path = '/reagw/user/restApi.htm'
 
           params = {
-            cancelOrderNo: flow_id,
+            cancleOrderNo: flow_id,
             contracts: contracts,
             services: services,
             busway: busway,
