@@ -40,7 +40,7 @@ module Reapal
             return res
           end
 
-          post_path = '/reagw/agreement/agreeApi.htm'
+          post_path = '/reagw/tender/rest.htm'
 
           params = {
             serialNo: serial_no,
