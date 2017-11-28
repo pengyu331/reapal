@@ -17,7 +17,6 @@ module Reapal
         #   * :error_code [String] 错误代号
         #   * :error_msg [String] 错误信息
         #   * :data: 具体业务返回信息
-        #     * :orderNo [String] 操作订单号
         #     * :contracts [String] 用户协议号
         #     * :servicesDetail [JSON] 授权明细
         #        * :services [String] 授权服务。 02一键投标 ，03 为一键还款 04 一键债转
