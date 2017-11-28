@@ -43,8 +43,8 @@ module Reapal
                                  tender_no,
                                  debit_contracts,
                                  debit_details,
-                                 invest_details='',
-                                 defray_details='',
+                                 invest_details=[],
+                                 defray_details=[],
                                  busway='01',
                                  remark='')
           service = 'reapal.trust.onekeyRefund'
@@ -62,7 +62,12 @@ module Reapal
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S')
           }
 
-          operate_post(:operate, service, params, post_path, Http::ErrorCode.tender_onekey_refund, ['0000'])
+          res = operate_post(:operate, service, params, post_path, Http::ErrorCode.tender_onekey_refund, ['0000'])
+          if 'S' == res[:result] && '0001' == res[:data][:resultCode]
+            res[:result] = 'F'
+          end
+
+          res
         end
 
       end # module TenderOneKeyRefund

@@ -43,7 +43,7 @@ module Reapal
           if 'S' == res[:result] && '0001' == res[:data][:resultCode]
             res[:result] = 'F'
           end
-          
+
           res
         end
 
