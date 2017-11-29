@@ -25,12 +25,12 @@ module Reapal
         #       * :type  业务类型  A: 充值和提现; D: 充值; W: 提现
         #       * :is_safety  绑卡类别  0: 普通卡; 1:安全卡
         #       * :is_required_field  分支行信息  0: 省市分支行信息(系统默认信息); 1:用户自己所填信息
-        #       * :account_province  开户行所在省
+        #       * :account_province  开户行所在省 
         #       * :account_city  开户行所在市
         #       * :branch  开户行分行
         #       * :subbranch  开户行支行
         #
-        def bind_card_query(contracts, type = "W")
+        def bind_card_query(contracts, type='W')
           service = 'reapal.trust.bindQuery'
           post_path = '/reagw/user/restApi.htm'
 
@@ -42,12 +42,21 @@ module Reapal
 
           res = operate_post(:query, service, params, post_path, Http::ErrorCode.bind_card, ['0000'])
 
-          if 'S' == res[:result]
-            # TODO: (tony) 返回的银行字符串解析成数据，便于使用方
-            # res[:data][:bank_cards] = parse_cards_info(res[:data][:bank_cards])
+          if 'S' == res[:result] || ('P' == res[:result] && res[:data][:resultCode].nil?)
+            res[:result] = 'S'
+
+            res[:data][:bank_cards] = parse_cards_info(res[:data][:bankCards])
           end
 
           res
+        end
+
+        private
+
+        def parse_cards_info(bank_cards)
+          cards_info = bank_cards.first.split("|")
+
+          cards_info
         end
 
       end # module
