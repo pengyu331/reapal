@@ -90,8 +90,24 @@ nCSRXVFpm8/JY8zVxRF7jqwuoaON7A==
     @constracts
   end
 
+  def test_contracts_3
+    return if @constracts
+
+    sleep(3) # 否则会报“签约过于频繁”的错误
+
+    name='张三'
+    id='330181198608283273'
+    other_phone = Faker::PhoneNumber.cell_phone
+    result = client.onekey_contract(Reapal::Utils.gen_flow_id,
+                          name, id, other_phone)
+
+    @constracts = result[:data][:contracts]
+
+    @constracts
+  end
+
   #  绑卡
-  def bind_card_flow_id
+  def bind_card_flow_id(contracts)
     return @flow_id if @flow_id
 
     bank_code = 'icbc'
@@ -102,8 +118,8 @@ nCSRXVFpm8/JY8zVxRF7jqwuoaON7A==
     subbranch = '北通苑支行'
     mobile_phone = '15112344321'
 
-    result = client.bank_card_add_sms(Reapal::Utils.gen_flow_id,
-                                      test_contracts,
+    result = client.bank_card_add_sms(Reapal::Utils.gen_flow_id, 
+                                      contracts,
                                       bank_code,
                                       bank_account_no,
                                       account_province,
