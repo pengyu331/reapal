@@ -36,14 +36,10 @@ module UserSupport
     @_investor_contract_01
   end
 
-
   def investor_contract_02
-    return @_investor_contract_01 if @_investor_contract_02
-
-    sleep(3) # 否则会报“签约过于频繁”的错误
-
-    name='刘投资'
-    id='421181195608283284'
+    return @_investor_contract_02 if @_investor_contract_02
+    name='达赖喇嘛十五世'
+    id='425381198608283284'
     other_phone = Faker::PhoneNumber.cell_phone
     result = client.onekey_contract(Reapal::Utils.gen_flow_id,
                                     name, id, other_phone)
