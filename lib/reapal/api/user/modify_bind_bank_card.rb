@@ -2,7 +2,7 @@
 module Reapal
   module Api
     module User
-      module ModifyBankCardAddSms
+      module ModifyBindBankCard
 
         # 1.14 修改绑卡（API）
         #
@@ -24,14 +24,13 @@ module Reapal
         #       * :flow_id [ String ]  订单号
         #       * :result_code [ String ] 结果代码 0000：申请成功
         #
-        def modify_bank_card_add_sms(flow_id,
-                                     contracts,
-                                     bank_account_no,
-                                     account_province,
-                                     account_city,
-                                     branch,
-                                     subbranch)
-
+        def modify_bind_bank_card(flow_id,
+                                  contracts,
+                                  bank_account_no,
+                                  account_province,
+                                  account_city,
+                                  branch,
+                                  subbranch)
           service = 'reapal.trust.modifyBindBankCard'
           post_path = '/reagw/bankcard/modifyBindBankApi.htm'
 

@@ -5,7 +5,7 @@ module Reapal
     module Money
       module SubAccountQuery
 
-        # 2.8 企业分账查询（API）
+        # 2.12 企业分账查询（API）
         #
         # @param sub_account_flow_id [ String ] 分账订单号
         # @param serial_no [ String ] 分账流水号（传空串表示该订单批量查询）
@@ -33,7 +33,7 @@ module Reapal
           params = {
             orderNo: sub_account_flow_id,
             serialNo: serial_no,
-            queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
+            applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
           operate_post(:query, service, params, post_path, Http::ErrorCode.sub_account_query, ['0000'])
