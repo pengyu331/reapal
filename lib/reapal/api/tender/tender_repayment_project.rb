@@ -36,7 +36,7 @@ module Reapal
           params = {
             orderNo: flow_id,
             tenderNo: tender_no,
-            projectDetails: project_details.to_json,
+            projectDetails: project_details,
             busway: busway,
             remark: remark,
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
