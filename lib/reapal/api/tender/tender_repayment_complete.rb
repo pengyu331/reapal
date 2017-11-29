@@ -9,7 +9,7 @@ module Reapal
         #
         # @param flow_id [String] 执行还款计划订单号
         # @param tender_no [String] 商户系统标的号
-        # @param periods [String] 还款期数
+        # @param periods [Integer] 还款期数
         # @param comp_principal [BigDecimal] 执行还款本金
         # @param comp_interest [BigDecimal] 执行还款利息
         # @param comp_poundage [BigDecimal] 执行还款手续费
