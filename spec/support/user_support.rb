@@ -36,6 +36,23 @@ module UserSupport
     @_investor_contract_01
   end
 
+
+  def investor_contract_02
+    return @_investor_contract_01 if @_investor_contract_02
+
+    sleep(3) # 否则会报“签约过于频繁”的错误
+
+    name='刘投资'
+    id='421181195608283284'
+    other_phone = Faker::PhoneNumber.cell_phone
+    result = client.onekey_contract(Reapal::Utils.gen_flow_id,
+                                    name, id, other_phone)
+
+    @_investor_contract_02 = result[:data][:contracts]
+
+    @_investor_contract_02
+  end
+
   def investor_bind_card
     result = client.bank_card_add_sms(Reapal::Utils.gen_flow_id,
                                       investor_contract,
@@ -51,6 +68,25 @@ module UserSupport
       client.bank_card_add_sms_confirm(result[:data][:orderNo], '123456')
     end
   end
+
+
+  def investor_bind_card_01
+    result = client.bank_card_add_sms(Reapal::Utils.gen_flow_id,
+                                      investor_contract_02,
+                                      'icbc',
+                                      '6217230200001704334',
+                                      '北京',
+                                      '北京',
+                                      '北京',
+                                      '北京',
+                                      Faker::PhoneNumber.cell_phone)
+
+    if result[:result] == 'S'
+      client.bank_card_add_sms_confirm(result[:data][:orderNo], '123456')
+    end
+  end
+
+
 
   def borrower_contract
     return @_borrower_contract if @_borrower_contract
@@ -101,5 +137,36 @@ module UserSupport
     @_borrower_contract_1
   end
 
+  def certificate_contract
+    return @_certificate_contract if @_certificate_contract
+
+    sleep(3) # 否则会报“签约过于频繁”的错误
+
+    name='艾招行'
+    id='500281198608283280'
+    other_phone = Faker::PhoneNumber.cell_phone
+    result = client.onekey_contract(Reapal::Utils.gen_flow_id,
+                                    name, id, other_phone)
+
+    @_certificate_contract = result[:data][:contracts]
+
+    @_certificate_contract
+  end
+
+  def certificate_bind_card
+    result = client.bank_card_add_sms(Reapal::Utils.gen_flow_id,
+                                      certificate_contract,
+                                      'cmb',
+                                      '6214830138273189',
+                                      '北京',
+                                      '北京',
+                                      '北京',
+                                      '北京',
+                                      Faker::PhoneNumber.cell_phone)
+
+    if result[:result] == 'S'
+      client.bank_card_add_sms_confirm(result[:data][:orderNo], '123456')
+    end
+  end
 
 end
