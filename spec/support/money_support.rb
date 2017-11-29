@@ -69,4 +69,28 @@ module MoneySupport
     @flow_id
   end
 
+  def certificate_deposit
+    return @_bind_id if @_bind_id
+
+    certificate_bind_card
+
+    id = '500281198608283280'
+    phone = Faker::PhoneNumber.cell_phone
+    bank_card = '6214830138273189'
+    name = '艾招行'
+    amount = 100
+    charge = 0.03
+    terminal_info = 's'
+    member_ip = '127.0.0.1'
+    notify_url = 'http://127.0.0.1'
+
+    result = client.deposit_apply_api(Reapal::Utils.gen_flow_id, certificate_contract, bank_card, name,
+                                      id, phone, amount, charge, terminal_info, member_ip,
+                                      notify_url)
+
+    @_bind_id = result[:data]
+
+    @_bind_id
+  end
+
 end
