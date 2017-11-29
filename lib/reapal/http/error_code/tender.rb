@@ -42,7 +42,7 @@ module Reapal
       end
 
       def self.tender_auth_cancel
-        @_tender_auth_cancel ||= [] | tender_common
+        @_tender_auth_cancel ||= %w(1321) | tender_common
       end
 
       def self.tender_finish

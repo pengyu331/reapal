@@ -40,7 +40,7 @@ RSpec.describe '企业一键签约' do
                                         '123456@reapal.com')
 
     expect(result[:result]).to eq('F')
-    expect(result[:data][:resultCode]).to eq('0130')
+    expect(result[:error_code]).to eq('0130')
   end
 
   it '申请成功，等待审核' do
