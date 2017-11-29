@@ -29,7 +29,7 @@ module FormSupport
 
   def form_tender_refund_auth
     sleep(3) # 否则会报“签约过于频繁”的错误
-    result = client.business_auth_form(Reapal::Utils.gen_flow_id, investor_contract_02, '03', '20201125', '', '', 'tendorApply002')
+    result = client.business_auth_form(Reapal::Utils.gen_flow_id, borrower_contract, '03', '20201125', '', '', 'tendorApply002')
 
     method = result[:form_method]
     result = result[:form_data]
