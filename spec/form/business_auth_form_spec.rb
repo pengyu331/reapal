@@ -28,7 +28,7 @@ RSpec.describe '标的授权' do
 
   it '借款人一键还款授权成功' do
     sleep(3) # 否则会报“签约过于频繁”的错误
-    result = client.business_auth_form(Reapal::Utils.gen_flow_id, borrower_contract, '03', '20201125', '', '', 'DZH0000000230')
+    result = client.business_auth_form(Reapal::Utils.gen_flow_id, borrower_contract, '03', '20201125', '', '', borrower_tender_apply_flow_id_01)
 
     method = result[:form_method]
     result = result[:form_data]

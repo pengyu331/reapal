@@ -43,7 +43,13 @@ module Reapal
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          operate_post(:operate, service, params, post_path, Http::ErrorCode.tender_onekey_invest, ['0000'])
+          res = operate_post(:operate, service, params, post_path, Http::ErrorCode.tender_onekey_invest, ['0000'])
+
+          if 'S' == res[:result] && '0001' == res[:data][:resultCode]
+            res[:result] = 'F'
+          end
+
+          res
         end
 
       end # module TenderOneKeyInvest
