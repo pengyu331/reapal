@@ -24,6 +24,29 @@ module MoneySupport
     end
   end
 
+
+  def investor_deposit_01
+    result = client.deposit_apply_api(Reapal::Utils.gen_flow_id,
+                                      investor_contract_02,
+                                      '6217230200001769334',
+                                      '刘投资',
+                                      '421181195608283284',
+                                      Faker::PhoneNumber.cell_phone,
+                                      20000,
+                                      0,
+                                      'd',
+                                      'e',
+                                      'http://127.0.0.1')
+
+    if result[:result] == "S"
+      client.deposit_confirm_api(result[:data][:orderNo],
+                                 'RB17112811M6X7HG',
+                                 '123456',
+                                 '刘',
+                                 'http://127.0.0.1')
+    end
+  end
+
   def deposit_apply_flow_id
     return @flow_id if @flow_id
 
