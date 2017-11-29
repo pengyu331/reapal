@@ -6,11 +6,10 @@ module Reapal
 
         # 4.1 流水号查询（API）
         #
-        # @param serial_no [ String ] 业务流水号（对应满标、还款、债权转让分账明细的流水号）
+        # @param serial_no [ String ] 业务流水号（对应满标、还款分账明细的流水号）
         # @param service_type [Symbol] 查询类型，取值如下
         #   * :tender_finish 满标查询
         #   * :tender_refund 还款查询
-        #   * :tender_transfer 债权转让查询查询
         #
         # @return [ Hash ] 结果集
         #   * :result [String] 业务结果：'S/F/P'
@@ -28,8 +27,6 @@ module Reapal
                       'reapal.trust.tenderFinishSQuery'
                     when :tender_refund
                       'reapal.trust.tenderRefundSQuery'
-                    when :tender_transfer
-                      'reapal.trust.tenderTransferSQuery'
                     else
                       nil
                     end

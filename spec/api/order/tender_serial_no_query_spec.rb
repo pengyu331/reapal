@@ -42,17 +42,6 @@ RSpec.describe '查询' do
 
     end
 
-    # it '债转' do
-    #   #1.转债操作
-    #   flow_id = tender_transfer
-    #   result = client.tender_serial_no_query( flow_id, :tender_transfer)
-    #
-    #
-    #   expect(result[:result]).to eq("S")
-    #   expect(result[:data][:resultCode]).to eq('0000')
-    #
-    # end
-
   end
 
 end
