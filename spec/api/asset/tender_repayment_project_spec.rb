@@ -8,21 +8,17 @@ RSpec.describe '还款计划' do
     #1.一键还款授权
        #借款人必须一键还款授权,跑spec，borrower_contract王借款已经授权成功
      #1.1 借款人发标 200元，返回标的号
-     # tender_no = borrower_tender_apply_flow_id_01
 
      #2.投资人投标
-     # # A充值2000
-     # investor_deposit
-
      # investor_01张投资投标 50，王投资投标 150
-     tender_no = investor_tender_flow_id_03
+     tender_no = investor_tender_flow_id_04
 
      #3 满标
 
      debit_details = [{
        serialNo: Reapal::Utils.gen_flow_id,
       payeeContracts: borrower_contract,
-       amount: 100,
+       amount: 200,
        remark: ''
        }]
 
@@ -51,15 +47,15 @@ RSpec.describe '还款计划' do
     flow_id = Reapal::Utils.gen_flow_id
 
     project_details =[{
-      periods:'12',
-      projPrincipal: '2000',
-      projInterest: '200',
-      projPoundage: '0',
-      projAmount: '2200',
-      projTime: '20171221'
+      periods: 6,
+      projPrincipal: 200,
+      projInterest: 0,
+      projPoundage: 0,
+      projAmount: 200,
+      projTime: '20180303'
     }]
 
-    result = client.tender_repayment_project(flow_id, Reapal::Utils.gen_flow_id, project_details)
+    result = client.tender_repayment_project(flow_id, tender_no, project_details)
 
     expect(result[:result]).to eq('S')
     expect(result[:data][:orderNo]).to eq(flow_id)

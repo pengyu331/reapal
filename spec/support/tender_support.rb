@@ -63,6 +63,20 @@ module TenderSupport
   end
 
 
+  def borrower_tender_apply_flow_id_02
+    tender_no = Reapal::Utils.gen_flow_id
+    client.tender_apply(Reapal::Utils.gen_flow_id,
+                        tender_no,
+                        'tender_name',
+                        200, 12,
+                        6, 1,
+                        '20180303',
+                        '20180303',
+                        borrower_contract)
+    return tender_no  #返回标的号
+
+  end
+
   #投标，供撤标测试用
   def investor_tender_flow_id
     return @_investor_tender_flow_id if @_investor_tender_flow_id
@@ -145,5 +159,24 @@ module TenderSupport
 
   end
 
+
+  def investor_tender_flow_id_04
+
+    tender_no = borrower_tender_apply_flow_id_02
+
+    client.tender_onekey_invest(Reapal::Utils.gen_flow_id,
+                                tender_no,
+                                50,
+                                nil,
+                                investor_contract_01)
+
+    client.tender_onekey_invest(Reapal::Utils.gen_flow_id,
+                                tender_no,
+                                150,
+                                nil,
+                                investor_contract)
+    return tender_no
+
+  end
 
 end
