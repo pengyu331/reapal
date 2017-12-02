@@ -12,8 +12,8 @@ module Reapal
         # @param identity_id [ String ] 法人身份证号
         # @param com_name [ String ] 企业名称
         # @param com_license [ String ] 组织机构代码/社会征信号
-        # @param lic_start_date [ Datetime ] 企业组织机构证起始日
-        # @param lic_end_date [ Datetime ] 企业组织机构证截止日
+        # @param lic_start_date [ Time ] 企业组织机构证起始日
+        # @param lic_end_date [ Time ] 企业组织机构证截止日
         # @param phone [ String ] 手机号
         # @param return_url [ String ] 回调 URL
         # @param notify_url [ String ] 通知 URL
@@ -52,8 +52,8 @@ module Reapal
             corpIdentity: identity_id,
             comName: com_name,
             comLicense: com_license,
-            licStartDate: lic_start_date,
-            licEndDate: lic_end_date,
+            licStartDate: lic_start_date.strftime("%Y%m%d"),
+            licEndDate: lic_end_date.strftime("%Y%m%d"),
             mobile: phone,
             email: email,
             busway: busway,
