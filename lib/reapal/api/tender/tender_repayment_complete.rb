@@ -14,7 +14,7 @@ module Reapal
         # @param comp_interest [BigDecimal] 执行还款利息
         # @param comp_poundage [BigDecimal] 执行还款手续费
         # @param comp_amount [BigDecimal] 执行还款总金额
-        # @param comp_time [String] 执行还款日期
+        # @param comp_time [Time] 执行还款日期
         # @param busway [String] 设备通道， '00'：PC端；'01'：手机端(默认)；'02'：Pad端；'03'：其它
         # @param remark [String] 备注
         #
@@ -41,7 +41,7 @@ module Reapal
             compInterest: comp_interest,
             compPoundage: comp_poundage,
             compAmount: comp_amount,
-            compTime: comp_time,
+            compTime: comp_time.strftime('%Y%m%d'),
             busway: busway,
             remark: remark,
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),

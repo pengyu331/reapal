@@ -52,7 +52,7 @@ RSpec.describe '更新还款计划' do
       projInterest: 0,
       projPoundage: 0,
       projAmount: 200,
-      projTime: '20180303'
+      projTime: Time.now
     }]
 
     client.tender_repayment_project(flow_id, tender_no, project_details)
@@ -67,7 +67,7 @@ RSpec.describe '更新还款计划' do
                                               10,
                                               0,
                                               190,
-                                              '20180301')
+                                              Time.now+5*24*3600)
 
 
     expect(result[:result]).to eq('S')
