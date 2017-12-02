@@ -38,11 +38,13 @@ module Reapal
       end
 
       def self.tender_auth_query
-        @_tender_auth_query ||= [] | tender_common
+        @_tender_auth_query ||= %w(1100 1101 1102 1103 1104 1105 1106 1107 1108 1109) | tender_common
       end
 
       def self.tender_auth_cancel
-        @_tender_auth_cancel ||= %w(1321) | tender_common
+        @_tender_auth_cancel ||= %w(1301 1302 1303 1304 1305 1306 1307 1308 1309
+                                    1310 1311 1312 1313 1314 1315 1316 1317 1318
+                                    1319 1320 1321 1322 1323 1324 1325) | tender_common
       end
 
       def self.tender_finish

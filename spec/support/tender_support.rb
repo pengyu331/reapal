@@ -199,8 +199,6 @@ module TenderSupport
     #1.发标
     #2.投标
     tender_no = investor_tender_flow_id_04
-    p "^ ^ " * 10
-    p tender_no
 
     #3.满标
     debit_seria_no = Reapal::Utils.gen_flow_id
