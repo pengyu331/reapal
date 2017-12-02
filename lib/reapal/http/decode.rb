@@ -44,11 +44,15 @@ module Reapal
           sign_str = data[:resError].to_json
         end
 
-        # 3. 验签，错误时候 sign 是没有值的
-        if Sign::MD5.verify?(sign_str, config[:md5_key], data[:sign])
+        # 3. 验签
+        if data[:sign].nil? # sign 有的时候有，有的时候没有(已经发现错误信息返回时候有这种现象)
           data[:data_valid] = true
         else
-          data[:data_valid] = false
+          if Sign::MD5.verify?(sign_str, config[:md5_key], data[:sign])
+            data[:data_valid] = true
+          else
+            data[:data_valid] = false
+          end
         end
 
         data

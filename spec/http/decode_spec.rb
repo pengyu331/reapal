@@ -15,6 +15,19 @@ RSpec.describe '解密' do
     expect(result[:resError][:errorCode]).not_to eq('0000')
   end
 
+  # it '错误信息，失败' do
+  #   encryptkey_arg = 'MKzY+6MLKCpqYyVGWqxyagdlWDUDSyNYT1tR+PMAVv0DW6y3vElwW++7mLOaAy8ailx790EjmcElfRFRHB9ZwZ/Rh9g5VsC3BPJIuX/vDCKOrzW9IgbN2pK9srWDzLQokBhp/dDm9XP6xFkZls5m4KFlui9eIBxH9/0q2c8pGDA='
+
+  #   data_arg = 'VrEzaolMu+9uobsAv5194CMZTzJhiaWU9PGtSqjJxeJBlhuCtRw4wKJ9NE73pjc7JDhndYPxrsLlv3YlWdHOkQPqdMgCflJQ/qLoeGZg0QvmqNvRnVVikPNeuIy1Sl2isfNwnkW3jZ7XSJcmHlnkhB9EAN5dVeOFixQN5ocsbsdoY1QnTBz+U/6gII/rl04Y8WnS8Ov6nVxUHOv7ZUaRscuVix6rg99PZ9MZjpmmBNo='
+
+  #   result = Reapal::Http::Decode.decode_notify_data(encryptkey_arg, data_arg, client.config)
+
+  #   expect(result[:data_valid]).to eq(true)
+  #   expect(result[:resData]).to eq(nil)
+  #   expect(result[:resError]).not_to eq(nil)
+  #   expect(result[:resError][:errorCode]).not_to eq('0000')
+  # end
+
   it '成功信息，成功' do
     encryptkey_arg = 'ClVcLPJaH28n7wpj6xJgj7ULwWk+B/w+GKiBPdSKL76ozf5lIavd9/T1j7Hltu7pIhri4CYpuQV+iKraBDA9gDw5KD75Zv+tyeTpgohoUkwl1CHBDWYiR1wjrSsesmEFgmWX/n+JoWEiASiQ6fyBu2AMAI/cuDXQhSxklV7BS1E='
 
