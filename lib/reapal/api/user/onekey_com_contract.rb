@@ -33,6 +33,7 @@ module Reapal
         #     * :resultCode [String] 结果代码 0000：申请成功 0002：签约成功（审核通过）0003：签约失败（审核不通过）0006：再次申请成功（拒绝后）
         #     * :corpName [String] 法人代表姓名
         #     * :corpIdentity [String] 法人身份证号
+        #     * :comName [String] 企业名称
         #     * :comLicense [String] 组织机构代码/社会征信号
         #     * :licStartDate [String] 企业组织机构证起始日
         #     * :licEndDate [String] 企业组织机构证截止日
