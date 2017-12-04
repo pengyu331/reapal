@@ -9,13 +9,13 @@ module Reapal
         #
         # @param flow_id [String] 还款计划订单号
         # @param tender_no [String] 商户系统标的号
-        # @param project_details [hash] 还款计划明细
+        # @param project_details [String] 还款计划明细
         #   * :periods [Integer] 还款期数
-        #   * :proj_principal [BigDecimal] 计划还款本金
-        #   * :proj_interest [BigDecimal] 计划还款利息
-        #   * :proj_poundage [BigDecimal] 计划还款手续费
-        #   * :proj_amount [BigDecimal] 计划还款总金额
-        #   * :proj_time [String] 计划还款日期
+        #   * :projPrincipal [BigDecimal] 计划还款本金
+        #   * :projInterest [BigDecimal] 计划还款利息
+        #   * :projPoundage [BigDecimal] 计划还款手续费
+        #   * :projAmount [BigDecimal] 计划还款总金额
+        #   * :projTime [Time] 计划还款日期
         # @param busway [String] 设备通道， '00'：PC端；'01'：手机端(默认)；'02'：Pad端；'03'：其它
         # @param remark [String] 备注
         #
@@ -32,6 +32,8 @@ module Reapal
         def tender_repayment_project(flow_id, tender_no, project_details, busway='01', remark='')
           service = 'reapal.trust.repaymentProject'
           post_path = '/reagw/tender/rest.htm'
+
+          project_details[0][:projTime] = project_details[0][:projTime].strftime('%Y%m%d')
 
           params = {
             orderNo: flow_id,
