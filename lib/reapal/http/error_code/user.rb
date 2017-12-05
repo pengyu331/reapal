@@ -5,7 +5,7 @@ module Reapal
     module ErrorCode
 
       def self.contract_common
-        ['0103']
+        ['0103'] | common
       end
 
       def self.contract_create
@@ -14,22 +14,22 @@ module Reapal
          '0119', '0120', '0121', '0122', '0123', '0124', '0125', '0126', '0127',
          '0128', '0129', '0130', '0131', '0132', '0150', '0151', '0152', '0153',
          '0154', '0155', '0156', '0157', '0158', '0159', '0160', '0161', '0162',
-         '0163', '0164', '0165', '0166', '0167', '0525']
+         '0163', '0164', '0165', '0166', '0167', '0525'] | contract_common
       end
 
       def self.contract_query
-        ['0113']
+        ['0113'] | contract_common
       end
 
       def self.mobile
-        @_mobile ||= ['1108']
+        @_mobile ||= ['1108'] | contract_common
       end
 
       def self.bind_card
         @_bind_card ||= %w(9060 9064 9065 9083 9084 9085 0017 0210 0302 0303 0328
                            0329 0330 0332 0333 0335 0339 0340 0341 0342 0343
                            0344 0345 0346 0347 0348 0350 0351 0352 0358 0359
-                           0360 0362 0363)
+                           0360 0362 0363) | contract_common
       end
 
     end # module ErrorCode

@@ -15,8 +15,8 @@ RSpec.describe '发标' do
                                  tender_name,
                                  10000, 12,
                                  6, 1,
-                                 (Time.now + 180 * 24 * 3600).strftime('%Y%m%d'),
-                                 (Time.now + 180 * 24 * 3600).strftime('%Y%m%d'),
+                                 Time.now+5 * 360 * 24 * 3600,
+                                 Time.now ,
                                  borrower_contract)
 
     expect(result[:result]).not_to eq('P')
@@ -32,7 +32,7 @@ RSpec.describe '发标' do
   it "金额 <= 0 , 失败" do
     flow_id = Reapal::Utils.gen_flow_id
     result = client.tender_apply(flow_id, tender_no, tender_name, '-10000.00',
-                                 '8.2', '12', '1', '20170303', '20170103', debit_contracts,
+                                 '8.2', '12', '1', Time.now+5 * 360 * 24 * 3600, Time.now, debit_contracts,
                                  guarant_contract, '01', "今日新标A")
 
     expect(result[:result]).to eq('P')
@@ -41,7 +41,7 @@ RSpec.describe '发标' do
   it "投标截止日期大于还款日期，失败" do
     flow_id = Reapal::Utils.gen_flow_id
     result = client.tender_apply(flow_id, tender_no, tender_name, '10000.00',
-                                 '8.2', '12', '1', '20160303', '20170103', debit_contracts,
+                                 '8.2', '12', '1', Time.now, Time.now + 5 * 360 * 24 * 3600, debit_contracts,
                                  guarant_contract, '01', "今日新标A")
 
 

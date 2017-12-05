@@ -13,8 +13,8 @@ module TenderSupport
                         'tender_name',
                         10000, 12,
                         6, 1,
-                        (Time.now + 180 * 24 * 3600).strftime('%Y%m%d'),
-                        (Time.now + 180 * 24 * 3600).strftime('%Y%m%d'),
+                        Time.now + 180 * 24 * 3600,
+                        Time.now + 180 * 24 * 3600,
                         borrower_contract)
   end
 
@@ -26,8 +26,8 @@ module TenderSupport
                         'tender_name',
                         3000, 12,
                         6, 1,
-                        (Time.now + 180 * 24 * 3600).strftime('%Y%m%d'),
-                        (Time.now + 180 * 24 * 3600).strftime('%Y%m%d'),
+                        Time.now + 180 * 24 * 3600,
+                        Time.now + 180 * 24 * 3600,
                         borrower_contract)
 
 
@@ -40,8 +40,8 @@ module TenderSupport
                         'tender_name',
                         200, 12,
                         6, 1,
-                        (Time.now + 180 * 24 * 3600).strftime('%Y%m%d'),
-                        (Time.now + 180 * 24 * 3600).strftime('%Y%m%d'),
+                        Time.now + 180 * 24 * 3600,
+                        Time.now + 180 * 24 * 3600,
                         borrower_contract)
     return tender_no  #返回标的号
 
@@ -55,8 +55,8 @@ module TenderSupport
                         'tender_name',
                         200, 12,
                         6, 1,
-                        (Time.now + 180 * 24 * 3600).strftime('%Y%m%d'),
-                        (Time.now + 180 * 24 * 3600).strftime('%Y%m%d'),
+                        Time.now + 180 * 24 * 3600,
+                        Time.now + 180 * 24 * 3600,
                         borrower_contract)
     return tender_no   #返回标的号和订单号
 
@@ -70,8 +70,8 @@ module TenderSupport
                         'tender_name',
                         200, 12,
                         6, 1,
-                        '20180303',
-                        '20180303',
+                        Time.now,
+                        Time.now,
                         borrower_contract)
     return tender_no  #返回标的号
 
@@ -84,8 +84,8 @@ module TenderSupport
                         'tender_name',
                         200, 12,
                         6, 1,
-                        '20180303',
-                        '20180303',
+                        Time.now,
+                        Time.now,
                         borrower_contract)
     return flow_id  #返回标的号
 
@@ -115,8 +115,8 @@ module TenderSupport
                         'tender_name',
                         100, 12,
                         6, 1,
-                        (Time.now + 180 * 24 * 3600).strftime('%Y%m%d'),
-                        (Time.now + 180 * 24 * 3600).strftime('%Y%m%d'),
+                        (Time.now + 180 * 24 * 3600) ,
+                        (Time.now + 180 * 24 * 3600) ,
                         borrower_contract)
 
 

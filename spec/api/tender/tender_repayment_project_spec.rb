@@ -52,7 +52,7 @@ RSpec.describe '还款计划' do
       projInterest: 0,
       projPoundage: 0,
       projAmount: 200,
-      projTime: '20180303'
+      projTime: Time.now
     }]
 
     result = client.tender_repayment_project(flow_id, tender_no, project_details)
