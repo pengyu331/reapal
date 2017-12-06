@@ -1,7 +1,7 @@
 # coding: utf-8
 require 'reapal_helper'
 
-RSpec.describe '更新还款计划' do
+RSpec.describe '还款计划' do
 
   it '成功' do
     #1. 满标
@@ -52,26 +52,13 @@ RSpec.describe '更新还款计划' do
       projInterest: 0,
       projPoundage: 0,
       projAmount: 200,
-      projTime: '20180303'
+      projTime: Time.now
     }]
 
-    client.tender_repayment_project(flow_id, tender_no, project_details)
-
-
-    #3 更新还款计划
-    flow_id_complete = Reapal::Utils.gen_flow_id
-    result = client.tender_repayment_complete(flow_id_complete,
-                                              tender_no,
-                                              6,
-                                              180,
-                                              10,
-                                              0,
-                                              190,
-                                              '20180301')
-
+    result = client.tender_repayment_project(flow_id, tender_no, project_details)
 
     expect(result[:result]).to eq('S')
-    expect(result[:data][:orderNo]).to eq(flow_id_complete)
+    expect(result[:data][:orderNo]).to eq(flow_id)
     expect(result[:data][:resultCode]).to eq("0000")
   end
 end

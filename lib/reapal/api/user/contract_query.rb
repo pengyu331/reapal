@@ -7,7 +7,7 @@ module Reapal
 
         # 1.5 签约查询，支持个人和企业（API）
         #
-        # @param oneket_com_contract_flow_id [ String ] 签约订单号
+        # @param onekey_com_contract_flow_id [ String ] 签约订单号
         #
         # @return [ Hash ] 结果集
         #   * :result [String] 业务结果：'S/F/P'

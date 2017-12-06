@@ -11,7 +11,7 @@ module Reapal
         # @param check_code [ String ] 短信验证码
         # @param busway [ String ] 设备通道 00：PC端；01：手机端；02：Pad端；03：其它
         # @param remark [ String ] 业务备注信息
-
+        #
         # @return [ Hash ] 结果集
         #   * :result [String] "S"/"F"/"P"
         #   * :request_params [Hash] 请求参数

@@ -14,8 +14,8 @@ module Reapal
         # @param rate [BigDecimal] 利率  10.3表示10.3%
         # @param debit_term [integer] 标的期限
         # @param debit_type [String] 期数类型,年：0，月：1，日：2
-        # @param repay_date [String] 还款日期，格式YYYYMMDD
-        # @param expiry_date [String] 投标截止日期，格式YYYYMMDD
+        # @param repay_date [Time] 还款日期
+        # @param expiry_date [Time] 投标截止日期
         # @param debit_contracts [String] 借款方协议号
         # @param guarant_contract [String] 担保方协议号
         # @param busway [String] 设备通道， '00'：PC端；'01'：手机端(默认)；'02'：Pad端；'03'：其它
@@ -45,8 +45,8 @@ module Reapal
             rate: rate,
             debitTerm: debit_term,
             debitType: debit_type,
-            repayDate: repay_date,
-            expiryDate: expiry_date,
+            repayDate: repay_date.strftime("%Y%m%d"),
+            expiryDate: expiry_date.strftime("%Y%m%d"),
             debitContracts: debit_contracts,
             guarantContract: guarant_contract,
             busway: busway,

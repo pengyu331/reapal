@@ -12,8 +12,8 @@ module Reapal
         # @param identity_id [ String ] 法人身份证号
         # @param com_name [ String ] 企业名称
         # @param com_license [ String ] 组织机构代码/社会征信号
-        # @param lic_start_date [ Datetime ] 企业组织机构证起始日
-        # @param lic_end_date [ Datetime ] 企业组织机构证截止日
+        # @param lic_start_date [ Time ] 企业组织机构证起始日
+        # @param lic_end_date [ Time ] 企业组织机构证截止日
         # @param phone [ String ] 手机号
         # @param return_url [ String ] 回调 URL
         # @param notify_url [ String ] 通知 URL
@@ -33,6 +33,7 @@ module Reapal
         #     * :resultCode [String] 结果代码 0000：申请成功 0002：签约成功（审核通过）0003：签约失败（审核不通过）0006：再次申请成功（拒绝后）
         #     * :corpName [String] 法人代表姓名
         #     * :corpIdentity [String] 法人身份证号
+        #     * :comName [String] 企业名称
         #     * :comLicense [String] 组织机构代码/社会征信号
         #     * :licStartDate [String] 企业组织机构证起始日
         #     * :licEndDate [String] 企业组织机构证截止日
@@ -52,8 +53,8 @@ module Reapal
             corpIdentity: identity_id,
             comName: com_name,
             comLicense: com_license,
-            licStartDate: lic_start_date,
-            licEndDate: lic_end_date,
+            licStartDate: lic_start_date.strftime("%Y%m%d"),
+            licEndDate: lic_end_date.strftime("%Y%m%d"),
             mobile: phone,
             email: email,
             busway: busway,
@@ -63,7 +64,7 @@ module Reapal
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          res = operate_post(:operate, service, params, post_path, Http::ErrorCode.contract_create, ['0002', '0006'])
+          res = operate_post(:operate, service, params, post_path, Http::ErrorCode.com_contract_create, ['0002', '0006'])
 
           if 'S' == res[:result] && '0003' == res[:data][:resultCode]
             res[:result] = 'F'
