@@ -28,7 +28,7 @@ module Reapal
         #     * :email [String] 企业邮箱
         #     * :remark [String] 备注
         #
-        def contract_query(oneket_com_contract_flow_id)
+        def contract_query(onekey_com_contract_flow_id)
           service = 'reapal.trust.contractQuery'
           post_path = '/reagw/agreement/agreeApi.htm'
 

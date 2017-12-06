@@ -15,7 +15,7 @@ module Reapal
         #   * :projInterest [BigDecimal] 计划还款利息
         #   * :projPoundage [BigDecimal] 计划还款手续费
         #   * :projAmount [BigDecimal] 计划还款总金额
-        #   * :projTime [Time] 计划还款日期
+        #   * :projTime [String] 计划还款日期, 'YYYYMMDD'
         # @param busway [String] 设备通道， '00'：PC端；'01'：手机端(默认)；'02'：Pad端；'03'：其它
         # @param remark [String] 备注
         #
