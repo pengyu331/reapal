@@ -17,6 +17,10 @@ module Reapal
          '0163', '0164', '0165', '0166', '0167', '0525'] | contract_common
       end
 
+      def self.com_contract_create
+        ['9015'] || contract_create || contract_common
+      end
+
       def self.contract_query
         ['0113'] | contract_common
       end

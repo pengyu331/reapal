@@ -64,7 +64,7 @@ module Reapal
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          res = operate_post(:operate, service, params, post_path, Http::ErrorCode.contract_create, ['0002', '0006'])
+          res = operate_post(:operate, service, params, post_path, Http::ErrorCode.com_contract_create, ['0002', '0006'])
 
           if 'S' == res[:result] && '0003' == res[:data][:resultCode]
             res[:result] = 'F'
