@@ -40,7 +40,18 @@ module Reapal
            applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
          }
 
-         operate_post(:operate, service, params, post_path, Http::ErrorCode.deposit_confirm_api, ['0000'])
+         res = operate_post(:operate, service, params, post_path, Http::ErrorCode.deposit_confirm_api, ['0000'])
+
+         error_result_code = %w(9060 9065 9083 9084 9085 0017 0210 0302 0303 0328 0329
+                                0330 0332 0333 0335 0339 0340 0341 0342 0343 0344 0345
+                                0346 0347 0348 0350 0351 0352 0358 0359 0360 0362 0363
+                                0001 0004)
+
+         if 'S' == res[:result] && error_result_code.include?(res[:data][:resultCode])
+           res[:result] = 'F'
+         end
+
+         res
        end
 
      end # module
