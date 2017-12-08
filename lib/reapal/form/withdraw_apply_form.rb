@@ -12,6 +12,7 @@ module Reapal
       # @param charge [Number] 手续费，2位小数
       # @param return_url [String] 回调 url
       # @param notify_url [String] 通知 url
+      # @param remark [String] 默认是空
       # @param busway [String] 设备通道，默认手机端。00：PC端；01：手机端；02：Pad端；03：其它
       #
       # @return [ Hash ] 结果集
@@ -23,7 +24,7 @@ module Reapal
       #     * :encryptkey
       #     * :data
       #
-      def withdraw_apply_form(contract, flow_id, money, charge, return_url, notify_url, busway='01')
+      def withdraw_apply_form(contract, flow_id, money, charge, return_url, notify_url, remark='', busway='01')
         service = 'reapal.trust.withdrawApply'
         post_path = '/reagw/service/withdraw.htm'
 
@@ -33,6 +34,7 @@ module Reapal
           amount: money,
           charge: charge,
           busway: busway,
+          remark: remark,
           returnUrl: return_url,
           notifyUrl: notify_url,
           applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),

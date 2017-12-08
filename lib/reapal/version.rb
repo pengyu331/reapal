@@ -1,3 +1,3 @@
 module Reapal
-  VERSION = "0.9.3"
+  VERSION = "0.9.6"
 end

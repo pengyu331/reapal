@@ -29,7 +29,7 @@ module Reapal
         #      * :resultCode [String] 结果代码
         #
         def tender_repayment_complete(flow_id, tender_no, periods, comp_principal, comp_interest,
-                               comp_poundage, comp_amount, comp_time, busway='01', remark='')
+                                      comp_poundage, comp_amount, comp_time, busway='01', remark='')
           service = 'reapal.trust.repaymentComplete'
           post_path = '/reagw/tender/rest.htm'
 
