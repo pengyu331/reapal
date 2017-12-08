@@ -3,7 +3,7 @@ require 'reapal_helper'
 
 RSpec.describe '企业分账查询' do
   it '成功' do
-    result = client.sub_account_query('5a1c7213cd5dbbcca4000001')
+    result = client.sub_account_query(sub_account_flow_id)
 
     expect(result[:result]).to eq('S')
     expect(result[:data][:resultCode]).to eq('0000')
