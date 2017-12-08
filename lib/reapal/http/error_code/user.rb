@@ -18,7 +18,7 @@ module Reapal
       end
 
       def self.com_contract_create
-        ['9015'] || contract_create || contract_common
+        ['9015'] | contract_create | contract_common
       end
 
       def self.contract_query
