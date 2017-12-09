@@ -52,7 +52,7 @@ module Reapal
       end
 
       def self.tender_onekey_invest
-        @_tender_onekey_invest ||= %w(0600 0601 0602 0603 0606 0607 0608 0609) | tender_common
+        @_tender_onekey_invest ||= %w(0519 0536 0600 0601 0602 0603 0606 0607 0608 0609) | tender_common
       end
 
       def self.tender_onekey_refund
