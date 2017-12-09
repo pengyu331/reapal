@@ -13,7 +13,7 @@ module Reapal
       end
 
       def self.contract_create
-        @_contract_create | contract_common
+        @_contract_create ||= contract_common
       end
 
       def self.com_contract_create
@@ -21,7 +21,7 @@ module Reapal
       end
 
       def self.contract_query
-        @_contract_query | contract_common
+        @_contract_query ||= contract_common
       end
 
       def self.mobile
