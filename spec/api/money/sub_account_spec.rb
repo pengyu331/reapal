@@ -6,7 +6,7 @@ RSpec.describe '企业' do
     result = client.sub_account(Reapal::Utils.gen_flow_id,
                                 '2',
                                 [{serialNo: Reapal::Utils.gen_flow_id,
-                                  payeeContracts: 'RC171128A35D86EW',
+                                  payeeContracts: investor_contract,
                                   amount: 10,
                                   mark: ''}] )
 
@@ -14,11 +14,11 @@ RSpec.describe '企业' do
     expect(result[:data][:resultCode]).to eq('0000')
   end
 
-  it '分账收款方协议号为个人协议号，失败' do
+  it '分账收款方协议号为错误的协议号，失败' do
     result = client.sub_account(Reapal::Utils.gen_flow_id,
                                 '2',
                                 [{serialNo: Reapal::Utils.gen_flow_id,
-                                  payeeContracts: 'test',
+                                  payeeContracts: 'DZ123456789232',
                                   amount: 10,
                                   mark: ''}] )
 
@@ -30,7 +30,7 @@ RSpec.describe '企业' do
     result = client.sub_account(Reapal::Utils.gen_flow_id,
                                 '1',
                                 [{serialNo: Reapal::Utils.gen_flow_id,
-                                  payeeContracts: 'RC171128A35D86EW',
+                                  payeeContracts: test_contracts,
                                   amount: 10,
                                   mark: ''}] )
 

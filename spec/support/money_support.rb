@@ -92,4 +92,18 @@ module MoneySupport
     @_bind_id
   end
 
+  def sub_account_flow_id
+    return @flow_id if @flow_id
+    result = client.sub_account(Reapal::Utils.gen_flow_id,
+                                '2',
+                                [{serialNo: Reapal::Utils.gen_flow_id,
+                                  payeeContracts: investor_contract,
+                                  amount: 10,
+                                  mark: ''}] )
+
+    @flow_id = result[:data][:orderNo]
+
+    @flow_id
+  end
+
 end
