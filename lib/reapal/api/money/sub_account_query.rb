@@ -38,7 +38,7 @@ module Reapal
 
           res = operate_post(:query, service, params, post_path, Http::ErrorCode.sub_account_query, ['0000'])
 
-          if 'S' == res[:result] && '0001' == res[:data][:resultCode]
+          if 'P' == res[:result] && '0001' == res[:data][:resultCode]
             res[:result] = 'F'
           end
 
