@@ -33,7 +33,7 @@ module Reapal
           post_path = '/reagw/agreement/agreeApi.htm'
 
           params = {
-            orderNo: oneket_com_contract_flow_id,
+            orderNo: onekey_com_contract_flow_id,
             queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
