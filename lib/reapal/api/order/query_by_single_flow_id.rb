@@ -48,7 +48,7 @@ module Reapal
 
           res = operate_post(:query, service, params, post_path, Http::ErrorCode.query_by_single_flow_id, ['0000'])
 
-          if 'S' == res[:result] && ('0001' || '0003') == res[:data][:resultCode]
+          if 'P' == res[:result] && ('0001' || '0003') == res[:data][:resultCode]
             res[:result] = 'F'
           end
 

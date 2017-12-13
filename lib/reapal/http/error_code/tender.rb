@@ -48,21 +48,21 @@ module Reapal
       end
 
       def self.tender_finish
-        @_tender_finish ||= %w(0800 0801 0802 0803 0804 0805 0806 0807) | tender_common
+        @_tender_finish ||= %w(0801 0803 0804 0805 0806 0807) | tender_common
       end
 
       def self.tender_onekey_invest
-        @_tender_onekey_invest ||= %w(0600 0601 0602 0603 0604 0605 0606 0607 0608 0609) | tender_common
+        @_tender_onekey_invest ||= %w(0519 0536 0600 0601 0602 0603 0606 0607 0608 0609) | tender_common
       end
 
       def self.tender_onekey_refund
-        @_tender_onekey_refund ||= %w(0900 0901 0902 0903 0904 0905 0906 0907 0908 0909 0910
+        @_tender_onekey_refund ||= %w(0901 0902 0903 0904 0905 0906 0907 0908 0909 0910
                                       0911 0912 0913 0914 0915 0916 0917 0918 0919 0920 0921
                                       0922 0923 0001) | tender_common
       end
 
       def self.tender_onekey_single_transfer
-        @_tender_onekey_single_transfer ||= %w(1000 1001 1002 1003 1004 1005 1006 1007 1008
+        @_tender_onekey_single_transfer ||= %w(1000 1001 1002 1003 1004 1005 1006
                                                1009 1010 1011 1012 1013 0001) | tender_common
       end
 
