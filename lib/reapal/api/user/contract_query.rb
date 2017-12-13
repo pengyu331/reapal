@@ -37,7 +37,13 @@ module Reapal
             queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          operate_post(:query, service, params, post_path, Http::ErrorCode.contract_query, ['0000'])
+          res = operate_post(:query, service, params, post_path, Http::ErrorCode.contract_query, ['0000'])
+
+          if 'P' == res[:result] && '0001' == res[:data][:resultCode]
+            res[:result] = 'F'
+          end
+
+          res
         end
 
       end # module
