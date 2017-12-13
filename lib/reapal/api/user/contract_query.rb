@@ -33,11 +33,17 @@ module Reapal
           post_path = '/reagw/agreement/agreeApi.htm'
 
           params = {
-            orderNo: oneket_com_contract_flow_id,
+            orderNo: onekey_com_contract_flow_id,
             queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          operate_post(:query, service, params, post_path, Http::ErrorCode.contract_query, ['0000'])
+          res = operate_post(:query, service, params, post_path, Http::ErrorCode.contract_query, ['0000'])
+
+          if 'P' == res[:result] && '0001' == res[:data][:resultCode]
+            res[:result] = 'F'
+          end
+
+          res
         end
 
       end # module

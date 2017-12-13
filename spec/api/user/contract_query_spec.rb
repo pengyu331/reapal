@@ -21,7 +21,7 @@ RSpec.describe '签约查询' do
     expect(result[:data][:resultCode]).to eq('0000')
   end
 
-  it '企业签约用户，查询成功' do
+  it '企业签约用户，查询成功（需要先手动审核通过）' do
     result = client.contract_query(com_contract_2)
 
     expect(result[:result]).to eq('S')
@@ -35,10 +35,10 @@ RSpec.describe '签约查询' do
     expect(result[:data][:resultCode]).to eq('0003')
   end
 
-  it '企业审核被拒用户，查询成功' do
+  it '企业审核被拒用户，查询成功（需要先手动拒绝）' do
     result = client.contract_query(com_contract_4)
 
-    expect(result[:result]).to eq('P')
+    expect(result[:result]).to eq('F')
     expect(result[:data][:resultCode]).to eq('0001')
   end
 end

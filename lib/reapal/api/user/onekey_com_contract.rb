@@ -66,7 +66,7 @@ module Reapal
 
           res = operate_post(:operate, service, params, post_path, Http::ErrorCode.com_contract_create, ['0002', '0006'])
 
-          if 'S' == res[:result] && '0003' == res[:data][:resultCode]
+          if 'P' == res[:result] && '0003' == res[:data][:resultCode]
             res[:result] = 'F'
           end
 

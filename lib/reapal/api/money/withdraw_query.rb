@@ -34,7 +34,7 @@ module Reapal
 
           res = operate_post(:query, service, params, post_path, Http::ErrorCode.withdraw_query, ['0002'])
 
-          if 'S' == res[:result] && '0003' == res[:data][:resultCode]
+          if 'P' == res[:result] && '0003' == res[:data][:resultCode]
             res[:result] = 'F'
           end
 
