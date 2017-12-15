@@ -42,7 +42,11 @@ module Reapal
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          operate_post(:operate, service, params, post_path, Http::ErrorCode.contract_create, ['0000', '0007'])
+          res = operate_post(:operate, service, params, post_path, Http::ErrorCode.contract_create, ['0000', '0007'])
+
+          Reapal.logger.info res
+
+          res
         end
 
       end # module Agree

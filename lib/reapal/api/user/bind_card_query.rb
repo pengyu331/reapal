@@ -48,6 +48,8 @@ module Reapal
             res[:data][:bank_cards] = parse_cards_info(res[:data][:bankCards])
           end
 
+          Reapal.logger.info res
+
           res
         end
 

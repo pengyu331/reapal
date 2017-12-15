@@ -64,7 +64,11 @@ module Reapal
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          operate_post(:operate, service, params, post_path, Http::ErrorCode.deposit_apply_api, ['0000'], '2.0')
+          res = operate_post(:operate, service, params, post_path, Http::ErrorCode.deposit_apply_api, ['0000'], '2.0')
+
+          Reapal.logger.info res
+
+          res
         end
 
       end # module

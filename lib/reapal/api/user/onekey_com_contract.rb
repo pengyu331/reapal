@@ -70,6 +70,8 @@ module Reapal
             res[:result] = 'F'
           end
 
+          Reapal.logger.info res
+
           res
         end
 

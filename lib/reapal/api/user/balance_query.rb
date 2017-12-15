@@ -41,6 +41,8 @@ module Reapal
             }
           end
 
+          Reapal.logger.info res
+
           res
         end
 
