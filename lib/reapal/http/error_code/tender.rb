@@ -58,7 +58,7 @@ module Reapal
       def self.tender_onekey_refund
         @_tender_onekey_refund ||= %w(0901 0902 0903 0904 0905 0906 0907 0908 0909 0910
                                       0911 0912 0913 0914 0915 0916 0917 0918 0919 0920 0921
-                                      0922 0923 0001) | tender_common
+                                      0922 0923 0001 0942) | tender_common
       end
 
       def self.tender_onekey_single_transfer
