@@ -40,7 +40,7 @@ module Reapal
             queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S')
           }
 
-          res = operate_post(:query, service, params, post_path, Http::ErrorCode.bind_card, ['0000'])
+          res = operate_post(:query, service, params, post_path, Http::ErrorCode.bind_card, ['0000'], '3.0')
 
           if 'S' == res[:result] || ('P' == res[:result] && res[:data][:resultCode].nil?)
             res[:result] = 'S'
