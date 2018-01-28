@@ -4,7 +4,7 @@ module Reapal
   module Form
     module WithdrawApplyForm
 
-      # 2.7 提现申请
+      # 2.4 提现申请
       #
       # @param contract [String] 用户协议
       # @param flow_id [String] 订单号
@@ -40,7 +40,7 @@ module Reapal
           applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
         }
 
-        get_form_data(service, params, post_path)
+        get_form_data(service, params, post_path, '3.0')
       end
 
     end
