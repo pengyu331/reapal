@@ -5,7 +5,7 @@ module Reapal
     module Tender
       module TenderRepaymentComplete
 
-        # 3.15 还款计划更新（API）
+        # 3.10 还款计划更新（API）
         #
         # @param flow_id [String] 执行还款计划订单号
         # @param tender_no [String] 商户系统标的号

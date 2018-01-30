@@ -5,7 +5,7 @@ module Reapal
     module Tender
       module TenderAuthCancel
 
-        # 3.22 标的授权取消API
+        # 3.14 标的授权取消
         #
         # @param flow_id [String] 订单号
         # @param contracts [ String ] 用户协议号

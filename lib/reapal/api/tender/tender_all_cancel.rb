@@ -5,7 +5,7 @@ module Reapal
     module Tender
       module TenderAllCancel
 
-        # 3.7 撤标
+        # 3.6 撤标
         #
         # @param flow_id [String] 撤标订单号
         # @param tender_no [String] 商户系统标的号

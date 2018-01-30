@@ -5,7 +5,7 @@ module Reapal
     module Tender
       module TenderOneKeyInvest
 
-        # 3.6 一键投标
+        # 3.5 一键投标
         #
         # @param flow_id [ String ] 投标订单号
         # @param tender_no [ String ] 投标的标号
