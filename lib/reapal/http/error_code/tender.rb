@@ -78,6 +78,10 @@ module Reapal
         @_tender_close ||= [] | tender_common
       end
 
+      def self.history_tender_info_modify
+        @_history_tender_info_modify ||= [] | tender_common
+      end
+
     end # module ErrorCode
   end
 end
