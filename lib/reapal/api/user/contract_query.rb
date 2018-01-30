@@ -26,7 +26,7 @@ module Reapal
         #     * :licEndDate [String] 企业组织机构证截止日
         #     * :bankAccountNo [String] 银行卡后四位
         #     * :bankCode [String] 银行编码
-        #     * :userType [String] 注册类别
+        #     * :userType [String] 注册类别 01：出借人 02：借款人 03：担保人 04：受托方
         #     * :bankMobile [String] 手机号
         #     * :email [String] 企业邮箱
         #     * :remark [String] 备注
@@ -40,7 +40,7 @@ module Reapal
             queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          res = operate_post(:query, service, params, post_path, Http::ErrorCode.contract_query, ['0000'], '3.0')
+          res = operate_post(:query, service, params, post_path, Http::ErrorCode.contract_query, ['0000'])
 
           if 'P' == res[:result] && '0001' == res[:data][:resultCode]
             res[:result] = 'F'

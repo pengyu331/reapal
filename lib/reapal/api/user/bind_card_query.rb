@@ -5,7 +5,7 @@ module Reapal
     module User
       module BindCardQuery
 
-        # 1.15 绑卡查询（API）
+        # 1.10 绑卡查询（API）
         #
         # @param contracts [ String ] 用户协议号
         #
