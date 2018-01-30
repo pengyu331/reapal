@@ -8,7 +8,6 @@ module Reapal
         # 1.15 绑卡查询（API）
         #
         # @param contracts [ String ] 用户协议号
-        # @param type [ String ] 业务类型  A: 充值和提现; D: 充值; W: 提现 (现只支持提现绑卡查询)
         #
         # @return [ Hash ] 结果集
         #   * :result [String] 业务结果：'S/F/P'
@@ -30,17 +29,17 @@ module Reapal
         #       * :branch  开户行分行
         #       * :subbranch  开户行支行
         #
-        def bind_card_query(contracts, type='W')
+        def bind_card_query(contracts)
           service = 'reapal.trust.bindQuery'
           post_path = '/reagw/user/restApi.htm'
 
           params = {
             contracts: contracts,
-            type: type,
+            type: 'W', # 业务类型：默认提现  A: 充值和提现; D: 充值; W: 提现 (现只支持提现绑卡查询)
             queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S')
           }
 
-          res = operate_post(:query, service, params, post_path, Http::ErrorCode.bind_card, ['0000'], '3.0')
+          res = operate_post(:query, service, params, post_path, Http::ErrorCode.bind_card, ['0000'])
 
           if 'S' == res[:result] || ('P' == res[:result] && res[:data][:resultCode].nil?)
             res[:result] = 'S'

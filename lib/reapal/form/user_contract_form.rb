@@ -7,8 +7,6 @@ module Reapal
         # @param flow_id [ String ] 订单号
         # @param true_name [ String ] 真实姓名
         # @param identity_id [ String ] 身份证号
-        # @param bank_account_no [ String ] 银行卡信息（全卡号）
-        # @param bank_mobile [ String ] 银行卡预留手机号
         # @param user_type [ String ] 01：出借人 02：借款人 03：担保人 04：受托方
         # @param return_url [String] 回调 url
         # @param notify_url [String] 通知 url
@@ -24,7 +22,7 @@ module Reapal
         #     * :encryptkey
         #     * :data
         #
-        def user_contract_form(flow_id, true_name, identity_id, bank_account_no, bank_mobile, user_type, return_url, notify_url, bus_way='01', remark=nil)
+        def user_contract_form(flow_id, true_name, identity_id, user_type, return_url, notify_url, bus_way='01', remark='')
           service = 'reapal.trust.userContract'
           post_path = '/reagw/agreement/agree.htm'
 
@@ -32,8 +30,6 @@ module Reapal
             orderNo: flow_id,
             userName: true_name,
             userIdentity: identity_id,
-            bankAccountNo: bank_account_no,
-            bankMobile: bank_mobile,
             userType: user_type,
             returnUrl: return_url,
             notifyUrl: notify_url,
@@ -42,7 +38,7 @@ module Reapal
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          get_form_data(service, params, post_path, 3.0)
+          get_form_data(service, params, post_path, '3.0')
         end
 
     end
