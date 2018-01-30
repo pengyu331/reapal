@@ -39,7 +39,7 @@ module Reapal
         def tender_apply_modify(flow_id, tender_no, tender_name, money, rate, fee_amount, refund_term,
                                 debit_term, debit_type, repay_date, expiry_date, tender_type, debit_contracts,
                                 guarant_contract=nil, commissioned_contract=nil, tender_status=nil, busway='01', remark='')
-          service = 'reapal.trust.tenderApply'
+          service = 'reapal.trust.tenderApplyModify'
           post_path = '/reagw/tender/rest.htm'
 
           params = {
