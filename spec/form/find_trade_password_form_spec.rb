@@ -2,7 +2,7 @@
 require 'reapal_helper'
 
 RSpec.describe '设置/修改交易密码' do
-  let(:contracts) { 'RB1801256YGXNBS3' }
+  let(:contracts) { 'RB171202PZXD4SKD' }
   it '投资人001' do
     result = client.find_trade_password_form(contracts, '', '')
 

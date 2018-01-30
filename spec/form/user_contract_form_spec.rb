@@ -4,15 +4,12 @@ require 'reapal_helper'
 RSpec.describe '个人签约' do
   it '借款用户个人签约' do
     result = client.user_contract_form(Reapal::Utils.gen_flow_id,
-                                       '借款吧141',
-                                       '110103197501010736',
-                                       '9558800200204794902',
-                                       '13091934221',
+                                       '借款吧003',
+                                       '110103198801010736',
                                        '02',
                                        'http://127.0.0.1',
-                                       'http://127.0.0.1',
-                                       '01',
-                                       'sms=0')
+                                       'http://127.0.0.1'
+                                       )
 
     method = result[:form_method]
     result = result[:form_data]
