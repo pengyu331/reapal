@@ -4,7 +4,7 @@ module Reapal
   module Form
     module BusinessAuthForm
 
-      # 3.20 标的授权 (Form)
+      # 3.12 标的授权 (Form)
       #
       # @param flow_id [String] 业务订单号
       # @param contracts [String] 用户协议号

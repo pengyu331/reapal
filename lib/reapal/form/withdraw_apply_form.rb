@@ -40,7 +40,7 @@ module Reapal
           applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
         }
 
-        get_form_data(service, params, post_path, '3.0')
+        get_form_data(service, params, post_path)
       end
 
     end

@@ -18,7 +18,7 @@ module Reapal
       #     * :encryptkey
       #     * :data
       #
-      def get_form_data(service, params, post_path, version=nil)
+      def get_form_data(service, params, post_path)
         request = Http.get_body(service, params, @config, version)
 
         {
