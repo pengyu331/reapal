@@ -22,7 +22,7 @@ module Reapal
         # @param debit_contracts [String] 借款方协议号
         # @param guarant_contract [String] 担保方协议号
         # @param commissioned_contract [String] 受托方协议号
-        # @param tender_status [String] 标的状态 变更标的状态：如果变更状态，订单号、标的号、借款协议号、标的状态、申请时间 不能为空；如果变更标的信息，则该字段为空，其他信息字段不为空，且标的状态为"待确认或已确认，募集中"。03：已放款 04：已结清 05：已逾期
+        # @param tender_status [String] 标的状态 如果变更标的信息，则该字段为空，其他信息字段不为空，且标的状态为 01待确认。02：募集中 03：已放款 04：已结清 05：已逾期
         # @param busway [String] 设备通道， '00'：PC端；'01'：手机端(默认)；'02'：Pad端；'03'：其它
         # @param remark [String] 备注
         #
