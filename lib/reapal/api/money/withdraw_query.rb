@@ -5,7 +5,7 @@ module Reapal
     module Money
       module WithdrawQuery
 
-        # 2.8 提现查询（API）
+        # 2.5 提现查询（API）
         #
         # @param withdraw_flow_id [ String ] 提现订单号
         #

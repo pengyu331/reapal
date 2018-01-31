@@ -5,7 +5,7 @@ module Reapal
     module Money
       module SubAccount
 
-        # 2.11 企业分账（API）
+        # 2.8 企业分账（API）
         #
         # @param flow_id [ String ] 完成订单号
         # @param sub_type [ String ] 分账类型 1：代还款。2：分账。3：其它

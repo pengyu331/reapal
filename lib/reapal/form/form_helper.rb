@@ -19,7 +19,7 @@ module Reapal
       #     * :data
       #
       def get_form_data(service, params, post_path)
-        request = Http.get_body(service, params, @config)
+        request = Http.get_body(service, params, @config, version)
 
         {
           form_method: {

@@ -5,7 +5,7 @@ module Reapal
     module Money
       module DepositQuery
 
-        # 2.6 充值查询（API）
+        # 2.3 充值查询（API）
         #
         # @param deposit_flow_id [ String ] 充值订单号
         #

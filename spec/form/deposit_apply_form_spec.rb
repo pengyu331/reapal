@@ -2,9 +2,10 @@
 require 'reapal_helper'
 
 RSpec.describe '网银支付' do
+  let(:contract) { 'RB1801256YGXNBS3' }
   it '成功' do
     result = client.deposit_apply_form(::Reapal::Utils.gen_flow_id,
-                                       test_contracts,
+                                       contract,
                                        100, 0, '', '')
 
     method = result[:form_method]

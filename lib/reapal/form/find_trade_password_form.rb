@@ -4,7 +4,7 @@ module Reapal
   module Form
     module FindTradePassowrdForm
 
-      # 1.9 设置/修改交易密码
+      # 1.5 设置/修改交易密码
       #
       # @param contract [String] 用户协议
       # @param return_url [String] 回调 url

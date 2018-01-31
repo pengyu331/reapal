@@ -3,7 +3,7 @@ module Reapal
   module Http
 
     SIGN_TYPE = '0' # 0 表示 md5
-    VERSION = '1.0' # 版本号
+    VERSION = '3.0' # 版本号
 
     def self.post(service, params, config, post_path, version=VERSION)
       version = VERSION if version.nil?

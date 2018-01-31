@@ -2,9 +2,10 @@
 require 'reapal_helper'
 
 RSpec.describe '提现申请' do
+  let(:contract) { 'RB1801256YGXNBS3' } 
   it '成功' do
     sleep(3) # 否则会报“签约过于频繁”的错误
-    result = client.withdraw_apply_form(test_contracts, Reapal::Utils.gen_flow_id, 100, 1, '', '')
+    result = client.withdraw_apply_form(contract, Reapal::Utils.gen_flow_id, 1000, 1, '', '')
 
     method = result[:form_method]
     result = result[:form_data]
