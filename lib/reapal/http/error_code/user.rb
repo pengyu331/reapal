@@ -35,6 +35,10 @@ module Reapal
                            0362 0363) | contract_common
       end
 
+      def self.member_payment_query
+        @_member_payment_query ||= contract_common
+      end
+
     end # module ErrorCode
   end
 end
