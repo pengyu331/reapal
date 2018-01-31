@@ -2,17 +2,17 @@
 
 module Reapal
   module Form
-    module WithdrawApplyForm
+    module RefundGuarantPaymentForm
 
-      # 2.4 提现申请
+      # 3.16 借款人还代偿款
       #
-      # @param contract [String] 用户协议
-      # @param flow_id [String] 订单号
-      # @param money [Number] 提现金额，2位小数
-      # @param charge [Number] 手续费，2位小数
+      # @param flow_id [ String ] 还款订单号
+      # @param tender_no [ String ] 代偿还款标的号
+      # @param amount [ Bigdecimal ] 金额
+      # @param fee_amount [ Bigdecimal ] 预期手续费
+      # @param payee_contract [ String ] 标的对应的担保方协议号
       # @param return_url [String] 回调 url
       # @param notify_url [String] 通知 url
-      # @param remark [String] 默认是空
       # @param busway [String] 设备通道，默认手机端。00：PC端；01：手机端；02：Pad端；03：其它
       #
       # @return [ Hash ] 结果集
@@ -24,17 +24,16 @@ module Reapal
       #     * :encryptkey
       #     * :data
       #
-      def withdraw_apply_form(contract, flow_id, money, charge, return_url, notify_url, remark='', busway='01')
-        service = 'reapal.trust.withdrawApply'
-        post_path = '/reagw/service/withdraw.htm'
+      def mobile_modify_form(contract, new_phone, return_url, notify_url, busway='01')
+        service = 'reapal.trust.refundGuarantPayment'
+        post_path = '/reagw/tender/rest.htm'
 
         params = {
           orderNo: flow_id,
-          contracts: contract,
-          amount: money,
-          charge: charge,
+          tenderNo: tender_no,
+          amount: amount,
+          payeeContract: payee_contract,
           busway: busway,
-          remark: remark,
           returnUrl: return_url,
           notifyUrl: notify_url,
           applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),

@@ -1,10 +1,13 @@
-# coding: utf-8
+
 require 'reapal_helper'
 
-RSpec.describe '设置/修改交易密码' do
-  let(:contracts) { 'RB171202PZXD4SKD' }
-  it '投资人001' do
-    result = client.find_trade_password_form(contracts, '', '')
+RSpec.describe '银行卡绑定form' do
+  let(:contract) { 'RB1801256YGXNBS3' }
+  it '绑定成功' do
+    result = client.bind_bank_card_form(Reapal::Utils.gen_flow_id,
+                                        contract,
+                                        'http://127.0.0.1',
+                                        'http://127.0.0.1')
 
     method = result[:form_method]
     result = result[:form_data]
@@ -18,8 +21,8 @@ RSpec.describe '设置/修改交易密码' do
 </form>
     EOF
 
-    path = "tmp/spec_find_trade_password.html"
-    fp = File.open(path, "w+")
+    path = 'tmp/spec_bind_bank_card_form.html'
+    fp = File.open(path, 'w+')
     fp.write html
     fp.close
 

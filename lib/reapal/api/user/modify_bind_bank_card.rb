@@ -4,7 +4,7 @@ module Reapal
     module User
       module ModifyBindBankCard
 
-        # 1.14 修改绑卡（API）
+        # 1.9 修改绑卡（API）
         #
         # @param flow_id [ String ] 订单号
         # @param contracts [ String ] 用户协议号

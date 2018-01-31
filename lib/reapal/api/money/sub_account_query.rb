@@ -5,7 +5,7 @@ module Reapal
     module Money
       module SubAccountQuery
 
-        # 2.12 企业分账查询（API）
+        # 2.9 企业分账查询（API）
         #
         # @param sub_account_flow_id [ String ] 分账订单号
         # @param serial_no [ String ] 分账流水号（传空串表示该订单批量查询）

@@ -5,7 +5,7 @@ module Reapal
     module User
       module MobileQuery
 
-        # 1.8 手机号查询
+        # 1.4 手机号查询
         #
         # @param contracts [ String ] 用户协议号
         #
