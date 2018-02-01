@@ -4,7 +4,7 @@ module Reapal
   module Form
     module WithdrawApplyForm
 
-      # 2.7 提现申请
+      # 2.4 提现申请
       #
       # @param contract [String] 用户协议
       # @param flow_id [String] 订单号

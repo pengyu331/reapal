@@ -5,7 +5,7 @@ module Reapal
     module Money
       module DepositQuery
 
-        # 2.6 充值查询（API）
+        # 2.3 充值查询（API）
         #
         # @param deposit_flow_id [ String ] 充值订单号
         #
@@ -27,7 +27,15 @@ module Reapal
             queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          operate_post(:query, service, params, post_path, Http::ErrorCode.deposit_query, ['0000'])
+          res = operate_post(:query, service, params, post_path, Http::ErrorCode.deposit_query, ['0000'])
+
+          if 'P' == res[:result] && ('0001' || '0004') == res[:data][:resultCode]
+            res[:result] = 'F'
+          end
+
+          Reapal.logger.info res
+
+          res
         end
 
       end # module

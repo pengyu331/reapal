@@ -5,7 +5,7 @@ module Reapal
     module Tender
       module TenderRepaymentComplete
 
-        # 3.15 还款计划更新（API）
+        # 3.10 还款计划更新（API）
         #
         # @param flow_id [String] 执行还款计划订单号
         # @param tender_no [String] 商户系统标的号
@@ -29,7 +29,7 @@ module Reapal
         #      * :resultCode [String] 结果代码
         #
         def tender_repayment_complete(flow_id, tender_no, periods, comp_principal, comp_interest,
-                               comp_poundage, comp_amount, comp_time, busway='01', remark='')
+                                      comp_poundage, comp_amount, comp_time, busway='01', remark='')
           service = 'reapal.trust.repaymentComplete'
           post_path = '/reagw/tender/rest.htm'
 
@@ -47,7 +47,11 @@ module Reapal
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          operate_post(:operate, service, params, post_path, Http::ErrorCode.tender_repayment_complete, ['0000'])
+          res = operate_post(:operate, service, params, post_path, Http::ErrorCode.tender_repayment_complete, ['0000'])
+
+          Reapal.logger.info res
+
+          res
         end
 
       end # module TenderRepaymentComplete

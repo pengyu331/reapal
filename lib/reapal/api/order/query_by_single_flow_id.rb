@@ -21,6 +21,7 @@ module Reapal
         #   * :data: 具体业务返回信息
         #      * :orderNo [String] 商户订单号
         #      * :realAmount [String] 实际投标金额(只针对投标查询)
+        #      * :tenderStatus [String] 01：待确认 02：募集中 03：已放款 04：已结清 05：已逾期 99：已关闭(只针对发标查询)
         #      * :resultCode [String] 结果代码
         #
         def query_by_single_flow_id(flow_id, service_type)
@@ -46,7 +47,15 @@ module Reapal
             queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          operate_post(:query, service, params, post_path, Http::ErrorCode.query_by_single_flow_id, ['0000'])
+          res = operate_post(:query, service, params, post_path, Http::ErrorCode.query_by_single_flow_id, ['0000'])
+
+          if 'P' == res[:result] && ('0001' || '0003') == res[:data][:resultCode]
+            res[:result] = 'F'
+          end
+
+          Reapal.logger.info res
+
+          res
         end
 
       end # module QueryBySingleFlowId

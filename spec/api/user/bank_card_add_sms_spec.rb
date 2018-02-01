@@ -11,6 +11,10 @@ RSpec.describe '一键绑卡申请' do
   let(:mobile_phone) { '15112344321' }
 
   it '成功' do
+    client.undo_bind_bank_card(Reapal::Utils.gen_flow_id,
+                               test_contracts_2,
+                               '2234')
+
     result = client.bank_card_add_sms(Reapal::Utils.gen_flow_id,
                                       test_contracts_2,
                                       bank_code,

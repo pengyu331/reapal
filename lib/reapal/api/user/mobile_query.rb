@@ -5,7 +5,7 @@ module Reapal
     module User
       module MobileQuery
 
-        # 1.8 手机号查询
+        # 1.4 手机号查询
         #
         # @param contracts [ String ] 用户协议号
         #
@@ -28,7 +28,11 @@ module Reapal
             queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          operate_post(:query, service, params, post_path, Http::ErrorCode.mobile, ['0000'])
+          res = operate_post(:query, service, params, post_path, Http::ErrorCode.mobile, ['0000'])
+
+          Reapal.logger.info res
+
+          res
         end
 
       end

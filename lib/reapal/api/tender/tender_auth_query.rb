@@ -5,10 +5,10 @@ module Reapal
     module Tender
       module TenderAuthQuery
 
-        # 3.21  标的授权查询
+        # 3.13  标的授权查询
         #
-        # @param flow_id [String] 操作订单号
-        # @param contracts [String] 用户协议号
+        # @param flow_id [ String ] 操作订单号
+        # @param contract [ String ] 用户协议号
         #
         # @return [ Hash ] 结果集
         #   * :result [String] 业务结果：'S/F/P'
@@ -17,13 +17,16 @@ module Reapal
         #   * :error_code [String] 错误代号
         #   * :error_msg [String] 错误信息
         #   * :data: 具体业务返回信息
+        #     * :orderNo [String] 订单号
         #     * :contracts [String] 用户协议号
-        #     * :servicesDetail [JSON] 授权明细
-        #        * :services [String] 授权服务。 02一键投标 ，03 为一键还款 04 一键债转
+        #     * :servicesDetail [Array] 授权明细
+        #        * :services [String] 授权服务。 02 自动投标 ，03 自动还款 05 自动担保还款
         #        * :authLimit [String] 授权期限日期 YYYYMMDD
-        #        * :terderNo [String] 标的号
-
-        def tender_auth_query(flow_id, contracts)
+        #        * :amount [Number] 金额
+        #        * :usedTotalAmount [Number] 已使用授权金额
+        #        * :totalAmount [Number] 累计金额
+        #
+        def tender_auth_query(flow_id, contract)
           service = 'reapal.trust.authQuery'
           post_path = '/reagw/user/restApi.htm'
 
@@ -33,7 +36,11 @@ module Reapal
             queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          operate_post(:query, service, params, post_path, Http::ErrorCode.tender_auth_query, ['0000'])
+          res = operate_post(:query, service, params, post_path, Http::ErrorCode.tender_auth_query, ['0000'])
+
+          Reapal.logger.info res
+
+          res
         end
 
       end # module TenderAuthQuery

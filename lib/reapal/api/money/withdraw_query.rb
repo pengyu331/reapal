@@ -5,7 +5,7 @@ module Reapal
     module Money
       module WithdrawQuery
 
-        # 2.8 提现查询（API）
+        # 2.5 提现查询（API）
         #
         # @param withdraw_flow_id [ String ] 提现订单号
         #
@@ -34,9 +34,11 @@ module Reapal
 
           res = operate_post(:query, service, params, post_path, Http::ErrorCode.withdraw_query, ['0002'])
 
-          if 'S' == res[:result] && '0003' == res[:data][:resultCode]
+          if 'P' == res[:result] && '0003' == res[:data][:resultCode]
             res[:result] = 'F'
           end
+
+          Reapal.logger.info res
 
           res
         end

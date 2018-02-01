@@ -55,7 +55,15 @@ module Reapal
             queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          operate_post(:query, service, params, post_path, Http::ErrorCode.query_by_flow_id, ['0000'])
+          res = operate_post(:query, service, params, post_path, Http::ErrorCode.query_by_flow_id, ['0000'])
+
+          if 'P' == res[:result] && ('0001' || '0003') == res[:data][:resultCode]
+            res[:result] = 'F'
+          end
+
+          Reapal.logger.info res
+
+          res
         end
 
       end # module QueryByFlowId

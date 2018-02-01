@@ -5,7 +5,7 @@ module Reapal
     module User
       module UndoBindBankCard
 
-        # 1.13 撤销绑卡 (API)
+        # 1.8 撤销绑卡 (API)
         #
         # @param flow_id [ String ] 订单号
         # @param contracts [ String ] 用户协议号
@@ -32,7 +32,11 @@ module Reapal
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          operate_post(:operate, service, params, post_path, Http::ErrorCode.bind_card, ['0000'])
+          res = operate_post(:operate, service, params, post_path, Http::ErrorCode.bind_card, ['0000'], '3.0')
+
+          Reapal.logger.info res
+
+          res
         end
 
       end # module

@@ -5,11 +5,11 @@ module Reapal
     module Tender
       module TenderRepaymentProject
 
-        # 3.14 还款计划
+        # 3.9 还款计划
         #
         # @param flow_id [String] 还款计划订单号
         # @param tender_no [String] 商户系统标的号
-        # @param project_details [String] 还款计划明细
+        # @param project_details [Array] 还款计划明细
         #   * :periods [Integer] 还款期数
         #   * :projPrincipal [BigDecimal] 计划还款本金
         #   * :projInterest [BigDecimal] 计划还款利息
@@ -33,8 +33,6 @@ module Reapal
           service = 'reapal.trust.repaymentProject'
           post_path = '/reagw/tender/rest.htm'
 
-          project_details[0][:projTime] = project_details[0][:projTime].strftime('%Y%m%d')
-
           params = {
             orderNo: flow_id,
             tenderNo: tender_no,
@@ -44,7 +42,11 @@ module Reapal
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          operate_post(:operate, service, params, post_path, Http::ErrorCode.tender_repayment_project, ['0000'])
+          res = operate_post(:operate, service, params, post_path, Http::ErrorCode.tender_repayment_project, ['0000'])
+
+          Reapal.logger.info res
+
+          res
         end
 
       end # module TenderRepaymentProject

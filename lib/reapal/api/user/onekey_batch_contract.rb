@@ -5,9 +5,22 @@ module Reapal
     module User
       module OnekeyBatchContract
 
-        # 1.1 个人一键签约（API）新版本，迁移老数据
+        # 5.2 历史用户迁移（四要素）
         #
         # @param flow_id [ String ] 订单号
+        # @param true_name [ String ] 真实姓名
+        # @param identity_id [ String ] 身份证号
+        # @param phone [ String ] 手机号
+        # @param is_to_sms [ String ] 是否发送初始交易密码短信，T:发送  F：不发送
+        # @param bank_code [ String ] 银行代码
+        # @param card_id [ String ] 银行卡账号（全卡号）
+        # @param card_province [ String ] 银行所在省
+        # @param card_city [ String ] 银行所在城市
+        # @param card_branch [ String ] 银行分行
+        # @param card_sub_branch [ String ] 银行支行
+        # @param user_type [ String ] 注册类别 01：出借人 02：借款人 03：担保人 04：受托方
+        # @param busway [ String ] 设备通道，默认手机端 00：PC端；01：手机端；02：Pad端；03：其它
+        # @param remark [ String ] 备注
         #
         # @return [ Hash ] 结果集
         #   * :result [String] "S"/"F"/"P"
@@ -20,8 +33,9 @@ module Reapal
         #       * :userMobile [String] 手机号
         #
         def onekey_batch_contract(flow_id, true_name, identity_id, phone, is_to_sms,
-                                  bank_code, card_id, card_province, card_city, card_branch, card_sub_branch,
-                                  bus_way='01')
+                                  bank_code, card_id, card_province, card_city, card_branch,
+                                  card_sub_branch, user_type,
+                                  bus_way='01', remark='')
           service = 'reapal.trust.onekeyBatchContract'
           post_path = '/reagw/agreement/agree.htm'
 
@@ -31,7 +45,7 @@ module Reapal
             userIdentity: identity_id,
             userMobile: phone,
             busway: bus_way,
-            remark: '',
+            remark: remark,
             isToSms: is_to_sms,
             bankCode: bank_code,
             bankAccountNo: card_id,
@@ -39,10 +53,15 @@ module Reapal
             accountCity: card_city,
             branch: card_branch,
             subbranch: card_sub_branch,
+            userType: user_type,
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          operate_post(:operate, service, params, post_path, Http::ErrorCode.contract_create, ['0000', '0007'])
+          res = operate_post(:operate, service, params, post_path, Http::ErrorCode.contract_create, ['0000', '0007'])
+
+          Reapal.logger.info res
+
+          res
         end
 
       end # module Agree

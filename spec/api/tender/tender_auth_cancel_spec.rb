@@ -50,4 +50,15 @@ RSpec.describe '标的授权取消操作' do
       expect(result[:error_code]).to eq('1321')
     end
   end
+
+  context 'version 3.0' do
+    let(:contracts) { 'RB1801256YGXNBS3' }
+    it '投资001测试' do
+      result = client.tender_auth_cancel(Reapal::Utils.gen_flow_id,
+                                        contracts,
+                                        '02')
+
+      puts result                           
+    end
+  end
 end

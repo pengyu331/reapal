@@ -5,7 +5,7 @@ module Reapal
     module User
       module BalanceQuery
 
-        # 1.6 查询余额（API）
+        # 1.2 查询余额（API）
         #
         # @param contracts [ String ] 用户协议号
         #
@@ -40,6 +40,8 @@ module Reapal
               tenderAmount: res[:data][:tenderAmount].to_d,
             }
           end
+
+          Reapal.logger.info res
 
           res
         end

@@ -5,7 +5,7 @@ module Reapal
     module Money
       module SubAccount
 
-        # 2.11 企业分账（API）
+        # 2.8 企业分账（API）
         #
         # @param flow_id [ String ] 完成订单号
         # @param sub_type [ String ] 分账类型 1：代还款。2：分账。3：其它
@@ -40,9 +40,11 @@ module Reapal
 
           res = operate_post(:operate, service, params, post_path, Http::ErrorCode.sub_account, ['0000'])
 
-          if 'S' == res[:result] && '0001' == res[:data][:resultCode]
+          if 'P' == res[:result] && '0001' == res[:data][:resultCode]
             res[:result] = 'F'
           end
+
+          Reapal.logger.info res
 
           res
         end

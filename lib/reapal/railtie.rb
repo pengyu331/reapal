@@ -1,6 +1,6 @@
 module Reapal
   class Railtie < ::Rails::Railtie
-    initializer "reapal.logger" do
+    initializer "Reapal.logger" do
       Reapal.logger = Rails.logger
     end
   end

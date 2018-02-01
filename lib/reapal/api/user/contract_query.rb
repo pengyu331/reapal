@@ -5,9 +5,9 @@ module Reapal
     module User
       module ContractQuery
 
-        # 1.5 签约查询，支持个人和企业（API）
+        # 1.1.4 签约查询，支持个人和企业（API）
         #
-        # @param onekey_com_contract_flow_id [ String ] 签约订单号
+        # @param contract_flow_id [ String ] 签约订单号
         #
         # @return [ Hash ] 结果集
         #   * :result [String] 业务结果：'S/F/P'
@@ -24,20 +24,31 @@ module Reapal
         #     * :comLicense [String] 组织机构代码/社会征信号
         #     * :licStartDate [String] 企业组织机构证起始日
         #     * :licEndDate [String] 企业组织机构证截止日
-        #     * :mobile [String] 手机号
+        #     * :bankAccountNo [String] 银行卡后四位
+        #     * :bankCode [String] 银行编码
+        #     * :userType [String] 注册类别 01：出借人 02：借款人 03：担保人 04：受托方
+        #     * :bankMobile [String] 手机号
         #     * :email [String] 企业邮箱
         #     * :remark [String] 备注
         #
-        def contract_query(onekey_com_contract_flow_id)
+        def contract_query(contract_flow_id)
           service = 'reapal.trust.contractQuery'
           post_path = '/reagw/agreement/agreeApi.htm'
 
           params = {
-            orderNo: oneket_com_contract_flow_id,
+            orderNo: contract_flow_id,
             queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          operate_post(:query, service, params, post_path, Http::ErrorCode.contract_query, ['0000'])
+          res = operate_post(:query, service, params, post_path, Http::ErrorCode.contract_query, ['0000'])
+
+          if 'P' == res[:result] && '0001' == res[:data][:resultCode]
+            res[:result] = 'F'
+          end
+
+          Reapal.logger.info res
+
+          res
         end
 
       end # module
