@@ -13,7 +13,7 @@ RSpec.describe '设置历史用户角色' do
                                           )
     puts result[:data]
     puts "flow_id: #{flow_id}"
-    
+
     if result[:data][:errorCode] == "CLOSEACC0004"
 
     else
