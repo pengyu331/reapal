@@ -2,7 +2,7 @@
 require 'reapal_helper'
 
 RSpec.describe '快捷充值' do
-  let(:contracts) { 'RB1801256YGXNBS3' }
+  let(:contracts) { borrower_141[:contract] }
   it '成功' do
     result = client.shortcut_recharge_form(Reapal::Utils.gen_flow_id, contracts,
     10000,

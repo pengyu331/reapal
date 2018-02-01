@@ -61,9 +61,11 @@ RSpec.describe '发标' do
   #    expect(result[:result]).to eq('F')
   #  end
   context 'version3.0' do
-    let(:tender_no) {Reapal::Utils.gen_flow_id}
+    let(:tender_no) { 'Borrower141' + Time.now }
     let(:name) {'个人借款001'}
     let(:contract) { 'RB18012506E9Q690' }
+
+    let(:flow_id) {'5a71ad14cd5dbb6676000001'}
 
     it '借款吧141发标' do
       result = client.tender_apply(Reapal::Utils.gen_flow_id,
