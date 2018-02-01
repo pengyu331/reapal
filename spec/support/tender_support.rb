@@ -421,4 +421,63 @@ module TenderSupport
                               invest_details)
     return flow_id
   end
+
+  def tender_apply_141_flow_id
+    result = client.tender_apply(Reapal::Utils.gen_flow_id,
+                                 Reapal::Utils.gen_flow_id,
+                                 '个人借款',
+                                  10000,
+                                  5,
+                                  100,
+                                  6,
+                                  6,
+                                  1,
+                                  Time.now + 5 * 360 * 24 * 3600,
+                                  Time.now + 3600 * 24 * 20,
+                                  '01',
+                                  borrower_141[:contract])
+
+    return result[:data][:orderNo]
+  end
+
+  def tender_141
+    tender_no = Reapal::Utils.gen_flow_id
+    result = client.tender_apply(Reapal::Utils.gen_flow_id,
+                                 tender_no,
+                                 '141个人借款',
+                                 100,
+                                 5,
+                                 0.2,
+                                 '1',
+                                 1,
+                                 '2',
+                                 Time.now + 5 * 360 * 24 * 3600,
+                                 Time.now + 3600 * 24 * 20,
+                                 '01',
+                                 borrower_141[:contract])
+
+    result = client.tender_apply_confirm_form(Reapal::Utils.gen_flow_id,
+                                              tender_no,
+                                              'http://127.0.0.1',
+                                              'http://127.0.0.1')
+
+    method = result[:form_method]
+    result = result[:form_data]
+
+    html = <<-EOF
+<form action="#{method[:url]}" method="#{method[:method]}">
+  <p>First name: <input type="text" name="merchant_id" value="#{result[:merchant_id]}"/></p>
+  <p>Last name: <input type="text" name="encryptkey" value="#{result[:encryptkey]}"/></p>
+  <p>Last name: <input type="text" name="data" value="#{result[:data]}"/></p>  
+  <input type="submit" value="Submit" />
+</form>
+    EOF
+
+    path = "tmp/spec_tender_apply_confirm_form.html"
+    fp = File.open(path, "w+")
+    fp.write html
+    fp.close
+
+    puts "测试 html 导入到：#{path}"
+  end
 end
