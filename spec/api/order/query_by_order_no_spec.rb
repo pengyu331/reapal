@@ -60,10 +60,19 @@ RSpec.describe '订单号查询' do
     end
   end
 
-  context 'version3.0 撤标查询' do
-    it '成功' do
+  context 'version3.0 ' do
+    it '撤标查询成功' do
       flow_id = '5a735e1ccd5dbb7513000001'
       result = client.query_by_flow_id( flow_id, :tender_cancel )
+
+      puts result[:data]
+      expect(result[:result]).to eq("S")
+      expect(result[:data][:resultCode]).to eq('0000')
+    end
+
+    it '查询满标' do
+      flow_id = '5a736b10cd5dbbb923000003'
+      result = client.query_by_flow_id( flow_id, :tender_finish )
 
       puts result[:data]
       expect(result[:result]).to eq("S")
