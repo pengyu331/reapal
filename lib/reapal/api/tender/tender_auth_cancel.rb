@@ -36,7 +36,7 @@ module Reapal
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          res = operate_post(:operate, service, params, post_path, Http::ErrorCode.tender_auth_cancel, ['0000'], '3.0')
+          res = operate_post(:operate, service, params, post_path, Http::ErrorCode.tender_auth_cancel, ['0000'])
 
           Reapal.logger.info res
 
