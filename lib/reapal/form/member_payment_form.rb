@@ -24,14 +24,17 @@ module Reapal
       #     * :encryptkey
       #     * :data
       #
-      def member_payment_form(flow_id, payment_subject, payer_contract,
-                              return_url, notify_url, busway='01', remark='')
+      def member_payment_form(flow_id, payment_subject,
+                              amount, payer_contract,
+                              return_url, notify_url,
+                              busway='01', remark='')
         service = 'reapal.trust.mobileModify'
         post_path = '/reagw/user/rest.htm'
 
         params = {
           orderNo: flow_id,
           paymentSubject: payment_subject,
+          amount: amount,
           payerContracts: payer_contract,
           busway: busway,
           returnUrl: return_url,

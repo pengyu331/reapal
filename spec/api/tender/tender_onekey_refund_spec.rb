@@ -80,4 +80,30 @@ RSpec.describe '一键还款' do
     expect(result[:data][:resultCode]).to eq('0000')
   end
 
+  it '借款人141一键还款100元' do
+    tender_no = '5a71f90ecd5dbb21a8000002'
+
+    debit_details = [{
+      serialNo: Reapal::Utils.gen_flow_id,
+      payeeContracts: invester_001[:contract],
+      tradeAmount: 105.5,
+      feeAmount: 0.5,
+      defAmount: 0,
+      amount: 100,
+      intAmt: 5,
+      remark: ''
+    }]
+
+
+    result = client.tender_onekey_refund(Reapal::Utils.gen_flow_id,
+                                         tender_no,
+                                         1,
+                                         borrower_141[:contract],
+                                         debit_details
+                                         )
+
+    expect(result[:result]).to eq("S")
+    expect(result[:data][:resultCode]).to eq('0000')
+  end
+
 end

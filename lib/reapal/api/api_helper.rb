@@ -14,7 +14,7 @@ module Reapal
       #
       # @return [ Hash ] 结果集(见通用返回)
       #
-      def operate_post(request_type, service, params, post_path, fail_codes, success_codes, version=nil)
+      def operate_post(request_type, service, params, post_path, fail_codes, success_codes, version='3.0')
         response = Http.post(service, params, @config, post_path, version)
 
         res = Reapal::Utils.api_result(params, response)

@@ -20,7 +20,7 @@ module Reapal
         #   * :data: 具体业务返回信息
         #     * :resultCode [String] 结果代码 0000：关闭成功
         #
-        def tender_all_cancel(tender_no, busway="01", remark='')
+        def tender_close(tender_no, busway="01", remark='')
           service = 'reapal.trust.tenderClose'
           post_path = '/reagw/tender/rest.htm'
 
