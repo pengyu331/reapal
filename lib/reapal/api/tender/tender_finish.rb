@@ -5,7 +5,7 @@ module Reapal
     module Tender
       module TenderFinish
 
-        # 3.7 满标 API
+        # 3.7 满标
         #
         # @param flow_id [ String ] 完成订单号
         # @param tender_no [ String ] 商户系统标的号
@@ -19,7 +19,6 @@ module Reapal
         # @param invest_details [ Array ] 投资方分账
         #   * :seriaNo [String] 商户流水号
         #   * :investContracts [String] 投资方协议号
-        #   * :payeeContracts [String] 收款方协议号
         #   * :amount [BigDecimal] 金额
         #   * :remark [String] 备注
         # @param busway [ String ] 设备通道， '00'：PC端；'01'：手机端(默认)；'02'：Pad端；'03'：其它
@@ -44,7 +43,7 @@ module Reapal
             orderNo: flow_id,
             tenderNo: tender_no,
             debitContracts: debit_contracts,
-            feeDetails: debit_details,
+            feeDetails: fee_details,
             investDetails: invest_details,
             busway: busway,
             remark: remark,
