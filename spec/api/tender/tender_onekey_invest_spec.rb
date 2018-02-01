@@ -51,6 +51,21 @@ RSpec.describe '一键投标' do
                                            nil,
                                            contracts)
     end
+
+    let(:tender2) { '5a7353eacd5dbb5908000002' }
+
+    it '投500元借款141的标的' do
+      flow_id = Reapal::Utils.gen_flow_id
+
+      result = client.tender_onekey_invest(flow_id,
+                                           tender2,
+                                           100,
+                                           nil,
+                                           contracts)
+
+      puts "flow_id: #{flow_id}"
+      puts result[:data]
+    end
   end
   
 end
