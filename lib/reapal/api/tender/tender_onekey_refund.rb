@@ -9,8 +9,8 @@ module Reapal
         #
         # @param flow_id [ String ] 还款订单号
         # @param tender_no [ String ] 商户系统标的的标号
-        # @param debit_contracts [ String ] 借款方协议号
         # @param periods [ Integer ] 还款期数
+        # @param debit_contracts [ String ] 借款方协议号
         # @param debit_details [ Array ] 借款方还款
         #   *serialNo [String] 还款流水号
         #   *payeeContracts [String] 收款方协议号
