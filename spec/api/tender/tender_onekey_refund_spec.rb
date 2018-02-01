@@ -94,6 +94,7 @@ RSpec.describe '一键还款' do
       remark: ''
     }]
 
+    flow_id = Reapal::Utils.gen_flow_id
 
     result = client.tender_onekey_refund(Reapal::Utils.gen_flow_id,
                                          tender_no,
@@ -101,7 +102,7 @@ RSpec.describe '一键还款' do
                                          borrower_141[:contract],
                                          debit_details
                                          )
-
+    puts flow_id
     expect(result[:result]).to eq("S")
     expect(result[:data][:resultCode]).to eq('0000')
   end
