@@ -2,11 +2,12 @@
 require 'reapal_helper'
 
 RSpec.describe '发标确认' do
+  let(:tender_no) { '5a71f90ecd5dbb21a8000002' }
   it '成功' do
-    result = client.tender_apply_confirm_form(Reapal::Utils.gen_flow_id, '5a699c2acd5dbbf378000002',
-    'http://127.0.0.1',
-    'http://127.0.0.1'
-    )
+    result = client.tender_apply_confirm_form(Reapal::Utils.gen_flow_id,
+                                              tender_no,
+                                              'http://127.0.0.1',
+                                              'http://127.0.0.1')
 
     method = result[:form_method]
     result = result[:form_data]
