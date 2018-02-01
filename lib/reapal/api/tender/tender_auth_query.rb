@@ -32,7 +32,7 @@ module Reapal
 
           params = {
             orderNo: flow_id,
-            contracts: contracts,
+            contracts: contract,
             queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
