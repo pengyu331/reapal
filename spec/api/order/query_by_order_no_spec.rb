@@ -55,10 +55,20 @@ RSpec.describe '订单号查询' do
       flow_id = tender_transfer_01
       result = client.query_by_flow_id( flow_id, :tender_transfer)
 
-
       expect(result[:result]).to eq("S")
       expect(result[:data][:resultCode]).to eq('0000')
     end
-
   end
+
+  context 'version3.0 撤标查询' do
+    it '成功' do
+      flow_id = '5a735e1ccd5dbb7513000001'
+      result = client.query_by_flow_id( flow_id, :tender_cancel )
+
+      puts result[:data]
+      expect(result[:result]).to eq("S")
+      expect(result[:data][:resultCode]).to eq('0000')
+    end
+  end
+  
 end
