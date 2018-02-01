@@ -33,9 +33,9 @@ module Reapal
         #       * :userMobile [String] 手机号
         #
         def onekey_batch_contract(flow_id, true_name, identity_id, phone, is_to_sms,
-                                  bank_code, card_id, card_province, card_city, card_branch,
-                                  card_sub_branch, user_type,
-                                  bus_way='01', remark='')
+                                  bank_code, card_id, card_province, card_city,
+                                  card_branch, card_sub_branch, user_type,
+                                  busway='01', remark='')
           service = 'reapal.trust.onekeyBatchContract'
           post_path = '/reagw/agreement/agree.htm'
 
@@ -44,7 +44,7 @@ module Reapal
             userName: true_name,
             userIdentity: identity_id,
             userMobile: phone,
-            busway: bus_way,
+            busway: busway,
             remark: remark,
             isToSms: is_to_sms,
             bankCode: bank_code,

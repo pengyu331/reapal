@@ -24,7 +24,9 @@ module Reapal
       #     * :encryptkey
       #     * :data
       #
-      def mobile_modify_form(contract, new_phone, return_url, notify_url, busway='01')
+      def redund_guarant_payment_form(flow_id, tender_no, amount,
+                                      fee_amount, payee_contract,
+                                      return_url, notify_url, busway='01')
         service = 'reapal.trust.refundGuarantPayment'
         post_path = '/reagw/tender/rest.htm'
 
@@ -32,6 +34,7 @@ module Reapal
           orderNo: flow_id,
           tenderNo: tender_no,
           amount: amount,
+          feeAmount: fee_amount,
           payeeContract: payee_contract,
           busway: busway,
           returnUrl: return_url,
