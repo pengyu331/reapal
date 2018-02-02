@@ -17,9 +17,9 @@ RSpec.describe '个人签约' do
 
     html = <<-EOF
 <form action="#{method[:url]}" method="#{method[:method]}">
-  <p>First name: <input type="text" name="merchant_id" value="#{result[:merchant_id]}"/></p>
-  <p>Last name: <input type="text" name="encryptkey" value="#{result[:encryptkey]}"/></p>
-  <p>Last name: <input type="text" name="data" value="#{result[:data]}"/></p>
+  <p>merchant_id: <input type="text" name="merchant_id" value="#{result[:merchant_id]}"/></p>
+  <p>key: <input type="text" name="encryptkey" value="#{result[:encryptkey]}"/></p>
+  <p>Data: <input type="text" name="data" value="#{result[:data]}"/></p>
   <input type="submit" value="Submit" />
 </form>
     EOF
