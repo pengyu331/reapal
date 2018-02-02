@@ -78,6 +78,24 @@ RSpec.describe '订单号查询' do
       expect(result[:result]).to eq("S")
       expect(result[:data][:resultCode]).to eq('0000')
     end
+
+    it '查询债权转让' do
+      flow_id = '5a737510cd5dbb7f2f000001'
+      result = client.query_by_flow_id(flow_id, :tender_transfer )
+
+      puts result[:data]
+      expect(result[:result]).to eq("S")
+      expect(result[:data][:resultCode]).to eq('0000')
+    end
+
+    it '查询还款' do
+      flow_id = '5a7385cccd5dbbc941000002'
+      result = client.query_by_flow_id(flow_id, :tender_refund )
+
+      puts result[:data]
+      expect(result[:result]).to eq("S")
+      expect(result[:data][:resultCode]).to eq('0000')
+    end
   end
   
 end
