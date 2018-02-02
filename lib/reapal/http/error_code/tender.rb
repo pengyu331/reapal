@@ -70,7 +70,7 @@ module Reapal
         @_tender_apply_modify ||= [] | tender_common
       end
 
-      def self.refund_guarant_payment_querys
+      def self.refund_guarant_payment_query
         @_refund_guarant_payment_query ||= [] | tender_common
       end
 
