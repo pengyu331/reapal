@@ -32,7 +32,7 @@ module Reapal
         def history_tender_info_modify(flow_id, tender_no, fee_amount, refund_term,
                                        tender_type, debit_contracts, guarant_contract=nil,
                                        commissioned_contract=nil, tender_status=nil, busway='01', remark='')
-          service = 'reapal.trust.tenderApply'
+          service = 'reapal.trust.historyTenderInfoModify'
           post_path = '/reagw/tender/rest.htm'
 
           params = {
