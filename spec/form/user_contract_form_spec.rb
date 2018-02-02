@@ -3,9 +3,10 @@ require 'reapal_helper'
 
 RSpec.describe '个人签约' do
   it '借款用户个人签约' do
-    result = client.user_contract_form(Reapal::Utils.gen_flow_id,
-                                       '借款吧003',
-                                       '110103198801010736',
+    flow_id = Reapal::Utils.gen_flow_id
+    result = client.user_contract_form(flow_id,
+                                       '借款101',
+                                       '110103198801010101',
                                        '02',
                                        'http://127.0.0.1',
                                        'http://127.0.0.1'
@@ -28,9 +29,8 @@ RSpec.describe '个人签约' do
     fp.write html
     fp.close
 
+    puts "flow_id: #{flow_id}"
     puts "测试 html 导入到：#{path}"
-
-    # 协议号 RB18012506E9Q690
   end
 
   it '还款授权成功' do

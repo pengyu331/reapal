@@ -4,17 +4,18 @@ require 'reapal_helper'
 RSpec.describe '企业签约form' do
   it '企业用户个人签约' do
     # 手机端没有 h5 页面
-    result = client.com_contract_form(Reapal::Utils.gen_flow_id,
-                                      '法人001',
-                                      '130001123652149856',
-                                      '测试公司001',
-                                      '839639295123001',
+    flow_id = Reapal::Utils.gen_flow_id
+    result = client.com_contract_form(flow_id,
+                                      '法人200',
+                                      '130001123652149200',
+                                      '测试公司200',
+                                      '839639295123200',
                                       Time.now,
                                       Time.now + 5 * 360 * 24 * 3600,
-                                      '13977776666',
+                                      '13977776200',
                                       'icbc',
                                       '03',
-                                      '123456@reapal.com',
+                                      'faren200@reapal.com',
                                       'http://127.0.0.1',
                                       'http://127.0.0.1',
                                       )
@@ -36,6 +37,7 @@ RSpec.describe '企业签约form' do
     fp.write html
     fp.close
 
+    puts "flow_id: #{flow_id}"
     puts "测试 html 导入到：#{path}"
   end
 end

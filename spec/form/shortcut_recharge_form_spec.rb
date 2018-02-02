@@ -2,9 +2,10 @@
 require 'reapal_helper'
 
 RSpec.describe '快捷充值' do
-  let(:contracts) { borrower_141[:contract] }
+  let(:contracts) { invester_001[:contract] }
   it '成功' do
-    result = client.shortcut_recharge_form(Reapal::Utils.gen_flow_id, contracts,
+    flow_id = Reapal::Utils.gen_flow_id
+    result = client.shortcut_recharge_form(flow_id, contracts,
     10000,
     'http://127.0.0.1',
     'http://127.0.0.1'
@@ -27,6 +28,7 @@ RSpec.describe '快捷充值' do
     fp.write html
     fp.close
 
+    puts "flow_id: #{flow_id}"
     puts "测试 html 导入到：#{path}"
   end
 end

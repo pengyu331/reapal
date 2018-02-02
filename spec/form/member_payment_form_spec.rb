@@ -5,7 +5,7 @@ RSpec.describe '会员缴费' do
 
   it '投资人001' do
     flow_id = Reapal::Utils.gen_flow_id
-    result = client.member_payment_form(flow_id, '超级会员', 10, borrower_141[:contract], 'http://127.0.0.1', 'http://127.0.0.1')
+    result = client.member_payment_form(flow_id, '超级会员', 10, invester_002[:contract], 'http://127.0.0.1', 'http://127.0.0.1')
 
     method = result[:form_method]
     result = result[:form_data]

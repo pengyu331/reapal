@@ -2,9 +2,10 @@
 require 'reapal_helper'
 
 RSpec.describe '取消签约' do
-  let(:contracts) { 'RB171202PZXD4SKD' }
+  let(:contract) { 'RB180202UZR53POV' }
   it '成功' do
-    result = client.close_account_form(Reapal::Utils.gen_flow_id, contracts,
+    flow_id = '5a741753cd5dbb886e000001'
+    result = client.close_account_form(flow_id, contract,
     'http://127.0.0.1',
     'http://127.0.0.1'
     )
@@ -26,6 +27,7 @@ RSpec.describe '取消签约' do
     fp.write html
     fp.close
 
+    puts "flow_id: #{flow_id}"
     puts "测试 html 导入到：#{path}"
   end
 end

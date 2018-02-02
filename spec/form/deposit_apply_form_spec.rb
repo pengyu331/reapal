@@ -2,11 +2,12 @@
 require 'reapal_helper'
 
 RSpec.describe '网银支付' do
-  let(:contract) { invester_002[:contract] }
+  let(:contract) { guarant_001[:contract] }
   it '成功' do
-    result = client.deposit_apply_form(::Reapal::Utils.gen_flow_id,
+    flow_id = Reapal::Utils.gen_flow_id
+    result = client.deposit_apply_form(flow_id,
                                        contract,
-                                       1000, 0, '', '')
+                                       100000, 0, '', '')
 
     method = result[:form_method]
     result = result[:form_data]
@@ -25,6 +26,7 @@ RSpec.describe '网银支付' do
     fp.write html
     fp.close
 
+    puts "flow_id: #{flow_id}"
     puts "测试 html 导入到：#{path}"
   end
 end
