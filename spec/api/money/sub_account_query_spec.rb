@@ -15,4 +15,17 @@ RSpec.describe '企业分账查询' do
     expect(result[:result]).to eq('F')
     expect(result[:error_code]).to eq('0313')
   end
+
+  context 'version 3.0' do
+    it '查询给投资人001分账' do
+      flow_id = '5a744ef1cd5dbb980d000001'
+
+      result = client.sub_account_query(flow_id)
+
+      puts result[:data]
+
+      expect(result[:result]).to eq('S')
+      expect(result[:data][:resultCode]).to eq('0000')
+    end
+  end
 end
