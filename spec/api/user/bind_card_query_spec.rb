@@ -24,6 +24,8 @@ RSpec.describe '绑卡查询' do
   it '投资人001查询' do
     result = client.bind_card_query('RB1801256YGXNBS3')
 
+    puts result[:data]
+
     expect(result[:result]).to eq('S')
     expect(result[:data][:bankCards]).not_to eq(nil)
   end
