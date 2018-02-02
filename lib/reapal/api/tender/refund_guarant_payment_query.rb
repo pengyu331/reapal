@@ -25,7 +25,7 @@ module Reapal
           post_path = '/reagw/tender/rest.htm'
 
           params = {
-            orderNo: flow_id,
+            orderNo: refund_flow_id,
             queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
