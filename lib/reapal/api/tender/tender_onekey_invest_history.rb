@@ -25,12 +25,12 @@ module Reapal
         #      * :tenderNo [String] 完成订单号
         #      * :resultCode [String] 结果代码 0000：表示迁移成功
         #
-        def tender_onekey_invest_history(flow_id, invest_details)
-          service = 'eapal.trust.onekeyInvestHistory'
+        def tender_onekey_invest_history(tender_no, invest_details)
+          service = 'reapal.trust.onekeyInvestHistory'
           post_path = '/reagw/tender/rest.htm'
 
           params = {
-            tenderNo: flow_id,
+            tenderNo: tender_no,
             investDetails: invest_details,
           }
 
