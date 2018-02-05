@@ -14,6 +14,7 @@ module Reapal
         #   * :amount [BigDecimal] 金额
         #   * :applyTime [Time] 投标时间 YYYY-MM-DD HH:mm:ss
         #   * :remark [String] 备注
+        # @param remark [ String ] 业务备注，默认为空
         #
         # @return [ Hash ] 结果集
         #   * :result [String] 业务结果：'S/F/P'
@@ -25,16 +26,18 @@ module Reapal
         #      * :tenderNo [String] 完成订单号
         #      * :resultCode [String] 结果代码 0000：表示迁移成功
         #
-        def tender_onekey_invest_history(tender_no, invest_details)
+        def tender_onekey_invest_history(tender_no, invest_details, remark='')
           service = 'reapal.trust.onekeyInvestHistory'
           post_path = '/reagw/tender/rest.htm'
 
           params = {
             tenderNo: tender_no,
             investDetails: invest_details,
+            remark: remark,
+            applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          res = operate_post(:operate, service, params, post_path, Http::ErrorCode.tender_onekey_invest, ['0000'])
+          res = operate_post(:operate, service, params, post_path, Http::ErrorCode.tender_onekey_invest, ['0000'], '3.0')
 
           Reapal.logger.info res
 
