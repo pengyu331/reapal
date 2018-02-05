@@ -2,11 +2,11 @@
 require 'reapal_helper'
 
 RSpec.describe '设置历史用户角色' do
-  let(:flow_id) { Reapal::Utils.gen_flow_id }
-  let(:contracts) { 'RB1711218SFR8G4P' }
+  let(:contracts) { 'RB171125VTNNMM9P' }
   let(:user_type) { '02' }
 
   it '设置成功' do
+    flow_id = Reapal::Utils.gen_flow_id
     result = client.set_history_user_type(flow_id,
                                           contracts,
                                           user_type

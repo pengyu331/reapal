@@ -35,6 +35,26 @@ RSpec.describe '修改标的' do
 
       expect(result[:result]).to eq 'S'
     end
+
+    it '修改名称为流标' do
+      result = client.tender_apply_modify(Reapal::Utils.gen_flow_id,
+                                          '5a78044dcd5dbb1ac6000002',
+                                          '个人借款-流标',
+                                          money,
+                                          rate,
+                                          fee_amount,
+                                          refund_term,
+                                          debit_term,
+                                          debit_type,
+                                          repay_date,
+                                          expiry_date,
+                                          tender_type,
+                                          debit_contracts)
+
+      puts result[:data]
+
+      expect(result[:result]).to eq 'S'
+    end
   end
 
   context '状态' do

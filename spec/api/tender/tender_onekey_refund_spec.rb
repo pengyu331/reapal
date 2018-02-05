@@ -96,7 +96,7 @@ RSpec.describe '一键还款' do
 
     flow_id = Reapal::Utils.gen_flow_id
 
-    result = client.tender_onekey_refund(Reapal::Utils.gen_flow_id,
+    result = client.tender_onekey_refund(flow_id,
                                          tender_no,
                                          1,
                                          borrower_141[:contract],
@@ -132,7 +132,7 @@ RSpec.describe '一键还款' do
 
     flow_id = Reapal::Utils.gen_flow_id
 
-    result = client.tender_onekey_refund(Reapal::Utils.gen_flow_id,
+    result = client.tender_onekey_refund(flow_id,
                                          tender_no,
                                          1,
                                          borrower_141[:contract],
