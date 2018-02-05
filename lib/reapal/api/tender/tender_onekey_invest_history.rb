@@ -5,7 +5,7 @@ module Reapal
     module Tender
       module TenderOnekeyInvestHistory
 
-        # 3.15 投资关系迁移 API
+        # 3.15 投资关系迁移 (要求标的为已满标放款状态)
         #
         # @param tender_no [ String ] 商户系统标的号
         # @param invest_details [ Array ] 投资方列表
