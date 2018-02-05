@@ -10,7 +10,7 @@ RSpec.describe '银行卡绑定form' do
     result = client.bind_bank_card_form(flow_id,
                                         contract,
                                         'http://127.0.0.1',
-                                        'http://127.0.0.1')
+                                        'http://127.0.0.1','00')
 
     method = result[:form_method]
     result = result[:form_data]

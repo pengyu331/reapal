@@ -46,6 +46,15 @@ RSpec.describe '订单号查询(单笔)' do
       expect(result[:result]).to eq("S")
       expect(result[:data][:resultCode]).to eq('0000')
     end
+
+    it '标的关闭' do
+      tender_no = '5a71a611cd5dbb9f6f000002'
+      result = client.query_by_single_flow_id(tender_no, :tender_apply)
+
+      puts result[:data]
+      expect(result[:result]).to eq("S")
+      expect(result[:data][:resultCode]).to eq('0000')
+    end
   end
   
 end

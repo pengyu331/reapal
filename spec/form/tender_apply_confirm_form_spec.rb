@@ -2,7 +2,7 @@
 require 'reapal_helper'
 
 RSpec.describe '发标确认' do
-  let(:tender_no) { '5a7353eacd5dbb5908000002' }
+  let(:tender_no) { '5a76d376cd5dbb3999000002' }
   it '成功' do
     flow_id = Reapal::Utils.gen_flow_id
     result = client.tender_apply_confirm_form(flow_id,

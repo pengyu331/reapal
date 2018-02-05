@@ -5,11 +5,11 @@ RSpec.describe '个人签约' do
   it '借款用户个人签约' do
     flow_id = Reapal::Utils.gen_flow_id
     result = client.user_contract_form(flow_id,
-                                       '借款101',
-                                       '110103198801010101',
+                                       '借款103',
+                                       '110103198801010155',
                                        '02',
                                        'http://127.0.0.1',
-                                       'http://127.0.0.1'
+                                       'http://127.0.0.1', '00'
                                        )
 
     method = result[:form_method]
