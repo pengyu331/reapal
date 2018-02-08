@@ -5,7 +5,7 @@ module Reapal
     module User
       module UndoBindBankCard
 
-        # 1.13 撤销绑卡 (API)
+        # 1.8 撤销绑卡 (API)
         #
         # @param flow_id [ String ] 订单号
         # @param contracts [ String ] 用户协议号

@@ -165,4 +165,36 @@ module UserSupport
     end
   end
 
+  def invester_001
+    {
+      contract: 'RB1801256YGXNBS3',
+      card_id: '9558800200204794001',
+      identity_id: '110103197501010001',
+      phone: '13091934001'
+    }
+  end
+
+  def borrower_141
+    {
+      contract: 'RB18012506E9Q690'
+    }
+  end
+
+  def invester_002
+    {
+      contract: 'RB180131YZN3YLYR'
+    }
+  end
+
+  def guarant_001
+    {
+      contract: 'RC180126OVS8JF64'
+    }
+  end
+
+  def borrower_100
+    {
+      contract: 'RB180202OPH5JH5C'
+    }
+  end
 end

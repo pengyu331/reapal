@@ -5,10 +5,9 @@ module Reapal
     module User
       module BindCardQuery
 
-        # 1.15 绑卡查询（API）
+        # 1.10 绑卡查询（API）
         #
         # @param contracts [ String ] 用户协议号
-        # @param type [ String ] 业务类型  A: 充值和提现; D: 充值; W: 提现 (现只支持提现绑卡查询)
         #
         # @return [ Hash ] 结果集
         #   * :result [String] 业务结果：'S/F/P'
@@ -18,7 +17,7 @@ module Reapal
         #   * :error_msg [String] 错误信息
         #   * :data: 具体业务返回信息
         #     * :contracts [String] 用户协议号
-        #     * :bank_cards [Array] 银行卡信息数组
+        #     * :bankCards [Array] 银行卡信息数组
         #       * :bank_name  银行名称
         #       * :bank_code  银行代码
         #       * :bank_card  银行卡后四位
@@ -30,13 +29,13 @@ module Reapal
         #       * :branch  开户行分行
         #       * :subbranch  开户行支行
         #
-        def bind_card_query(contracts, type='W')
+        def bind_card_query(contracts)
           service = 'reapal.trust.bindQuery'
           post_path = '/reagw/user/restApi.htm'
 
           params = {
             contracts: contracts,
-            type: type,
+            type: 'W', # 业务类型：默认提现  A: 充值和提现; D: 充值; W: 提现 (现只支持提现绑卡查询)
             queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S')
           }
 
@@ -45,7 +44,7 @@ module Reapal
           if 'S' == res[:result] || ('P' == res[:result] && res[:data][:resultCode].nil?)
             res[:result] = 'S'
 
-            res[:data][:bank_cards] = parse_cards_info(res[:data][:bankCards])
+            res[:data][:bankCards] = parse_cards_info(res[:data][:bankCards])
           end
 
           Reapal.logger.info res

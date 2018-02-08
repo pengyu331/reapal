@@ -66,6 +66,22 @@ module Reapal
                                                1009 1010 1011 1012 1013 0001) | tender_common
       end
 
+      def self.tender_apply_modify
+        @_tender_apply_modify ||= [] | tender_common
+      end
+
+      def self.refund_guarant_payment_query
+        @_refund_guarant_payment_query ||= [] | tender_common
+      end
+
+      def self.tender_close
+        @_tender_close ||= [] | tender_common
+      end
+
+      def self.history_tender_info_modify
+        @_history_tender_info_modify ||= [] | tender_common
+      end
+
     end # module ErrorCode
   end
 end

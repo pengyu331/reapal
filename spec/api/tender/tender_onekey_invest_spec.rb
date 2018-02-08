@@ -39,4 +39,33 @@ RSpec.describe '一键投标' do
     expect(result[:error_code]).to eq('9001')
   end
 
+
+  context '投资001' do
+    let(:tender) { '5a699c2acd5dbbf378000002' }
+    let(:contracts) { 'RB1801256YGXNBS3' }
+
+    it '投借款141的标' do
+      result = client.tender_onekey_invest(Reapal::Utils.gen_flow_id,
+                                           tender,
+                                           100,
+                                           nil,
+                                           contracts)
+    end
+
+    let(:tender2) { '5a7353eacd5dbb5908000002' }
+
+    it '投500元借款141的标的' do
+      flow_id = Reapal::Utils.gen_flow_id
+
+      result = client.tender_onekey_invest(flow_id,
+                                           tender2,
+                                           100,
+                                           nil,
+                                           contracts)
+
+      puts "flow_id: #{flow_id}"
+      puts result[:data]
+    end
+  end
+  
 end

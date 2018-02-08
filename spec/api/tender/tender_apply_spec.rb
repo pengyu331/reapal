@@ -60,4 +60,58 @@ RSpec.describe '发标' do
   #                                 p "% " * 20
   #    expect(result[:result]).to eq('F')
   #  end
+  context 'version3.0' do
+    let(:tender_no) { Reapal::Utils.gen_flow_id }
+    let(:name) {'个人借款141'}
+    let(:contract) { 'RB18012506E9Q690' }
+
+    let(:flow_id) {'5a71ad14cd5dbb6676000001'}
+
+    it '借款吧141发标' do
+      result = client.tender_apply(Reapal::Utils.gen_flow_id,
+                                  tender_no,
+                                  name,
+                                  10000,
+                                  10,
+                                  100,
+                                  '6',
+                                  6,
+                                  '1',
+                                  Time.now + 5 * 360 * 24 * 3600,
+                                  Time.now + 3600 * 24 * 20,
+                                  '01',
+                                  contract)
+      
+      puts result
+
+      expect(result[:result]).not_to eq('P')
+
+      if result[:result] == 'S'
+        expect(result[:data][:resultCode]).to eq('0000')
+      elsif result[:result] == 'F'
+        expect(result[:error_code]).to eq('0501')
+      end
+    end
+
+    it '借款吧141发标，法人001为担保方' do
+      result = client.tender_apply(Reapal::Utils.gen_flow_id,
+                                  tender_no,
+                                  name,
+                                  2000,
+                                  1,
+                                  0,
+                                  '1',
+                                  1,
+                                  '2',
+                                  Time.now + 24 * 3600,
+                                  Time.now + 3600 * 24,
+                                  '01',
+                                  borrower_141[:contract],
+                                  guarant_001[:contract])
+
+      puts result[:data]
+
+      expect(result[:result]).to eq 'S'
+    end
+  end
 end

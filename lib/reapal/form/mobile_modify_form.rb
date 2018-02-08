@@ -4,7 +4,7 @@ module Reapal
   module Form
     module MobileModifyForm
 
-      # 1.7 签约手机号修改
+      # 1.3 签约手机号修改
       #
       # @param contract [String] 用户协议
       # @param new_phone [String] 新手机号

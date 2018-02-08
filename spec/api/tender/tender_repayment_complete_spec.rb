@@ -74,4 +74,28 @@ RSpec.describe '更新还款计划' do
     expect(result[:data][:orderNo]).to eq(flow_id_complete)
     expect(result[:data][:resultCode]).to eq("0000")
   end
+
+  context 'version 3.0' do
+    it '更新还款计划' do
+      flow_id_complete = Reapal::Utils.gen_flow_id
+      tender_no = '5a7353eacd5dbb5908000002'
+
+      result = client.tender_repayment_complete(flow_id_complete,
+                                                tender_no,
+                                                1,
+                                                1000,
+                                                0.5,
+                                                0,
+                                                1000.5,
+                                                Time.now)
+
+      puts "flow_id: #{flow_id_complete}"
+      puts result[:result]
+
+      expect(result[:result]).to eq('S')
+      expect(result[:data][:orderNo]).to eq(flow_id_complete)
+      expect(result[:data][:resultCode]).to eq("0000")
+    end
+  end
+
 end

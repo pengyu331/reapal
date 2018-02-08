@@ -15,4 +15,18 @@ RSpec.describe '充值查询' do
     expect(result[:result]).to eq('F')
     expect(result[:error_code]).to eq('0208')
   end
+
+  context 'version 3.0' do
+    it '查询投资人001的一笔充值记录' do
+      deposit_flow_id = '5a74382dcd5dbbc001000001'
+      result = client.deposit_query(deposit_flow_id)
+
+      puts "deposit_flow_id: #{deposit_flow_id}"
+      puts result[:data]
+
+      expect(result[:result]).to eq('S')
+      expect(result[:data][:resultCode]).to eq('0000')
+    end
+  end
+  
 end

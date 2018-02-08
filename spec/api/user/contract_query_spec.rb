@@ -41,4 +41,22 @@ RSpec.describe '签约查询' do
     expect(result[:result]).to eq('F')
     expect(result[:data][:resultCode]).to eq('0001')
   end
+
+  let(:com_contract_5) { '5a6afaa7cd5dbb8d68000001' }
+
+  it '查询企业签约结果' do
+    result = client.contract_query(com_contract_5)
+
+    expect(result[:result]).to eq('S')
+    expect(result[:data][:resultCode]).to eq('0000')
+  end
+
+  let(:contract_flow_id) { '5a740c55cd5dbbcb68000001' }
+
+  it '查询200企业签约结果' do
+    result = client.contract_query(contract_flow_id)
+
+    expect(result[:result]).to eq('P')
+    expect(result[:data][:resultCode]).to eq('0003')
+  end
 end
