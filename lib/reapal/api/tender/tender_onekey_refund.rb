@@ -22,13 +22,13 @@ module Reapal
         #   *remark [String] 备注
         # @param fee_details [ Array ] 手续费明细
         #   *serialNo [String] 还款分账流水号
-        #   *payee_contracts [ String ] 收款方协议号
+        #   *payeeContracts [ String ] 收款方协议号
         #   *feeType [String] 手续费类型 01 平台收借款方手续费，不能大于标的备案的手续费 02 罚息
         #   *amount [BigDecimal] 金额
         #   *remark [String] 备注
         # @param defray_details [ Array ] 担保方明细
         #   *serialNo [String] 还款流水号
-        #   *payeeContracts [String] 担保方协议号
+        #   *payerContracts [String] 担保方协议号
         #   *amount [BigDecimal] 金额
         #   *remark [String] 备注
         # @param busway [ String ] 设备通道 00：PC端；01：手机端；02：Pad端；03：其它

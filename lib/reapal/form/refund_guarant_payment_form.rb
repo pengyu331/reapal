@@ -24,7 +24,7 @@ module Reapal
       #     * :encryptkey
       #     * :data
       #
-      def redund_guarant_payment_form(flow_id, tender_no, amount,
+      def refund_guarant_payment_form(flow_id, tender_no, amount,
                                       fee_amount, payee_contract,
                                       return_url, notify_url, busway='01')
         service = 'reapal.trust.refundGuarantPayment'

@@ -37,4 +37,25 @@ RSpec.describe '企业' do
     expect(result[:result]).to eq('S')
     expect(result[:data][:resultCode]).to eq('0000')
   end
+
+  context 'version' do
+    it '给投资人001分账' do
+      flow_id = Reapal::Utils.gen_flow_id
+      serial_no = Reapal::Utils.gen_flow_id
+
+      sub_details = [{serialNo: serial_no,
+                      payeeContracts: invester_001[:contract],
+                      amount: 10}]
+
+      result = client.sub_account(flow_id,
+                                  '2',
+                                  sub_details)
+
+
+      puts flow_id
+      puts result[:data]
+
+      expect(result[:result]).to eq 'S'
+    end
+  end
 end

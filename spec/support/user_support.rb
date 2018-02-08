@@ -185,4 +185,16 @@ module UserSupport
       contract: 'RB180131YZN3YLYR'
     }
   end
+
+  def guarant_001
+    {
+      contract: 'RC180126OVS8JF64'
+    }
+  end
+
+  def borrower_100
+    {
+      contract: 'RB180202OPH5JH5C'
+    }
+  end
 end

@@ -10,10 +10,10 @@ module Reapal
         # @param flow_id [ String ] 完成订单号
         # @param sub_type [ String ] 分账类型 1：代还款。2：分账。3：其它
         # @param sub_details [ Array ] 分账明细
-        #          * serial_no [String] 分账流水号
-        #          * payee_contracts [String] 收款方协议号
-        #          * amount [BigDecimal] 金额
-        #          * mark [String] 备注
+        #          * :serialNo [String] 分账流水号
+        #          * :payeeContracts [String] 收款方协议号
+        #          * :amount [BigDecimal] 金额
+        #          * :remark [String] 备注
         # @param remark [ String ] 业务备注信息
         #
         # @return [ Hash ] 结果集

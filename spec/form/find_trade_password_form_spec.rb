@@ -2,8 +2,8 @@
 require 'reapal_helper'
 
 RSpec.describe '设置/修改交易密码' do
-  let(:contracts) { 'RB171202PZXD4SKD' }
-  it '投资人001' do
+  let(:contracts) { borrower_100[:contract] }
+  it '成功' do
     result = client.find_trade_password_form(contracts, '', '')
 
     method = result[:form_method]
@@ -23,6 +23,7 @@ RSpec.describe '设置/修改交易密码' do
     fp.write html
     fp.close
 
+    puts "contracts: #{contracts}"
     puts "测试 html 导入到：#{path}"
   end
 end

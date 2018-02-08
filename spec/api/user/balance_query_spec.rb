@@ -14,4 +14,19 @@ RSpec.describe '查询个人余额' do
 
     expect(result[:result]).to eq('F')
   end
+
+  context 'version 3.0' do
+    it '查询投资人001' do
+      contract = invester_001[:contract]
+      result = client.balance_query(contract)
+
+      puts "contract: #{contract}"
+      puts result[:data]
+
+      expect(result[:result]).to eq('S')
+      expect(result[:data][:totalAmount]).not_to eq(nil)
+    end
+    
+  end
+  
 end

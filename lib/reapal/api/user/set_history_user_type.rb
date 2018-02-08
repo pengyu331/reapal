@@ -20,14 +20,14 @@ module Reapal
         #       * :flow_id [ String ]  订单号
         #       * :result_code [ String ] 结果代码 0000：设置成功
         #
-        def modify_bind_bank_card(flow_id, contracts, user_type)
+        def set_history_user_type(flow_id, contracts, user_type)
           service = 'reapal.trust.setHistoryUserType'
-          post_path = 'reagw/agreement/setHistoryUserType.htm'
+          post_path = '/reagw/agreement/setHistoryUserType.htm'
 
           params = {
             orderNo: flow_id,
             contracts: contracts,
-            user_type: user_type,
+            userType: user_type,
             queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 

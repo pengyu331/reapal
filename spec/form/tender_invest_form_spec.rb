@@ -1,12 +1,20 @@
 # coding: utf-8
 require 'reapal_helper'
 
-RSpec.describe '卡密鉴权' do
+RSpec.describe '投标' do
+  let(:contracts) { 'RB171202PZXD4SKD' }
+  let(:tender_no) { '5a7353eacd5dbb5908000002' }
+
   it '成功' do
-    result = client.certificate_form(certificate_deposit[:orderNo],
-                                     certificate_deposit[:bindId],
-                                     certificate_contract,
-                                     '', '')
+    flow_id = Reapal::Utils.gen_flow_id
+    result = client.tender_invest_form(
+      flow_id,
+      tender_no,
+      500,
+      invester_002[:contract],
+      'http://127.0.0.1',
+      'http://127.0.0.1'
+    )
 
     method = result[:form_method]
     result = result[:form_data]
@@ -20,11 +28,11 @@ RSpec.describe '卡密鉴权' do
 </form>
     EOF
 
-    path = "tmp/spec_certificate_form.html"
+    path = "tmp/spec_tender_invest_form.html"
     fp = File.open(path, "w+")
     fp.write html
     fp.close
-
+    puts "flow_id: #{flow_id}"
     puts "测试 html 导入到：#{path}"
   end
 end

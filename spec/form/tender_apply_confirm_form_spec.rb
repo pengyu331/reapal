@@ -2,9 +2,10 @@
 require 'reapal_helper'
 
 RSpec.describe '发标确认' do
-  let(:tender_no) { '5a71f90ecd5dbb21a8000002' }
+  let(:tender_no) { '5a78044dcd5dbb1ac6000002' }
   it '成功' do
-    result = client.tender_apply_confirm_form(Reapal::Utils.gen_flow_id,
+    flow_id = Reapal::Utils.gen_flow_id
+    result = client.tender_apply_confirm_form(flow_id,
                                               tender_no,
                                               'http://127.0.0.1',
                                               'http://127.0.0.1')
@@ -25,7 +26,7 @@ RSpec.describe '发标确认' do
     fp = File.open(path, "w+")
     fp.write html
     fp.close
-
+    puts "flow_id: #{flow_id}"
     puts "测试 html 导入到：#{path}"
   end
 end
