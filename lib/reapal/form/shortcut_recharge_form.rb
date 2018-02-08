@@ -20,7 +20,7 @@ module Reapal
         #     * :encryptkey
         #     * :data
         #
-        def shortcut_recharge_form(flow_id, contracts, money, return_url, notify_url, remark=nil)
+        def shortcut_recharge_form(flow_id, contracts, money, return_url, notify_url, remark='')
           service = 'reapal.trust.depositApply'
           post_path = '/reagw/service/deposit.htm'
 

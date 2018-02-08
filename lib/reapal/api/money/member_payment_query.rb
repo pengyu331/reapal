@@ -2,7 +2,7 @@
 
 module Reapal
   module Api
-    module User
+    module Money
       module MemberPaymentQuery
 
         # 2.7 会员缴费查询

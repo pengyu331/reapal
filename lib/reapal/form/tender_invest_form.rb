@@ -22,11 +22,11 @@ module Reapal
         #     * :encryptkey
         #     * :data
         #
-        def tender_apply_confirm_form(flow_id, tender_no,
-                                      amount, invest_contract,
-                                      return_url, notify_url,
-                                      coupon_amt=nil, remark=nil)
-          service = 'reapal.trust.tenderApplyConfirm'
+        def tender_invest_form(flow_id, tender_no,
+                               amount, invest_contract,
+                               return_url, notify_url,
+                               coupon_amt=nil, remark='')
+          service = 'reapal.trust.tenderInvest'
           post_path = '/reagw/tender/rest.htm'
 
           params = {

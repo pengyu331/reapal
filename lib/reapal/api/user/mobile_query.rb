@@ -19,12 +19,12 @@ module Reapal
         #     * :contracts [String] 用户协议号
         #     * :mobile [String] 用户手机号
         #
-        def mobile_query(contracts)
+        def mobile_query(contract)
           service = 'reapal.trust.mobileQuery'
           post_path = '/reagw/user/restApi.htm'
 
           params = {
-            contracts: contracts,
+            contracts: contract,
             queryTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 

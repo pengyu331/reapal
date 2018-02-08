@@ -28,14 +28,14 @@ module Reapal
                               amount, payer_contract,
                               return_url, notify_url,
                               busway='01', remark='')
-        service = 'reapal.trust.mobileModify'
-        post_path = '/reagw/user/rest.htm'
+        service = 'reapal.trust.memberPayment'
+        post_path = '/reagw/tender/rest.htm'
 
         params = {
           orderNo: flow_id,
           paymentSubject: payment_subject,
           amount: amount,
-          payerContracts: payer_contract,
+          payerContract: payer_contract,
           busway: busway,
           returnUrl: return_url,
           notifyUrl: notify_url,

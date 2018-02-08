@@ -4,17 +4,17 @@ require 'reapal_helper'
 
 RSpec.describe '历史用户迁移' do
   let(:flow_id) {Reapal::Utils.gen_flow_id}
-  let(:true_name) {"张三"}
-  let(:identity_id) {"622926197402279772"}
-  let(:phone) {"15559882222"}
+  let(:true_name) {"历史300"}
+  let(:identity_id) {"622926197402270300"}
+  let(:phone) {"15559880300"}
   let(:is_to_sms) {"F"}
   let(:bank_code) {"icbc"}
-  let(:card_id) {"6217230200001702234"}
+  let(:card_id) {"6217230200001700300"}
   let(:card_province) {"北京"}
   let(:card_city) {"北京"}
   let(:card_branch) {"北京"}
   let(:card_sub_branch) {"北京"}
-  let(:user_type) {"02"}
+  let(:user_type) {"01"}
 
   it '迁移成功' do
     result = client.onekey_batch_contract(flow_id,

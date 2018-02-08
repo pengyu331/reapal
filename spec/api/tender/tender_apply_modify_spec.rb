@@ -35,6 +35,26 @@ RSpec.describe '修改标的' do
 
       expect(result[:result]).to eq 'S'
     end
+
+    it '修改名称为流标' do
+      result = client.tender_apply_modify(Reapal::Utils.gen_flow_id,
+                                          '5a78044dcd5dbb1ac6000002',
+                                          '个人借款-流标',
+                                          money,
+                                          rate,
+                                          fee_amount,
+                                          refund_term,
+                                          debit_term,
+                                          debit_type,
+                                          repay_date,
+                                          expiry_date,
+                                          tender_type,
+                                          debit_contracts)
+
+      puts result[:data]
+
+      expect(result[:result]).to eq 'S'
+    end
   end
 
   context '状态' do
@@ -62,8 +82,6 @@ RSpec.describe '修改标的' do
     end
 
     it '修改状态为已放款' do
-
-
       result = client.tender_apply_modify(Reapal::Utils.gen_flow_id,
                                           tender_no2,
                                           tender_name2,
@@ -79,9 +97,34 @@ RSpec.describe '修改标的' do
                                           borrower_141[:contract], # debit_contracts,
                                           nil,
                                           nil,
-                                          tender_status)
+                                          '04')
 
-      puts result
+      puts result[:data]
+
+      expect(result[:result]).to eq 'S'
+    end
+
+    it '修改为已放款' do
+      tender_no3 = '5a7353eacd5dbb5908000002'
+
+      result = client.tender_apply_modify(Reapal::Utils.gen_flow_id,
+                                          tender_no3,
+                                          '个人借款为已放款',
+                                          100,
+                                          nil,
+                                          0, # fee_amount,
+                                          '1', # refund_term,
+                                          nil,
+                                          nil,
+                                          Time.now, # repay_date,
+                                          Time.now, # expiry_date,
+                                          '01',
+                                          borrower_141[:contract], # debit_contracts,
+                                          nil,
+                                          nil,
+                                          '03')
+
+      puts result[:data]
 
       expect(result[:result]).to eq 'S'
     end

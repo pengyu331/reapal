@@ -27,9 +27,13 @@ RSpec.describe '撤销绑卡' do
 
   context 'version3.0' do
     it '用户撤销绑卡' do
-      result = client.undo_bind_bank_card(Reapal::Utils.gen_flow_id,
-                                         'RB1801256YGXNBS3',
-                                         '4001')
+      flow_id = Reapal::Utils.gen_flow_id
+      result = client.undo_bind_bank_card(flow_id,
+                                         'RB180202OPH5JH5C',
+                                         '0100')
+
+      puts result[:data]
+      puts flow_id
 
       if result[:result] == 'S'
         expect(result[:data][:resultCode]).to eq('0000')

@@ -66,7 +66,7 @@ module Reapal
           feeDetails: fee_details,
           defrayDetails: defray_details,
           periods: periods,
-          retuenUrl: return_url,
+          returnUrl: return_url,
           notifyUrl: notify_url,
           busway: busway,
           remark: remark,

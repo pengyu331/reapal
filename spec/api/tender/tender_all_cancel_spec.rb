@@ -38,4 +38,21 @@ RSpec.describe '撤标' do
 
     expect(result[:result]).to eq('F')
   end
+
+  context 'version3.0 撤标' do
+    it '成功' do
+      flow_id = Reapal::Utils.gen_flow_id
+      tender = '5a7353eacd5dbb5908000002'
+      tender_flow_id = '5a735af7cd5dbb7410000001'
+      result = client.tender_all_cancel(flow_id,
+                                        tender,
+                                        tender_flow_id)
+
+      puts flow_id
+      puts result[:data]
+      expect(result[:result]).to eq("S")
+      expect(result[:data][:resultCode]).to eq('0000')
+    end
+  end
+  
 end

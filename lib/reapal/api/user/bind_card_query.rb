@@ -17,7 +17,7 @@ module Reapal
         #   * :error_msg [String] 错误信息
         #   * :data: 具体业务返回信息
         #     * :contracts [String] 用户协议号
-        #     * :bank_cards [Array] 银行卡信息数组
+        #     * :bankCards [Array] 银行卡信息数组
         #       * :bank_name  银行名称
         #       * :bank_code  银行代码
         #       * :bank_card  银行卡后四位
@@ -44,7 +44,7 @@ module Reapal
           if 'S' == res[:result] || ('P' == res[:result] && res[:data][:resultCode].nil?)
             res[:result] = 'S'
 
-            res[:data][:bank_cards] = parse_cards_info(res[:data][:bankCards])
+            res[:data][:bankCards] = parse_cards_info(res[:data][:bankCards])
           end
 
           Reapal.logger.info res

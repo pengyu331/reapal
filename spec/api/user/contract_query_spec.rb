@@ -6,7 +6,6 @@ RSpec.describe '签约查询' do
   let(:com_contract_2) { 'TS201505112620' }
   let(:com_contract_3) { '5a1c4ab9cd5dbb9f8f000001' }
   let(:com_contract_4) { '5a1c52abcd5dbbf492000001' }
-  let(:com_contract_5) { '5a6afaa7cd5dbb8d68000001' }
 
   it '用户协议号错误，查询失败' do
     result = client.contract_query('test')
@@ -43,8 +42,19 @@ RSpec.describe '签约查询' do
     expect(result[:data][:resultCode]).to eq('0001')
   end
 
+  let(:com_contract_5) { '5a6afaa7cd5dbb8d68000001' }
+
   it '查询企业签约结果' do
     result = client.contract_query(com_contract_5)
+
+    expect(result[:result]).to eq('S')
+    expect(result[:data][:resultCode]).to eq('0000')
+  end
+
+  let(:contract_flow_id) { '5a740c55cd5dbbcb68000001' }
+
+  it '查询200企业签约结果' do
+    result = client.contract_query(contract_flow_id)
 
     expect(result[:result]).to eq('P')
     expect(result[:data][:resultCode]).to eq('0003')
