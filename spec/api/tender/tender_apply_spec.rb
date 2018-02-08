@@ -1,8 +1,6 @@
 # coding: utf-8
 require 'reapal_helper'
 
-##发标借款人协议号和商户号不对应 ??哪里有啊
-
 RSpec.describe '发标' do
   let(:tender_no) {Reapal::Utils.gen_flow_id}
   let(:tender_name) {'KOOOOOO'}
