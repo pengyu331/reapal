@@ -7,7 +7,7 @@ module Reapal
 
         # 1.4 手机号查询
         #
-        # @param contracts [ String ] 用户协议号
+        # @param contract [ String ] 用户协议号
         #
         # @return [ Hash ] 结果集
         #   * :result [String] 业务结果：'S/F/P'

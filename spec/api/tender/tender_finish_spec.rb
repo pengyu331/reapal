@@ -3,8 +3,6 @@ require 'reapal_helper'
 
 RSpec.describe '满标' do
 
-<<<<<<< HEAD
-=======
   # it '生成标的' do
   #   tender_141
   # end
@@ -46,7 +44,6 @@ RSpec.describe '满标' do
     expect(result[:data][:resultCode]).to eq('0000')
   end
 
->>>>>>> upstream/master
   # it "成功" do
   #   #1.发标
   #     #A发标 100元
