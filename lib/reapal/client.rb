@@ -23,6 +23,11 @@ module Reapal
       recursive_include_api('Reapal::Form')
     end
 
+    def platform_contract
+      # R+PARTNER
+      "R#{@config[:partner_id]}"
+    end
+
     def decode_notify_data(encryptkey, data)
       ::Reapal::Http::Decode.decode_notify_data(encryptkey, data, @config)
     end
