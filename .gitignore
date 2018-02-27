@@ -6,6 +6,9 @@
 /pkg/
 /spec/reports/
 /tmp/
+/spec/support/config/config.yml
+/spec/support/config/config.develop.yml
+/spec/support/config/config.uat.yml
 
 .byebug_history
 reapal-*.gem
