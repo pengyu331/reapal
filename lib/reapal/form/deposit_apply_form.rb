@@ -2,7 +2,7 @@
 
 module Reapal
   module Form
-    module DepositAppyForm
+    module DepositApplyForm
 
       # 2.1 充值
       #
