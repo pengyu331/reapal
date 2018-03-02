@@ -30,7 +30,7 @@ module Reapal
                              return_url, notify_url, busway='01', remark='')
 
         service = 'reapal.trust.businessAuth'
-        post_path = '/reagw/user/rest.htm'
+        post_path = '/user/rest.htm'
 
         params = {
           orderNo: flow_id,

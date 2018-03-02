@@ -32,7 +32,7 @@ module Reapal
                                   branch,
                                   subbranch)
           service = 'reapal.trust.modifyBindBankCard'
-          post_path = '/reagw/bankcard/modifyBindBankApi.htm'
+          post_path = '/bankcard/modifyBindBankApi.htm'
 
           params = {
             orderNo: flow_id,

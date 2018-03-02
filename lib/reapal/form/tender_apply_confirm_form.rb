@@ -22,7 +22,7 @@ module Reapal
         #
         def tender_apply_confirm_form(flow_id, tender_no, return_url, notify_url, bus_way='01', remark=nil)
           service = 'reapal.trust.tenderApplyConfirm'
-          post_path = '/reagw/tender/rest.htm'
+          post_path = '/tender/rest.htm'
 
           params = {
             orderNo: flow_id,

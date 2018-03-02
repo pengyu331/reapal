@@ -29,7 +29,7 @@ module Reapal
                               return_url, notify_url,
                               busway='01', remark='')
         service = 'reapal.trust.memberPayment'
-        post_path = '/reagw/tender/rest.htm'
+        post_path = '/tender/rest.htm'
 
         params = {
           orderNo: flow_id,

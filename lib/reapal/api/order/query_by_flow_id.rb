@@ -48,7 +48,7 @@ module Reapal
             return res
           end
 
-          post_path = '/reagw/tender/rest.htm'
+          post_path = '/tender/rest.htm'
 
           params = {
             orderNo: flow_id,

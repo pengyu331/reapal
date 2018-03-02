@@ -28,7 +28,7 @@ module Reapal
                                       fee_amount, payee_contract,
                                       return_url, notify_url, busway='01')
         service = 'reapal.trust.refundGuarantPayment'
-        post_path = '/reagw/tender/rest.htm'
+        post_path = '/tender/rest.htm'
 
         params = {
           orderNo: flow_id,

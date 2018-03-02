@@ -25,7 +25,7 @@ module Reapal
         #
         def tender_all_cancel(flow_id, tender_no, original_flow_id, busway="01", remark='')
           service = 'reapal.trust.tenderAllCancel'
-          post_path = '/reagw/tender/rest.htm'
+          post_path = '/tender/rest.htm'
 
           params = {
             orderNo: flow_id,

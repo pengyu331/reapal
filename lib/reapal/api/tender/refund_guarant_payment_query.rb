@@ -22,7 +22,7 @@ module Reapal
         #
         def refund_guarant_payment_query(refund_flow_id)
           service = 'reapal.trust.refundGuarantPaymentQuery'
-          post_path = '/reagw/tender/rest.htm'
+          post_path = '/tender/rest.htm'
 
           params = {
             orderNo: refund_flow_id,

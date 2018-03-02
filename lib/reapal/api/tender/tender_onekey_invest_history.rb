@@ -28,7 +28,7 @@ module Reapal
         #
         def tender_onekey_invest_history(tender_no, invest_details, remark='')
           service = 'reapal.trust.onekeyInvestHistory'
-          post_path = '/reagw/tender/rest.htm'
+          post_path = '/tender/rest.htm'
 
           params = {
             tenderNo: tender_no,
@@ -37,7 +37,7 @@ module Reapal
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          res = operate_post(:operate, service, params, post_path, Http::ErrorCode.tender_onekey_invest, ['0000'], '3.0')
+          res = operate_post(:operate, service, params, post_path, Http::ErrorCode.tender_onekey_invest, ['0000'])
 
           Reapal.logger.info res
 
