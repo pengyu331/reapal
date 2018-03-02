@@ -30,7 +30,7 @@ module Reapal
         def tender_onekey_invest(flow_id, tender_no, amount, coupon_amt,
                                  invest_contracts, busway='01', remark='')
           service = 'reapal.trust.onekeyInvest'
-          post_path = '/reagw/tender/rest.htm'
+          post_path = '/tender/rest.htm'
 
           params = {
             orderNo: flow_id,
@@ -43,7 +43,7 @@ module Reapal
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
 
-          res = operate_post(:operate, service, params, post_path, Http::ErrorCode.tender_onekey_invest, ['0000'], '3.0')
+          res = operate_post(:operate, service, params, post_path, Http::ErrorCode.tender_onekey_invest, ['0000'])
 
           if 'S' == res[:result] && '0001' == res[:data][:resultCode]
             res[:result] = 'F'

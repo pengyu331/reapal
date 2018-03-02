@@ -39,7 +39,7 @@ module Reapal
                          debit_term, debit_type, repay_date, expiry_date, tender_type, debit_contracts,
                          guarant_contract=nil, commissioned_contract=nil, busway='01', remark='')
           service = 'reapal.trust.tenderApply'
-          post_path = '/reagw/tender/rest.htm'
+          post_path = '/tender/rest.htm'
 
           params = {
             orderNo: flow_id,
