@@ -2,7 +2,7 @@
 
 module Reapal
   module Form
-    module DepositAppyForm
+    module DepositApplyForm
 
       # 2.1 充值
       #
@@ -29,7 +29,7 @@ module Reapal
                              busway = '01', remark='')
 
         service = 'reapal.trust.depositApply'
-        post_path = '/reagw/service/deposit.htm'
+        post_path = '/service/deposit.htm'
 
         params = {
           orderNo: flow_id,

@@ -33,7 +33,7 @@ module Reapal
                                        tender_type, debit_contracts, guarant_contract=nil,
                                        commissioned_contract=nil, tender_status=nil, busway='01', remark='')
           service = 'reapal.trust.historyTenderInfoModify'
-          post_path = '/reagw/tender/rest.htm'
+          post_path = '/tender/rest.htm'
 
           params = {
             orderNo: flow_id,

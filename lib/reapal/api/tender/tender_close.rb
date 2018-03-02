@@ -22,7 +22,7 @@ module Reapal
         #
         def tender_close(tender_no, busway="01", remark='')
           service = 'reapal.trust.tenderClose'
-          post_path = '/reagw/tender/rest.htm'
+          post_path = '/tender/rest.htm'
 
           params = {
             tenderNo: tender_no,

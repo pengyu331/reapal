@@ -31,7 +31,7 @@ module Reapal
         #
         def bind_card_query(contracts)
           service = 'reapal.trust.bindQuery'
-          post_path = '/reagw/user/restApi.htm'
+          post_path = '/user/restApi.htm'
 
           params = {
             contracts: contracts,

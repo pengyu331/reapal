@@ -27,7 +27,7 @@ module Reapal
                                return_url, notify_url,
                                coupon_amt=nil, remark='')
           service = 'reapal.trust.tenderInvest'
-          post_path = '/reagw/tender/rest.htm'
+          post_path = '/tender/rest.htm'
 
           params = {
             orderNo: flow_id,

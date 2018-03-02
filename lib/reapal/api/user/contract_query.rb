@@ -33,7 +33,7 @@ module Reapal
         #
         def contract_query(contract_flow_id)
           service = 'reapal.trust.contractQuery'
-          post_path = '/reagw/agreement/agreeApi.htm'
+          post_path = '/agreement/agreeApi.htm'
 
           params = {
             orderNo: contract_flow_id,

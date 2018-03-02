@@ -25,7 +25,7 @@ module Reapal
         #
         def tender_auth_cancel(flow_id, contracts, services, busway="01", remark='')
           service = 'reapal.trust.authCancel'
-          post_path = '/reagw/user/restApi.htm'
+          post_path = '/user/restApi.htm'
 
           params = {
             cancleOrderNo: flow_id,

@@ -31,7 +31,7 @@ module Reapal
         #
         def tender_repayment_project(flow_id, tender_no, project_details, busway='01', remark='')
           service = 'reapal.trust.repaymentProject'
-          post_path = '/reagw/tender/rest.htm'
+          post_path = '/tender/rest.htm'
 
           params = {
             orderNo: flow_id,

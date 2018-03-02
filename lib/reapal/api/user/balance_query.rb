@@ -22,7 +22,7 @@ module Reapal
         #
         def balance_query(contracts)
           service = 'reapal.trust.balanceQuery'
-          post_path = '/reagw/agreement/agreeApi.htm'
+          post_path = '/agreement/agreeApi.htm'
 
           params = {
             contracts: contracts,

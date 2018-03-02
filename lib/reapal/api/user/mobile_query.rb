@@ -21,7 +21,7 @@ module Reapal
         #
         def mobile_query(contract)
           service = 'reapal.trust.mobileQuery'
-          post_path = '/reagw/user/restApi.htm'
+          post_path = '/user/restApi.htm'
 
           params = {
             contracts: contract,

@@ -38,7 +38,7 @@ module Reapal
                           invest_details, fee_details=[], 
                           busway='01', remark='')
           service = 'reapal.trust.tenderFinish'
-          post_path = '/reagw/tender/rest.htm'
+          post_path = '/tender/rest.htm'
 
           params = {
             orderNo: flow_id,
