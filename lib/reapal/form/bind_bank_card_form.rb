@@ -23,7 +23,7 @@ module Reapal
       #
       def bind_bank_card_form(flow_id, contract, return_url, notify_url, busway='01')
         service = 'reapal.trust.bankCardAddV3'
-        post_path = '/reagw/bankcard/toBankCardBinding.htm'
+        post_path = '/bankcard/toBankCardBinding.htm'
 
         params = {
           orderNo: flow_id,

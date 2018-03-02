@@ -24,7 +24,7 @@ module Reapal
         #
         def user_contract_form(flow_id, true_name, identity_id, user_type, return_url, notify_url, bus_way='01', remark='')
           service = 'reapal.trust.userContract'
-          post_path = '/reagw/agreement/agree.htm'
+          post_path = '/agreement/agree.htm'
 
           params = {
             orderNo: flow_id,
