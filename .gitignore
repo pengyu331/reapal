@@ -9,6 +9,7 @@
 /spec/support/config/config.yml
 /spec/support/config/config.develop.yml
 /spec/support/config/config.uat.yml
+/spec/uat/
 
 .byebug_history
 reapal-*.gem
