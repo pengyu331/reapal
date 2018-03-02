@@ -22,7 +22,7 @@ module Reapal
         #
         def set_history_user_type(flow_id, contracts, user_type)
           service = 'reapal.trust.setHistoryUserType'
-          post_path = '/reagw/agreement/setHistoryUserType.htm'
+          post_path = '/agreement/setHistoryUserType.htm'
 
           params = {
             orderNo: flow_id,

@@ -23,7 +23,7 @@ module Reapal
         #
         def undo_bind_bank_card(flow_id, contracts, bank_account_no)
           service = 'reapal.trust.undoBindBankCard'
-          post_path = '/reagw/bankcard/undoBindBankApi.htm'
+          post_path = '/bankcard/undoBindBankApi.htm'
 
           params = {
             orderNo: flow_id,
