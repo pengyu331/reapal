@@ -28,7 +28,7 @@ module Reapal
         #
         def sub_account_query(sub_account_flow_id, serial_no='')
           service = 'reapal.trust.subAccountQuery'
-          post_path = '/reagw/service/depwit.htm'
+          post_path = '/service/depwit.htm'
 
           params = {
             orderNo: sub_account_flow_id,

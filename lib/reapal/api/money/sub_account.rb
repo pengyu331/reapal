@@ -28,7 +28,7 @@ module Reapal
         #
         def sub_account(flow_id, sub_type, sub_details, remark ='')
           service = 'reapal.trust.subAccount'
-          post_path = '/reagw/service/depwit.htm'
+          post_path = '/service/depwit.htm'
 
           params = {
             orderNo: flow_id,

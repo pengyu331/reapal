@@ -25,7 +25,7 @@ module Reapal
         #
         def withdraw_query(withdraw_flow_id)
           service = 'reapal.trust.withdrawQuery'
-          post_path = '/reagw/service/depwit.htm'
+          post_path = '/service/depwit.htm'
 
           params = {
             orderNo: withdraw_flow_id,
