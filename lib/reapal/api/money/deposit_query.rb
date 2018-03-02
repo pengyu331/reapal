@@ -20,7 +20,7 @@ module Reapal
         #
         def deposit_query(deposit_flow_id)
           service = 'reapal.trust.depositQuery'
-          post_path = '/reagw/service/depwit.htm'
+          post_path = '/service/depwit.htm'
 
           params = {
             orderNo: deposit_flow_id,

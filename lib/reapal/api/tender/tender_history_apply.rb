@@ -3,9 +3,9 @@
 module Reapal
   module Api
     module Tender
-      module TenderApply
+      module TenderHistoryApply
 
-        # 3.1 发标
+        # 3.20 历史标的迁移
         #
         # @param flow_id [String] 发标订单号
         # @param tender_no [String] 商户系统标的号
@@ -35,10 +35,10 @@ module Reapal
         #      * :orderNo [String] 发标订单号
         #      * :resultCode [String] 结果代码
         #
-        def tender_apply(flow_id, tender_no, tender_name, money, rate, fee_amount, refund_term,
+        def tender_history_apply(flow_id, tender_no, tender_name, money, rate, fee_amount, refund_term,
                          debit_term, debit_type, repay_date, expiry_date, tender_type, debit_contracts,
                          guarant_contract=nil, commissioned_contract=nil, busway='01', remark='')
-          service = 'reapal.trust.tenderApply'
+          service = 'reapal.trust.tenderHistoryApply'
           post_path = '/tender/rest.htm'
 
           params = {

@@ -26,7 +26,7 @@ module Reapal
       #
       def withdraw_apply_form(contract, flow_id, money, charge, return_url, notify_url, remark='', busway='01')
         service = 'reapal.trust.withdrawApply'
-        post_path = '/reagw/service/withdraw.htm'
+        post_path = '/service/withdraw.htm'
 
         params = {
           orderNo: flow_id,

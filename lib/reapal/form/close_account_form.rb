@@ -23,7 +23,7 @@ module Reapal
       #
       def close_account_form(flow_id, contract, return_url, notify_url, busway='01')
         service = 'reapal.trust.closeAccount'
-        post_path = '/reagw/agreement/closeAccountApply.htm'
+        post_path = '/agreement/closeAccountApply.htm'
 
         params = {
           orderNo: flow_id,

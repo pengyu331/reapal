@@ -54,7 +54,7 @@ module Reapal
                                  busway='01',
                                  remark='')
           service = 'reapal.trust.onekeyRefund'
-          post_path = '/reagw/tender/rest.htm'
+          post_path = '/tender/rest.htm'
 
           params = {
             orderNo: flow_id,

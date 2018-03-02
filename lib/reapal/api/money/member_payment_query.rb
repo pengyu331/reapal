@@ -22,7 +22,7 @@ module Reapal
         #
         def member_payment_query(member_payment_flow_id)
           service = 'reapal.trust.memberPaymentQuery'
-          post_path = '/reagw/tender/rest.htm'
+          post_path = '/tender/rest.htm'
 
           params = {
             orderNo: member_payment_flow_id,

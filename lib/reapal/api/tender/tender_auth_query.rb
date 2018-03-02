@@ -28,7 +28,7 @@ module Reapal
         #
         def tender_auth_query(flow_id, contract)
           service = 'reapal.trust.authQuery'
-          post_path = '/reagw/user/restApi.htm'
+          post_path = '/user/restApi.htm'
 
           params = {
             orderNo: flow_id,

@@ -37,7 +37,7 @@ module Reapal
                                   card_branch, card_sub_branch, user_type,
                                   busway='01', remark='')
           service = 'reapal.trust.onekeyBatchContract'
-          post_path = '/reagw/agreement/agree.htm'
+          post_path = '/agreement/agree.htm'
 
           params = {
             orderNo: flow_id,
