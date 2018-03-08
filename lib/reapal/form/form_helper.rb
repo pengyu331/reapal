@@ -19,6 +19,8 @@ module Reapal
       #     * :data
       #
       def get_form_data(service, params, post_path)
+        Reapal.logger.info params
+
         request = Http.get_body(service, params, @config)
 
         {
