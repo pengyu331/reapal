@@ -23,7 +23,7 @@ module Reapal
       #
       def mobile_modify_form(contract, new_phone, return_url, notify_url, busway='01')
         service = 'reapal.trust.mobileModify'
-        post_path = '/reagw/user/rest.htm'
+        post_path = '/user/rest.htm'
 
         params = {
           contracts: contract,
