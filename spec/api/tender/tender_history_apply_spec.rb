@@ -8,7 +8,6 @@ RSpec.describe '发标' do
     let(:contract) { 'RB180302QP1JJUEJ' }
 
     it '迁移历史标的' do
-      flow_id = Reapal::Utils.gen_flow_id
       result = client.tender_history_apply(Reapal::Utils.gen_flow_id,
                                   tender_no,
                                   name,
@@ -24,7 +23,6 @@ RSpec.describe '发标' do
                                   contract)
 
       puts result[:data]
-      puts "flow_id： #{flow_id}"
 
       expect(result[:result]).to eq 'S'
     end
