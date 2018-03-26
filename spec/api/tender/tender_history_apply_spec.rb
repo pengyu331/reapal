@@ -9,18 +9,18 @@ RSpec.describe '发标' do
 
     it '迁移历史标的' do
       result = client.tender_history_apply(Reapal::Utils.gen_flow_id,
-                                  tender_no,
-                                  name,
-                                  2000,
-                                  1,
-                                  0,
-                                  '1',
-                                  1,
-                                  '2',
-                                  Time.now + 24 * 3600,
-                                  Time.now + 3600 * 24,
-                                  '01',
-                                  contract)
+                                           tender_no,
+                                           name,
+                                           2000,
+                                           1,
+                                           0,
+                                           '1',
+                                           1,
+                                           '2',
+                                           Time.now + 24 * 3600,
+                                           Time.now + 3600 * 24,
+                                           '01',
+                                           contract)
 
       puts result[:data]
 
