@@ -11,7 +11,6 @@ module Reapal
         # @param com_license [ String ] 组织机构代码/社会征信号
         # @param lic_start_date [ Time ] 企业组织机构证起始日
         # @param lic_end_date [ Time ] 企业组织机构证截止日
-        # @param phone [ String ] 手机号
         # @param bank_code [ String ] 银行编码
         # @param user_type [ String ] 注册类别 01：出借人 02：借款人 03：担保人 04：受托方
         # @param email [ String ] 企业邮箱
@@ -30,9 +29,9 @@ module Reapal
         #     * :data
         #
         def com_contract_form(flow_id, corp_name, identity_id, com_name, com_license,
-                               lic_start_date, lic_end_date, phone, bank_code,
-                               user_type, email, return_url, notify_url,
-                               busway='01', remark='')
+                              lic_start_date, lic_end_date, bank_code,
+                              user_type, email, return_url, notify_url,
+                              busway='01', remark='')
 
           service = 'reapal.trust.comContract'
           post_path = '/agreement/agree.htm'
@@ -45,7 +44,6 @@ module Reapal
             comLicense: com_license,
             licStartDate: lic_start_date.strftime("%Y%m%d"),
             licEndDate: lic_end_date.strftime("%Y%m%d"),
-            bankMobile: phone,
             bankCode: bank_code,
             userType: user_type,
             email: email,

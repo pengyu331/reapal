@@ -16,6 +16,10 @@ module Reapal
         # @param guarant_contract [String] 担保方协议号
         # @param commissioned_contract [String] 受托方协议号
         # @param tender_status [String] 标的状态 02：募集中 03：已放款 04：已结清
+        # @param returned_principal [BigDecimal] 历史已还款金额
+        # @param returned_interest [BigDecimal] 历史已还款利息
+        # @param returned_fee [BigDecimal] 历史已还款手续费
+        # @param returned_def_amount [BigDecimal] 历史已还款罚息
         # @param busway [String] 设备通道， '00'：PC端；'01'：手机端(默认)；'02'：Pad端；'03'：其它
         # @param remark [String] 备注
         #
@@ -30,8 +34,11 @@ module Reapal
         #      * :resultCode [String] 结果代码 0000：成功
         #
         def history_tender_info_modify(flow_id, tender_no, fee_amount, refund_term,
-                                       tender_type, debit_contracts, guarant_contract=nil,
-                                       commissioned_contract=nil, tender_status=nil, busway='01', remark='')
+                                       tender_type, debit_contracts, guarant_contract='',
+                                       commissioned_contract='', tender_status='',
+                                       returned_principal=0, returned_interest=0,
+                                       returned_fee=0, returned_def_amount=0,
+                                       busway='01', remark='')
           service = 'reapal.trust.historyTenderInfoModify'
           post_path = '/tender/rest.htm'
 
@@ -45,6 +52,10 @@ module Reapal
             guarantContract: guarant_contract,
             commissionedContract: commissioned_contract,
             tenderStatus: tender_status,
+            hisAmount: returned_principal,
+            hisIntAmount: returned_interest,
+            hisFeeAmount: returned_fee,
+            hisDefAmount: returned_def_amount,
             busway: busway,
             remark: remark,
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
