@@ -25,7 +25,7 @@ module Reapal
         def tender_invest_form(flow_id, tender_no,
                                amount, invest_contract,
                                return_url, notify_url,
-                               coupon_amt=nil, remark='')
+                               coupon_amt='', busway='01', remark='')
           service = 'reapal.trust.tenderInvest'
           post_path = '/tender/rest.htm'
 
@@ -36,7 +36,7 @@ module Reapal
             investContracts: invest_contract,
             returnUrl: return_url,
             notifyUrl: notify_url,
-            busway: '00',
+            busway: busway,
             remark: remark,
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
           }
