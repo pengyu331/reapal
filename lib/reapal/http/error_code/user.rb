@@ -13,7 +13,7 @@ module Reapal
       end
 
       def self.contract_create
-        @_contract_create ||= contract_common
+        @_contract_create ||= ['0332'] | contract_common
       end
 
       def self.com_contract_create
