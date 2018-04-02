@@ -8,9 +8,10 @@ module Reapal
         # @param tender_no [ String ] 标的号
         # @param amount [ Number ] 金额
         # @param invest_contract [ String ] 投资方协议号
-        # @param return_url [String] 回调 url
-        # @param notify_url [String] 通知 url
+        # @param return_url [ String ] 回调 url
+        # @param notify_url [ String ]  通知 url
         # @param coupon_amt [ Number ] 红包抵用券
+        # @param busway [ String ] 00：PC端页面 01：移动端H5
         # @param remark [ String ] 备注
         #
         # @return [ Hash ] 结果集
