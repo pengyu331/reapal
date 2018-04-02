@@ -7,7 +7,7 @@ module Reapal
       # 2.1 充值
       #
       # @param flow_id [String] 业务订单号
-      # @param contracts [String] 用户协议号
+      # @param contract [String] 用户协议号
       # @param money [Number] 充值金额
       # @param charge [Number] 手续费
       # @param return_url [String] 回调 url
