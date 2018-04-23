@@ -3,7 +3,7 @@
 module Reapal
   module Api
     module User
-      module ComOnekeyContract
+      module ComOnekeyBatchContract
 
         # 5.3 历史企业用户迁移
         #
@@ -50,10 +50,11 @@ module Reapal
         #       * :remark [String] 备注
         #       * :processTime [String] 处理时间
         #
-        def com_onekey_contract(flow_id, corp_name, corp_identity, corp_phone, manager_name,
-                                manager_identity, manager_phone, com_name, com_license, lic_start_date,
-                                lic_end_date, bank_code, card_id, user_type, email, busway='00', remark='')
-          service = 'reapal.trust.comOnekeyContract'
+        def com_onekey_batch_contract(flow_id, corp_name, corp_identity, corp_phone, manager_name,
+                                      manager_identity, manager_phone, com_name, com_license, lic_start_date,
+                                      lic_end_date, bank_code, card_id, user_type, email,
+                                      return_url, notify_url, busway='00',remark='')
+          service = 'reapal.trust.oneKeyBatchCompInformationTransfer'
           post_path = '/agreement/agree.htm'
 
           params = {
@@ -74,6 +75,8 @@ module Reapal
             bankAccountNo: card_id,
             userType: user_type,
             email: email,
+            returnUrl: return_url,
+            notifyUrl: notify_url,
             applyTime: Time.now.strftime('%Y-%m-%d %H:%M:%S')
           }
 
